@@ -14,7 +14,7 @@ Product.hasMany(Review)
 Review.belongsTo(Product)
 
 Order.belongsTohMany(Product,{through: 'order-product'})
-Product.belongsTohMany(Order,{thtought: 'order-product'})
+Product.belongsTohMany(Order,{through: 'order-product'})
 
 
 /**
