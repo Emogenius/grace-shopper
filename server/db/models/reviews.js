@@ -1,32 +1,24 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-
 const Review = db.define('review', {
-date: { type: Sequelize.DATE, 
-    defaultValue: Sequelize.NOW },
- //timestamps:true
- title: {
-     type: Sequelize.STRING,
-     allowNull:false
- },
- review: {
-     type: sequelize.TEXT,
-     validate: {
-        longEnough: function() {
-          if(this.length < 60) {
-            throw new Error('Your review must be at least 60 characters')
-          }
-        }
+  date: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
+  },
+  title: {
+    type: Sequelize.STRING,
+    defaultValue: 'i dont know'
+  },
+  review: {
+    type: sequelize.TEXT,
+    validate: {
+      len: [0, 250]
     }
-},
-stars: {
+  },
+
+  stars: {
     type: Sequelize.INTEGER,
-    validate: { min: 0, max: 5 }
-},
-
-
-}
-//author: Sequelize.STRING(userId.name)
-)
-
+    validate: {min: 0, max: 5}
+  }
+})

@@ -1,5 +1,10 @@
 body {
   font-family: sans-serif;
+  background-image: linear-gradient(
+    to bottom right,
+    aquamarine,
+    mediumslateblue
+  );
 }
 
 a {
