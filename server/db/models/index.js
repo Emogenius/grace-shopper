@@ -29,8 +29,8 @@ Product.belongsToMany(Order, {through: 'order-product'})
  * instead of: const User = require('../db/models/user')
  */
 
-User.hasMany(Review)  // Creates association table called UsersReviews
-User.hasMany(Order)  // Creates association table called UsersOrders
+User.hasMany(Review) // Creates association table called UsersReviews
+User.hasMany(Order) // Creates association table called UsersOrders
 
 module.exports = {
   User,
