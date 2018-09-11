@@ -3,7 +3,6 @@ const Order = require('./order')
 const Product = require('./product')
 const Review = require('./review')
 
-
 User.hasMany(Order)
 Order.belongsTo(User)
 
@@ -13,9 +12,8 @@ Review.belongsTo(User)
 Product.hasMany(Review)
 Review.belongsTo(Product)
 
-Order.belongsTohMany(Product,{through: 'order-product'})
-Product.belongsTohMany(Order,{through: 'order-product'})
-
+Order.belongsToMany(Product, {through: 'order-product'})
+Product.belongsToMany(Order, {through: 'order-product'})
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -31,5 +29,8 @@ Product.belongsTohMany(Order,{through: 'order-product'})
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Order, Product, Review
+  User,
+  Order,
+  Product,
+  Review
 }
