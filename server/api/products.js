@@ -11,9 +11,12 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//need to also eager load the review
 router.get('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id)
+    const product = await Product.findById(req.params.id, {
+      include: [{model: Reviews}]
+    })
     res.json(product)
   } catch (err) {
     next(err)
