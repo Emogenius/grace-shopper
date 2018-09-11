@@ -32,7 +32,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/viewAll" component={AllEmoji} />
-        <Route exact path="/:categoryId" component={Category} />
+        <Route exact path="/category/:categoryId" component={Category} />
         <Route exact path="/:id" component={SingleEmoji} />
         {/* <Route exact path="/:userId" component={UserDetail} /> */}
         {/* <Route exact path="/cart" component={Cart} /> */}

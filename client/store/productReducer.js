@@ -25,7 +25,7 @@ export const gotCategory = category => ({
 
 export const getProducts = () => {
   return async dispatch => {
-    const {data} = await axios.get('/api/products/')
+    const {data} = await axios.get('/api/products')
     dispatch(gotProducts(data))
   }
 }
@@ -43,7 +43,7 @@ export const getEmoji = id => {
 export const getCategory = category => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/products/${category}`)
+      const {data} = await axios.get(`/api/products/category/${category}`)
       dispatch(gotCategory(data))
     } catch (err) {
       console.log('not setting stuff')
