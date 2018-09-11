@@ -5,17 +5,21 @@ const User = require('./server/db/User.model')
 const Review = require('./server/db/Review.model')
 const Order = require('./server/db/Order.model')
 
-const Users = [
+const users = [
   {
-    firstName: 'Cher',
-    lastName: 'Horowitz',
-    email: 'whatever@aol.com'
+    fullName: 'Evie Ren',
+    email: 'evieDestroyerOfKittens@gmail.com',
+    isAdmin: true
   },
   {
-    firstName: 'Dion',
-    lastName: 'Davenport',
-    email: 'AsIf@aol.com',
-    isAdmin: yes
+    fullName: 'Esther Park',
+    email: 'taskMistress@gmail.com',
+    isAdmin: true
+  },
+  {
+    fullName: 'Jasmine English',
+    email: 'gitMistress@gmail.com',
+    isAdmin: true
   }
 ]
 
@@ -25,7 +29,7 @@ const products = [
     decription: 'this is the best',
     price: 100,
     inventoryQuantity: 45,
-    category: sadness,
+    category: 'happiness',
     imageUrl: '/images/emoji1'
   },
   {
@@ -33,35 +37,31 @@ const products = [
     decription: 'this is the best',
     price: 5,
     inventoryQuantity: 45,
-    category: sadness,
+    category: 'sadness',
     imageUrl: '/images/emoji1'
   }
 ]
 const orders = [
   {
-    name: 'Bronson Alcott High',
-    imageUrl: '/images/Clueless_campus.jpg',
-    tagline: 'Rollin with the homies',
-    address: 'Beverly Hills,CA',
-    description: "it's like a really good school",
-    style: 'clueless'
+    productId: 2,
+    userId: 1
   },
   {
-    name: 'North Shore High School',
-    imageUrl: '/images/mean.girls.jpg',
-    tagline: 'I love your bracelet. Where did you get it?',
-    address: 'Evanston, IL',
-    description: 'The Plastics rule this school',
-    style: 'meanGirls'
+    productId: 1,
+    userId: 2
   }
 ]
 const reviews = [
   {
+    productId: 1,
+    userId: 1,
     title: 'the worst',
     review: 'this emoji is super lame. I want a new one!',
     stars: 1
   },
   {
+    productId: 2,
+    userId: 3,
     title: 'the best',
     review: 'this emoji is awesome. I want more!',
     stars: 5
@@ -74,17 +74,15 @@ const seed = async () => {
   const seedUser = await users.map(user => User.create(user))
   const seedEmoji = await products.map(product => Product.create(product))
   const seedOrder = await orders.map(order => Order.create(order))
-  const seedReview = await reviews.map(order => Review.create(review))
+  const seedReview = await reviews.map(review => Review.create(review))
 
-  return Promise.all(seedUser, seedEmoji, seedOrder)
-  //,seedReview);
-  console.log(green('Seeding success!'))
-
+  return Promise.all(seedUser, seedEmoji, seedOrder, seedReview)
+  console.log('Seeding success!')
   db.close()
 }
 
 seed().catch(err => {
-  console.error(red('Oh noes! Something went wrong!'))
+  // console.error(red('Oh noes! Something went wrong!'))
   console.error(err)
   db.close()
 })
