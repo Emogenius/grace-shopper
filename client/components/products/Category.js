@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getCategory} from '../reducers/products'
+import {getCategory} from '../store/productReducer'
 import SingleEmoji from './SingleEmoji'
 
 class Category extends Component {
