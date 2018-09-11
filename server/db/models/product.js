@@ -1,7 +1,7 @@
 const db = require('../db')
 const Sequelize = require('sequelize')
 
-const Product = db.define('products', {
+const Product = db.define('product', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -24,7 +24,7 @@ const Product = db.define('products', {
     validate: {min: 0}
   },
   category: {
-    type: Sequelize.STRING, //Sequelize.ARRAY(Sequelize.STRING) ?
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
