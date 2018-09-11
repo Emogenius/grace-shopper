@@ -23,13 +23,6 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     validate: {min: 0}
   },
-  category: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
   imageUrl: {
     type: Sequelize.STRING,
     //'/smiling_face_emoji.png' sth
