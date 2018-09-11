@@ -2,11 +2,11 @@ import axios from 'axios'
 import history from '../history'
 
 //---------------------- ACTION TYPES -----------------------
-const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
-const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART'
-//const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
-const REQUEST_CART = 'REQUEST_CART'
-const GET_CART = 'GET_CART'
+const ADDED_PRODUCT_TO_CART = 'ADDED_PRODUCT_TO_CART'
+const REMOVED_PRODUCT_FROM_CART = 'REMOVED_PRODUCT_FROM_CART'
+//const INCREASED_QUANTITY = 'INCREASE_QUANTITY'
+const REQUESTED_CART = 'REQUESTED_CART'
+const GOT_CART = 'GOT_CART'
 
 //---------------------- ACTION CREATORS -----------------------
 //EXAMPLE
@@ -17,17 +17,17 @@ const addToCart = product => ({
 })
 
 const removeFromCart = product => ({
-  type: REMOVE_PRODUCT_FROM_CART,
+  type: REMOVED_PRODUCT_FROM_CART,
   product
 })
 
 const getCart = () => ({
-  type: GET_CART,
+  type: GOT_CART,
   cartList
 })
 
 const requestCart = () => ({
-  type: REQUEST_CART
+  type: REQUESTED_CART
 })
 
 //---------------------- THUNK CREATOR -----------------------
@@ -36,6 +36,14 @@ const requestCart = () => ({
 //   try {
 //     const res = await axios.get('/auth/me')
 //     dispatch(getUser(res.data || defaultUser))
+//   } catch (err) {
+//     console.error(err)
+//   }
+// }
+
+// export const getCart = () => async dispatch => {
+//   try {
+//     const res = await
 //   } catch (err) {
 //     console.error(err)
 //   }
@@ -50,26 +58,26 @@ const initialState = {
 //---------------------- REDUCER -----------------------
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_CART: {
+    case GOT_CART: {
       return {
         ...state,
         list: action.cartList,
         isFetching: false
       }
     }
-    case REQUEST_CART: {
+    case REQUESTED_CART: {
       return {
         ...state,
         isFetching: true
       }
     }
-    case ADD_PRODUCT_TO_CART: {
+    case ADDED_PRODUCT_TO_CART: {
       return {
         ...state,
         list: [...state.list, action.product]
       }
     }
-    case REMOVE_PRODUCT_FROM_CART: {
+    case REMOVED_PRODUCT_FROM_CART: {
       return {
         ...state,
         list: state.list.filter(item => item.id === action.product.id)
