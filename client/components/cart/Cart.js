@@ -21,7 +21,15 @@ class Cart extends Component {
     ) : (
       <div>
         <h1>Your Shopping Cart</h1>
-        <ul>{list.map(listItem => <CartItem key={listItem.productId} />)}</ul>
+        <ul>
+          {list.map(listItem => (
+            <CartItem
+              handleDelete={this.handleDelete}
+              product={listItem}
+              key={listItem.productId}
+            />
+          ))}
+        </ul>
       </div>
     )
   }
