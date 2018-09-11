@@ -1,12 +1,41 @@
+// ISSUE How detailed does this have to be?
+// Ideally, the address would be broken down
+// into separate tables for state, country, zip, etc...
+// FEATURE User can have can have customer level, like gold, silver, bronze
+
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  fullName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  address: {
+    type: Sequelize.STRING
+  },
+  phoneNumber: {
+    type: Sequelize.STRING
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  isGuest: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   },
   password: {
     type: Sequelize.STRING,
