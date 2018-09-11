@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getEmoji} from '../store/productReducer'
+import {gotEmoji, getEmoji} from '../../store/productReducer'
 
 class SingleEmoji extends Component {
+  componentDidMount() {
+    this.props.gotEmoji()
+    // this.handleChange = this.handleChange.bind(this);
+  }
+
   render() {
-    const emoji = this.props.product.selectedEmoji
+    const emoji = this.props.selectedEmoji
     if (!emoji) {
       return (
         <div>

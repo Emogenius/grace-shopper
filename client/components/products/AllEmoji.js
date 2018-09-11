@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getProducts} from '../store/productReducer'
+import {getProducts, gotProducts} from '../../store/productReducer'
 
 class AllEmoji extends Component {
+  componentDidMount() {
+    this.props.gotProducts()
+    // this.handleChange = this.handleChange.bind(this);
+  }
   render() {
-    const products = this.props.product.products
+    const products = this.props.products
+    console.log(products)
     if (!products) {
       return (
         <div>
@@ -19,7 +24,9 @@ class AllEmoji extends Component {
           {products.map(prod => {
             return (
               <li key={prod.id}>
-                <h2>{prod.name}</h2>
+                <h2>"{prod.title}"</h2>
+                <h3>Description: {prod.description}</h3>
+                <h3>Price: {prod.price} $$</h3>
                 <image src={prod.imageUrl} />
                 <Link to={'products/{prod.id}'}>
                   <h3> pick me!</h3>

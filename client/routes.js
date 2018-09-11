@@ -2,10 +2,19 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
-import {AllEmoji, Category, SingleEmoji} from './components/products'
-import {UserDetail} from './components/user'
-import {Cart} from './components/cart'
+import {
+  Login,
+  Signup,
+  UserHome,
+  AllEmoji,
+  Category,
+  SingleEmoji
+} from './components'
+// import AllEmoji from './components/products/AllEmoji'
+// import Category from './components/products/Category'
+// import SingleEmoji from './components/products/SingleEmoji'
+//import {UserDetail} from './components/user'
+//import {Cart} from './components/cart'
 import {me} from './store'
 
 /**
@@ -25,8 +34,8 @@ class Routes extends Component {
         <Route exact path="/viewAll" component={AllEmoji} />
         <Route exact path="/:categoryId" component={Category} />
         <Route exact path="/:id" component={SingleEmoji} />
-        <Route exact path="/:userId" component={UserDetail} />
-        <Route exact path="/cart" component={Cart} />
+        {/* <Route exact path="/:userId" component={UserDetail} /> */}
+        {/* <Route exact path="/cart" component={Cart} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         {isLoggedIn && (
