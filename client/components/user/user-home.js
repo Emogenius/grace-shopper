@@ -8,6 +8,8 @@ import {connect} from 'react-redux'
 export const UserHome = props => {
   const {email} = props
 
+  //
+
   return (
     <div>
       <h3>Welcome, {email}</h3>
@@ -18,7 +20,8 @@ export const UserHome = props => {
 /**
  * CONTAINER
  */
-const mapState = state => {
+// adding ownProps as second parameter -EP
+const mapState = (state, ownProps) => {
   return {
     email: state.user.email
   }
