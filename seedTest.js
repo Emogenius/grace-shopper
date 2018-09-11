@@ -1,9 +1,6 @@
-const {db} = require('./server/db')
+const db = require('./server/db')
 //const { green, red } = require("chalk");
-const Product = require('./server/db/Product.model')
-const User = require('./server/db/User.model')
-const Review = require('./server/db/Review.model')
-const Order = require('./server/db/Order.model')
+const {User, Product, Order, Review} = require('./server/db/models')
 
 const users = [
   {
@@ -69,20 +66,22 @@ const reviews = [
 ]
 
 const seed = async () => {
-  await db.sync({force: true})
+  try {
+    await db.sync({force: true})
 
-  const seedUser = await users.map(user => User.create(user))
-  const seedEmoji = await products.map(product => Product.create(product))
-  const seedOrder = await orders.map(order => Order.create(order))
-  const seedReview = await reviews.map(review => Review.create(review))
+    await users.map(user => User.create(user))
+    await category.map(user => Category.create(category))
+    await products.map(product => Product.create(product))
+    await orders.map(order => Order.create(order))
+    await reviews.map(review => Review.create(review))
 
-  return Promise.all(seedUser, seedEmoji, seedOrder, seedReview)
-  console.log('Seeding success!')
-  db.close()
+    //await Promise.all(seedUser, seedEmoji, seedOrder, seedReview)
+    console.log('Seeding success!')
+    db.close()
+  } catch (err) {
+    console.error(err)
+    db.close()
+  }
 }
 
-seed().catch(err => {
-  // console.error(red('Oh noes! Something went wrong!'))
-  console.error(err)
-  db.close()
-})
+seed()
