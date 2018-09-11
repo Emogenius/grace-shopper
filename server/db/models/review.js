@@ -11,10 +11,10 @@ const Review = db.define('review', {
     defaultValue: 'i dont know'
   },
   review: {
-    type: Sequelize.TEXT,
-    validate: {
-      len: [0, 250]
-    }
+    type: Sequelize.TEXT
+    // validate: {
+    //   len: [0, 250]
+    // }
   },
 
   stars: {

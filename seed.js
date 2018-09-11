@@ -4,7 +4,7 @@ const {User, Product, Order, Review, Category} = require('./server/db/models')
 const users = require('./seedUser.json')
 const categories = require('./seedCategory.json')
 const orders = require('./seedOrder.json')
-const orderProducts = require('./seedOrderProduct.json')
+//const orderProducts = require('./seedOrderProduct.json')
 const products = require('./seedProduct.json')
 const reviews = require('./seedReview.json')
 
@@ -16,7 +16,7 @@ const seed = async () => {
   Promise.all(orders.map(order => Order.create(order)))
   Promise.all(products.map(product => Product.create(product)))
   Promise.all(reviews.map(review => Review.create(review)))
-  Promise.all(orderProducts.map(orderProduct => Review.create(orderProduct)))
+  //Promise.all(orderProducts.map(orderProduct => Review.create(orderProduct)))
 
   // seed your database here!
 
