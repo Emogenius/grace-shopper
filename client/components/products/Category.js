@@ -46,7 +46,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    gotCategory: () => dispatch(getCategory())
+    getCategory: () => dispatch(getCategory())
   }
 }
 
