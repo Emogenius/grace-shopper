@@ -55,6 +55,7 @@ export const getCategory = category => {
 const initialState = {
   products: [],
   category: [],
+  selectedEmoji: {},
   isFetching: true
 }
 //---------------------- REDUCER -----------------------

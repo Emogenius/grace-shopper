@@ -4,13 +4,8 @@ import {connect} from 'react-redux'
 import {getProducts} from '../reducers/products'
 
 class AllEmoji extends Component {
-  // constructor(){
-  //   super()
-
-  // }
-
   render() {
-    const products = this.props.products.products
+    const products = this.props.product.products
     if (!products) {
       return (
         <div>
@@ -26,7 +21,7 @@ class AllEmoji extends Component {
               <li key={prod.id}>
                 <h2>{prod.name}</h2>
                 <image src={prod.imageUrl} />
-                <Link to={'campuses/{prod.id}'}>
+                <Link to={'products/{prod.id}'}>
                   <h3> pick me!</h3>
                 </Link>
               </li>
@@ -39,7 +34,7 @@ class AllEmoji extends Component {
 }
 
 const mapStateToProps = state => {
-  return {products: state.products}
+  return {products: state.product.products}
 }
 const mapDispatchToProps = dispatch => {
   return {
