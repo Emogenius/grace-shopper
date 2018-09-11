@@ -9,7 +9,7 @@ const Product = db.define('product', {
       notEmpty: true
     }
   },
-  decription: {
+  description: {
     type: Sequelize.TEXT
     // allowNull: false,
     // validate: {notEmpty: true}
