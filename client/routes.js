@@ -2,10 +2,17 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
-import AllEmoji from './components/products/AllEmoji'
-import Category from './components/products/Category'
-import SingleEmoji from './components/products/SingleEmoji'
+import {
+  Login,
+  Signup,
+  UserHome,
+  AllEmoji,
+  Category,
+  SingleEmoji
+} from './components'
+// import AllEmoji from './components/products/AllEmoji'
+// import Category from './components/products/Category'
+// import SingleEmoji from './components/products/SingleEmoji'
 //import {UserDetail} from './components/user'
 //import {Cart} from './components/cart'
 import {me} from './store'
