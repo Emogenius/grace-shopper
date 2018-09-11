@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getProducts} from '../reducers/products'
+import {getProducts} from '../store/productReducer'
 
 class AllEmoji extends Component {
   render() {
