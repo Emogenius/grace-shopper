@@ -39,7 +39,7 @@ const products = [
       'A face smiling and wearing dark sunglasses that is used to denote a sense of cool. The nerd face emoji is a similar face, but with regular glasses.',
     price: 1,
     inventoryQuantity: 4,
-    imageUrl: '../../../public/Images/smiling-face-with-sunglasses.png',
+    imageUrl: '/images/smiling-face-with-sunglasses.png',
     categoryId: 3
   },
   {
@@ -48,7 +48,7 @@ const products = [
       'A yellow face with smiling eyes and a closed smile turning up to rosy cheeks. Expresses genuine happiness and various warm, positive feelings. An emoji form of the ^^ emoticon.',
     price: 3,
     inventoryQuantity: 4,
-    imageUrl: '../../../public/Images/smiling-face-with-sunglasses.png',
+    imageUrl: '/images/face-smiling-eyes.png',
     categoryId: 3
   },
   {
@@ -57,7 +57,7 @@ const products = [
       "A pouting face outwardly showing displeasure with a person or situation. Displayed with a furrowed brow on most platforms, this emoji is commonly used for mad or angry emotions. Samsung's version of this emoji includes a red anger symbol on the forehead.",
     price: 3,
     inventoryQuantity: 4,
-    imageUrl: '../../../public/Images/smiling-face-with-sunglasses.png',
+    imageUrl: '/images/pouting-face.png',
     categoryId: 3
   },
   {
@@ -66,7 +66,7 @@ const products = [
       'A pear-shaped avocado, sliced in half to show its yellow-green flesh and large brown pit. Ready for toast, guacamole, or millennial jokes.',
     price: 3,
     inventoryQuantity: 4,
-    imageUrl: '../../../public/Images/smiling-face-with-sunglasses.png',
+    imageUrl: '/images/avocado.png',
     categoryId: 1
   },
   {
@@ -75,7 +75,7 @@ const products = [
       'A prawn or shrimp breaded and deep-fried golden-brown. Known as ebi furai in Japan but commonly called shrimp tempura and served in a bento box. Not to be confused with the Shrimp. May be used to represent a small penis.',
     price: 3,
     inventoryQuantity: 4,
-    imageUrl: '../../../public/Images/smiling-face-with-sunglasses.png',
+    imageUrl: '/images/fried-shrimp.png',
     categoryId: 1
   },
   {
@@ -84,7 +84,7 @@ const products = [
       'A bottle of milk or formula, as or fed to a baby, with a bluish cap and rubber nipple or teat. Positioned upright or at a 45° angle, and filled to various levels, sometimes showing fill lines. Often used for newborns and childrearing.',
     price: 3,
     inventoryQuantity: 4,
-    imageUrl: '../../../public/Images/smiling-face-with-sunglasses.png',
+    imageUrl: '/images/baby-bottle.png',
     categoryId: 1
   },
   {
@@ -93,7 +93,7 @@ const products = [
       'A sunset-orange-colored tropical beverage in a stemmed glass, as a rum punch or mai tai. Served with a straw and fruit garnish. Many platforms include a cocktail umbrella, hence umbrella drink. Samsung previously featured an electric-blue concoction.',
     price: 3,
     inventoryQuantity: 4,
-    imageUrl: '/images/smiling-face-with-sunglasses.png',
+    imageUrl: '/images/tropical-drink.png',
     categoryId: 1
   }
 ]
