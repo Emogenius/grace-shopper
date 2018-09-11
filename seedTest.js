@@ -66,22 +66,19 @@ const reviews = [
 ]
 
 const seed = async () => {
-  try {
-    await db.sync({force: true})
+  await db.sync({force: true})
 
-    await users.map(user => User.create(user))
-    await category.map(user => Category.create(category))
-    await products.map(product => Product.create(product))
-    await orders.map(order => Order.create(order))
-    await reviews.map(review => Review.create(review))
+  await users.map(user => User.create(user))
+  //await category.map(user => Category.create(category))
+  await products.map(product => Product.create(product))
+  await orders.map(order => Order.create(order))
+  await reviews.map(review => Review.create(review))
 
-    //await Promise.all(seedUser, seedEmoji, seedOrder, seedReview)
-    console.log('Seeding success!')
-    db.close()
-  } catch (err) {
-    console.error(err)
-    db.close()
-  }
+  console.log('Seeding success!')
+  db.close()
 }
 
-seed()
+seed().catch(err => {
+  console.error(err)
+  db.close()
+})
