@@ -25,10 +25,6 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
-  isGuest: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true
-  },
   email: {
     type: Sequelize.STRING,
     unique: true,
