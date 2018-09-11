@@ -11,22 +11,22 @@ const GOT_CART = 'GOT_CART'
 //---------------------- ACTION CREATORS -----------------------
 //EXAMPLE
 // const getUser = user => ({type: GET_USER, user})
-const addToCart = product => ({
+const addedToCart = product => ({
   type: ADD_ITEM_TO_CART,
   product
 })
 
-const removeFromCart = product => ({
+const removedFromCart = product => ({
   type: REMOVED_PRODUCT_FROM_CART,
   product
 })
 
-const getCart = () => ({
+const gotCart = () => ({
   type: GOT_CART,
   cartList
 })
 
-const requestCart = () => ({
+const requestedCart = () => ({
   type: REQUESTED_CART
 })
 
