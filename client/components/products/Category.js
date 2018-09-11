@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getCategory} from '../store/productReducer'
+import {getCategory} from '../../store/productReducer'
 import SingleEmoji from './SingleEmoji'
 
 class Category extends Component {
   render() {
-    const products = this.props.product.category
+    const products = this.props.category
     if (!products) {
       return (
         <div>

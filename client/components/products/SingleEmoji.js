@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getEmoji} from '../store/productReducer'
+import {getEmoji} from '../../store/productReducer'
 
 class SingleEmoji extends Component {
   render() {
-    const emoji = this.props.product.selectedEmoji
+    const emoji = this.props.selectedEmoji
     if (!emoji) {
       return (
         <div>
