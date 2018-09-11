@@ -19,3 +19,13 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+router.get('/:category', async (req, res, next) => {
+  try {
+    const products = await Product.findAll({
+      where: {category: req.params.category}
+    })
+    res.json(products)
+  } catch (err) {
+    next(err)
+  }
+})
