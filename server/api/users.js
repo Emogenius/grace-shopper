@@ -2,6 +2,18 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
+/**
+ * Creating userNotFound -EP
+ */
+const userNotFound = next => {
+  try {
+    const err = new Error('Not Found')
+    err.status = 404
+  } catch (error) {
+    next(error)
+  }
+}
+
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
