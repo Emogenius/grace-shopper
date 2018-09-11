@@ -93,7 +93,7 @@ const products = [
       'A sunset-orange-colored tropical beverage in a stemmed glass, as a rum punch or mai tai. Served with a straw and fruit garnish. Many platforms include a cocktail umbrella, hence umbrella drink. Samsung previously featured an electric-blue concoction.',
     price: 3,
     inventoryQuantity: 4,
-    imageUrl: '../../../public/Images/smiling-face-with-sunglasses.png',
+    imageUrl: '/images/smiling-face-with-sunglasses.png',
     categoryId: 1
   }
 ]
