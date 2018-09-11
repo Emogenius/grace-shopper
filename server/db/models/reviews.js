@@ -11,7 +11,7 @@ const Review = db.define('review', {
     defaultValue: 'i dont know'
   },
   review: {
-    type: sequelize.TEXT,
+    type: Sequelize.TEXT,
     validate: {
       len: [0, 250]
     }
@@ -22,3 +22,5 @@ const Review = db.define('review', {
     validate: {min: 0, max: 5}
   }
 })
+
+module.exports = Review
