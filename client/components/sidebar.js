@@ -17,6 +17,7 @@ const Sidebar = () => {
         <li className="sidebar-brand">
           <h1>category is!</h1>
         </li>
+        <Link to="/viewAll"> view all emojis</Link>
       </ul>
     </div>
   )
