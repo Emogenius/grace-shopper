@@ -59,7 +59,6 @@ class SingleEmoji extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('this state in mapsState', state)
   return {...state, selectedEmoji: state.product.selectedEmoji}
 }
 const mapDispatchToProps = dispatch => {

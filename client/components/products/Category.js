@@ -1,16 +1,17 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {gotCategory, getCategory} from '../../store/productReducer'
+import {getCategory} from '../../store/productReducer'
 import SingleEmoji from './SingleEmoji'
 
 class Category extends Component {
   componentDidMount() {
-    this.props.gotCategory()
-    // this.handleChange = this.handleChange.bind(this);
+    console.log('props in category component', this.props)
+    const cat = this.props.match.params.category
+    this.props.gotCategory(cat)
   }
   render() {
-    const products = this.props.category
+    const products = this.props.product.category
     if (!products) {
       return (
         <div>
@@ -42,11 +43,11 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {
-  return {products: state.product.category}
+  return {...state, category: state.product.category}
 }
 const mapDispatchToProps = dispatch => {
   return {
-    getCategory: () => dispatch(getCategory())
+    getCategory: cat => dispatch(getCategory(cat))
   }
 }
 
