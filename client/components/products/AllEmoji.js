@@ -28,7 +28,7 @@ class AllEmoji extends Component {
                 <h3>Description: {prod.description}</h3>
                 <h3>Price: {prod.price} $$</h3>
                 <img src={prod.imageUrl} />
-                <Link to={'products/{prod.id}'}>
+                <Link to={`/products/${prod.id}`}>
                   <h3> pick me!</h3>
                 </Link>
               </li>

@@ -5,21 +5,24 @@ import {gotEmoji, getEmoji} from '../../store/productReducer'
 
 class SingleEmoji extends Component {
   componentDidMount() {
-    this.props.gotEmoji()
+    const id = this.props.match.params.id
+    this.props.gotEmoji(id)
     // this.handleChange = this.handleChange.bind(this);
   }
 
   render() {
-    const emoji = this.props.selectedEmoji
-    if (!emoji) {
+    const emoji = this.props.protducts.selectedEmoji
+    if (emoji === undefined) {
       return (
         <div>
           {' '}
-          <h1> no emojis in this category yet!</h1>{' '}
+          <h1> haven't found this emoji yet!</h1>{' '}
         </div>
       )
     } else {
-      return (
+      return !emoji.id ? (
+        <h4> chillOut </h4>
+      ) : (
         <div>
           <h1>{emoji.name}</h1>
           <h2>{emoji.category}</h2>
@@ -34,11 +37,11 @@ class SingleEmoji extends Component {
 }
 
 const mapStateToProps = state => {
-  return {products: state.product.selectedEmoji}
+  return {...state, selectedEmoji: state.products.selectedEmoji}
 }
 const mapDispatchToProps = dispatch => {
   return {
-    gotEmoji: () => dispatch(getEmoji())
+    gotEmoji: id => dispatch(getEmoji(id))
   }
 }
 
