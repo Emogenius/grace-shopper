@@ -39,7 +39,8 @@ class Routes extends Component {
         <Route exact path="/viewAll" component={AllEmoji} />
         <Route exact path="/category/:categoryId" component={Category} />
         <Route exact path="/products/:id" component={SingleEmoji} />
-        {/* <Route exact path="/cart" component={Cart} /> */}
+        {/* <Route exact path="/:userId" component={UserDetail} /> */}
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/login" component={LogInForm} />
         <Route exact path="/signup" component={SignUpForm} />
 

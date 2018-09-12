@@ -2,32 +2,38 @@ import axios from 'axios'
 import history from '../history'
 
 //---------------------- ACTION TYPES -----------------------
-const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
-const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART'
-//const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
-const REQUEST_CART = 'REQUEST_CART'
-const GET_CART = 'GET_CART'
+const ADDED_PRODUCT_TO_CART = 'ADDED_PRODUCT_TO_CART'
+const REMOVED_PRODUCT_FROM_CART = 'REMOVED_PRODUCT_FROM_CART'
+//const INCREASED_QUANTITY = 'INCREASE_QUANTITY'
+const REQUESTED_CART = 'REQUESTED_CART'
+const GOT_CART = 'GOT_CART'
+const UPDATED_QUANTITY = 'UPDATED_QUANTITY'
 
 //---------------------- ACTION CREATORS -----------------------
 //EXAMPLE
 // const getUser = user => ({type: GET_USER, user})
-const addToCart = product => ({
-  type: ADD_ITEM_TO_CART,
+const addedToCart = product => ({
+  type: ADDED_PRODUCT_TO_CART,
   product
 })
 
-const removeFromCart = product => ({
-  type: REMOVE_PRODUCT_FROM_CART,
+const removedFromCart = product => ({
+  type: REMOVED_PRODUCT_FROM_CART,
   product
 })
 
-const getCart = () => ({
-  type: GET_CART,
-  cartList
+const gotCart = cart => ({
+  type: GOT_CART,
+  cart
 })
 
-const requestCart = () => ({
-  type: REQUEST_CART
+const requestedCart = () => ({
+  type: REQUESTED_CART
+})
+
+const updatedQuantity = product => ({
+  type: UPDATED_QUANTITY,
+  product
 })
 
 //---------------------- THUNK CREATOR -----------------------
@@ -41,38 +47,71 @@ const requestCart = () => ({
 //   }
 // }
 
+export const getCart = () => async dispatch => {
+  try {
+    dispatch(requestedCart())
+    const res = await axios.get('/api/cart')
+    dispatch(gotCart(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const removeFromCart = productId => async dispatch => {
+  try {
+    await axios.delete(`/api/cart/${productId}`)
+    dispatch(removedFromCart(productId))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const addToCart = product => async dispatch => {
+  try {
+    const res = await axios.post(`/api/cart`, product)
+    dispatch(addedToCart(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 //---------------------- INITIAL STATE -----------------------
 const initialState = {
   list: [],
   isFetching: false
 }
+// Cart product in cart.list is defined when the product is added
+// from AllEmoji or SingleEmoji
+// When added, the quantity property is added, in addition to the
+// product info from the database
 
 //---------------------- REDUCER -----------------------
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_CART: {
+    case GOT_CART: {
       return {
         ...state,
-        list: action.cartList,
+        list: action.cart.list,
         isFetching: false
       }
     }
-    case REQUEST_CART: {
+    case REQUESTED_CART: {
       return {
         ...state,
         isFetching: true
       }
     }
-    case ADD_PRODUCT_TO_CART: {
+    case ADDED_PRODUCT_TO_CART: {
+      action.product.quantity = 0
       return {
         ...state,
         list: [...state.list, action.product]
       }
     }
-    case REMOVE_PRODUCT_FROM_CART: {
+    case REMOVED_PRODUCT_FROM_CART: {
       return {
         ...state,
-        list: state.list.filter(item => item.id === action.product.id)
+        list: state.list.filter(item => item.id !== action.product.id)
       }
     }
     default:
