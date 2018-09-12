@@ -2,13 +2,25 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getEmoji} from '../../store/productReducer'
+import {addToCart, getCart} from '../../store/cartReducer'
 
 class SingleEmoji extends Component {
+  constructor() {
+    super()
+
+    this.handleAdd = this.handleAdd.bind(this)
+  }
+
   componentDidMount() {
     console.log(this.props)
     const id = this.props.match.params.id
     this.props.gotEmoji(id)
+    this.props.getCart()
     // this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleAdd(product) {
+    this.props.addToCart(product)
   }
 
   render() {
@@ -49,7 +61,11 @@ class SingleEmoji extends Component {
           {/* <Link to={'cart/{emoji.id}'} id={emoji.id}>
             <h2> buy me!</h2>
           </Link> */}
-          <button className="select" id={emoji.id}>
+          <button
+            className="select"
+            id={emoji.id}
+            onClick={() => this.props.addToCart(emoji)}
+          >
             Buy ME!{' '}
           </button>
         </div>
@@ -63,7 +79,9 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    gotEmoji: id => dispatch(getEmoji(id))
+    gotEmoji: id => dispatch(getEmoji(id)),
+    addToCart: product => dispatch(addToCart(product)),
+    getCart: () => dispatch(getCart())
   }
 }
 

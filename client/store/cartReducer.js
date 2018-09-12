@@ -68,8 +68,7 @@ export const removeFromCart = productId => async dispatch => {
 
 export const addToCart = product => async dispatch => {
   try {
-    const res = await axios.post(`/api/cart`, product)
-    dispatch(addedToCart(res.data))
+    dispatch(addedToCart(product))
   } catch (err) {
     console.error(err)
   }
