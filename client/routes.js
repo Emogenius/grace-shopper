@@ -8,11 +8,18 @@ import {
   UserHome,
   AllEmoji,
   Category,
-  SingleEmoji
+  SingleEmoji,
+  AddProduct,
+  EditProduct,
+  ListOrders,
+  ListReviews,
+  AllUser,
+  AllOrders,
+  Cart,
+  LogInForm,
+  SignUpForm
 } from './components'
 
-//import {UserDetail} from './components/user'
-//import {Cart} from './components/cart'
 import {me} from './store'
 
 /**
@@ -28,18 +35,27 @@ class Routes extends Component {
 
     return (
       <Switch>
-        {/* Routes placed here are available to all visitors */}
+        {/*--------------- Routes to all visitors------------ */}
         <Route exact path="/viewAll" component={AllEmoji} />
         <Route exact path="/category/:categoryId" component={Category} />
         <Route exact path="/products/:id" component={SingleEmoji} />
-        {/* <Route exact path="/:userId" component={UserDetail} /> */}
         {/* <Route exact path="/cart" component={Cart} /> */}
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={LogInForm} />
+        <Route exact path="/signup" component={SignUpForm} />
+
         {isLoggedIn && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
+            {/* --------------- Routes to user ONLY ------------  */}
             <Route path="/home" component={UserHome} />
+            {/* <Route exact path="/:userId" component={UserDetail} /> */}
+            <Route exact path="/:userId/listOrders" component={ListOrders} />
+            <Route exact path="/:userId/listReviews" component={ListReviews} />
+
+            {/* --------------- Routes to ADMIN ONLY ------------  */}
+            <Route exact path="/:id/edit" component={EditProduct} />
+            <Route exact path="/newProduct" component={AddProduct} />
+            <Route exact path="/allUsers" component={AllUser} />
+            <Route exact path="/allOrders" component={AllOrders} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
