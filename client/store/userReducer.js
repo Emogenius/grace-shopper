@@ -5,17 +5,21 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER'
+const GET_ALL_USERS = 'GET_ALL_USERS' //added
 const REMOVE_USER = 'REMOVE_USER'
+// adduser? updateuser?
 
 /**
  * INITIAL STATE
  */
 const defaultUser = {}
+// const defaultUser = {data: [], isFetching: true} // should I add them here?
 
 /**
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+const getAllUsers = users => ({type: GET_ALL_USERS, users}) //added
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -56,16 +60,46 @@ export const logout = () => async dispatch => {
   }
 }
 
+//added
+export const fetchAllUsers = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/api/users')
+      dispatch(getAllUsers(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user //return {...state, user: action.user}
+      return action.user
+    case GET_ALL_USERS: //added
+      return action.users
     case REMOVE_USER:
       return defaultUser
     default:
       return state
   }
 }
+
+//with isFetching
+/*
+export default function(state = defaultUser, action) {
+  switch (action.type) {
+    case GET_USER:
+      return {data: action.user, isFetching: false}
+    case GET_ALL_USERS:
+      return {data: action.users, isFetching: false}
+    case REMOVE_USER:
+      return {data: defaultUser.data, isFetching: false} //???
+    default:
+      return state
+  }
+}
+*/
