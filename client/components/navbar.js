@@ -24,10 +24,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       )}
       {/* <Link to="/viewAll">View All Products</Link>
       <Link to="/:categoryId">{list of Category}</Link> */}
-      <Link to="/cart" className="leftMost">
-        {' '}
-        What's in my cart?
-      </Link>
+      <a href="/cart" id="rightMost">
+        <img src="/images/shopping.png" />
+      </a>
     </nav>
     <hr />
   </div>
