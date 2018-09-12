@@ -10,6 +10,10 @@ a {
 label {
   display: block;
 }
+nav {
+  background: linear-gradient(to bottom right, orange, pink);
+  display: flex;
+}
 
 nav a {
   display: flex;
