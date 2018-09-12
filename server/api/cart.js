@@ -21,6 +21,8 @@ router.delete('/:productId', (req, res, next) => {
   }
 })
 
+// POST
+
 // router.put('/:productId', (req, res, next) => {
 //   try {
 //     req.session.cart = req.session.filter(
