@@ -66,10 +66,9 @@ export const removeFromCart = productId => async dispatch => {
   }
 }
 
-export const addToCart = product => async dispatch => {
+export const addToCart = product => dispatch => {
   try {
-    const res = await axios.post(`/api/cart`, product)
-    dispatch(addedToCart(res.data))
+    dispatch(addedToCart(product))
   } catch (err) {
     console.error(err)
   }
@@ -91,7 +90,7 @@ export default function(state = initialState, action) {
     case GOT_CART: {
       return {
         ...state,
-        list: action.cart.list,
+        list: action.cart,
         isFetching: false
       }
     }
@@ -102,7 +101,7 @@ export default function(state = initialState, action) {
       }
     }
     case ADDED_PRODUCT_TO_CART: {
-      action.product.quantity = 0
+      action.product.quantity = 1
       return {
         ...state,
         list: [...state.list, action.product]

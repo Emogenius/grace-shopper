@@ -10,13 +10,13 @@ const Review = db.define('review', {
     type: Sequelize.STRING,
     defaultValue: 'i dont know'
   },
-  review: {
+  description: {
     type: Sequelize.TEXT
     // validate: {
     //   len: [0, 250]
     // }
   },
-  stars: {
+  rating: {
     type: Sequelize.INTEGER,
     validate: {min: 0, max: 5}
   }

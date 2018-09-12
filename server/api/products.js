@@ -22,6 +22,16 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/category', async (req, res, next) => {
+  try {
+    const products = await Category.findAll()
+    res.json(products)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/category/:categoryId', async (req, res, next) => {
   try {
     const products = await Product.findAll({

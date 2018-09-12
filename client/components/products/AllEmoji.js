@@ -10,7 +10,7 @@ class AllEmoji extends Component {
       return <h1> no emojis yet </h1>
     } else {
       return (
-        <ul>
+        <ul className="items">
           {products.map(prod => {
             return (
               <li key={prod.id}>
