@@ -22,7 +22,7 @@ router.delete('/:productId', (req, res, next) => {
   }
 })
 
-// POST /api/carts
+// POST /api/cart
 router.post('/', (req, res, next) => {
   try {
     req.session.cart.list = [...req.session.cart.list, req.body] //??
