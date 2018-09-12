@@ -42,7 +42,9 @@ router.delete('/:productId', (req, res, next) => {
 // POST /api/cart
 router.post('/', (req, res, next) => {
   try {
-    req.session.cart.list = [...req.session.cart.list, req.body] //??
+    console.log('WHAT AM I', req.session.cart)
+    // console.log('HERE', req.body)
+    req.session.cart.list = [...req.session.cart.list, req.body]
     res.status(200).json(req.session.cart.list)
   } catch (err) {
     next(err)
