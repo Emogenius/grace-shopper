@@ -35,7 +35,7 @@ class Cart extends Component {
     return isFetching ? (
       <div>LOADING</div>
     ) : (
-      <div>
+      <div className="items">
         <h1>Your Shopping Cart</h1>
         {list && (
           <ul>
