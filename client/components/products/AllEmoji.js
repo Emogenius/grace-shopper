@@ -19,7 +19,7 @@ class AllEmoji extends Component {
       )
     } else {
       return (
-        <ul>
+        <ul className="items">
           {products.map(prod => {
             return (
               <li key={prod.id}>

@@ -25,7 +25,7 @@ class SingleEmoji extends Component {
       return !emoji.id ? (
         <h4> chillOut </h4>
       ) : (
-        <div>
+        <div className="items">
           <h1>{emoji.title}</h1>
           <h2>{emoji.category}</h2>
           <img src={emoji.imageUrl} />
@@ -46,9 +46,7 @@ class SingleEmoji extends Component {
               ))}
             </ul>
           </div>
-          {/* <Link to={'cart/{emoji.id}'} id={emoji.id}>
-            <h2> buy me!</h2>
-          </Link> */}
+
           <button className="select" id={emoji.id}>
             Buy ME!{' '}
           </button>
