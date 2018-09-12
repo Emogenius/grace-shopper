@@ -10,9 +10,7 @@ import {
   Category,
   SingleEmoji
 } from './components'
-// import AllEmoji from './components/products/AllEmoji'
-// import Category from './components/products/Category'
-// import SingleEmoji from './components/products/SingleEmoji'
+
 //import {UserDetail} from './components/user'
 //import {Cart} from './components/cart'
 import {me} from './store'
@@ -33,7 +31,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/viewAll" component={AllEmoji} />
         <Route exact path="/category/:categoryId" component={Category} />
-        <Route exact path="/:id" component={SingleEmoji} />
+        <Route exact path="/products/:id" component={SingleEmoji} />
         {/* <Route exact path="/:userId" component={UserDetail} /> */}
         {/* <Route exact path="/cart" component={Cart} /> */}
         <Route exact path="/login" component={Login} />
