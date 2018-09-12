@@ -23,3 +23,4 @@ const store = createStore(
 
 export default store
 export * from './userReducer'
+export * from './cartReducer'

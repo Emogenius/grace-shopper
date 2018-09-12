@@ -4,6 +4,7 @@ module.exports = router
 router.get('/', (req, res, next) => {
   try {
     res.json(req.session.cart)
+    console.log('REQ SESSION CART', req.session.cart)
   } catch (err) {
     next(err)
   }

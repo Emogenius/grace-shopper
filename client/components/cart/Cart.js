@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {
+import store, {
   removeFromCart,
   addToCart,
   getCart,
@@ -17,6 +17,7 @@ class Cart extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount() {
+    console.log('PROPS', this.props)
     this.props.getCart()
   }
 
@@ -28,22 +29,25 @@ class Cart extends Component {
   }
 
   render() {
+    console.log('STORE', store)
     const {list, isFetching} = this.props
     return isFetching ? (
       <div>LOADING</div>
     ) : (
       <div>
         <h1>Your Shopping Cart</h1>
-        <ul>
-          {list.map(listItem => (
-            <CartItem
-              handleDelete={this.handleDelete}
-              handleChange={this.handleChange}
-              product={listItem}
-              key={listItem.id}
-            />
-          ))}
-        </ul>
+        {list && (
+          <ul>
+            {list.map(listItem => (
+              <CartItem
+                handleDelete={this.handleDelete}
+                handleChange={this.handleChange}
+                product={listItem}
+                key={listItem.id}
+              />
+            ))}
+          </ul>
+        )}
       </div>
     )
   }
@@ -59,8 +63,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   removeFromCart: productId => dispatch(removeFromCart(productId)),
   addToCart: productId => dispatch(addToCart(productId)),
-  getCart: dispatch(getCart()),
-  requestCart: dispatch(requestCart())
+  getCart: () => dispatch(getCart()),
+  requestCart: () => dispatch(requestCart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

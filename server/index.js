@@ -68,6 +68,7 @@ const createApp = () => {
     if (!req.session.cart) {
       req.session.cart = []
     }
+    next()
   })
 
   // auth and api routes
