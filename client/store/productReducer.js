@@ -6,6 +6,8 @@ const GOT_PRODUCTS = 'GOT_PRODUCTS'
 const GOT_EMOJI = 'GOT_EMOJI'
 const GOT_CATEGORY = 'GOT_CATEGORY'
 const NEW_PRODUCT = 'NEW_PRODUCT'
+const EDIT_PRODUCT = 'EDIT_PRODUCT'
+const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 //---------------------- ACTION CREATORS -----------------------
 export const gotProducts = products => ({
@@ -26,12 +28,25 @@ export const newProduct = product => ({
   product
 })
 
+export const editProduct = product => ({
+  type: EDIT_PRODUCT,
+  product
+})
+
+export const deleteProduct = productId => ({
+  type: DELETE_PRODUCT,
+  product: productId
+})
 //---------------------- THUNK CREATOR -----------------------
 
 export const getProducts = () => {
   return async dispatch => {
-    const {data} = await axios.get('/api/products')
-    dispatch(gotProducts(data))
+    try {
+      const {data} = await axios.get('/api/products')
+      dispatch(gotProducts(data))
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 export const getEmoji = id => {
@@ -40,7 +55,6 @@ export const getEmoji = id => {
       const {data} = await axios.get(`/api/products/${id}`)
       dispatch(gotEmoji(data))
     } catch (err) {
-      console.log('not setting stuff')
       console.error(err)
     }
   }
@@ -51,17 +65,38 @@ export const getCategory = categoryId => {
       const {data} = await axios.get(`/api/products/category/${categoryId}`)
       dispatch(gotCategory(data))
     } catch (err) {
-      console.log('not setting stuff')
       console.error(err)
     }
   }
 }
-export const createProduct = product => {
+export const createProduct = (product, history) => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/products/newProduct`, product)
       dispatch(newProduct(data))
-      history.push(`/aircrafts/${data.id}`)
+      history.push(`/products/${data.id}`)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+export const updateProduct = product => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/products/${product.id}`, product)
+      dispatch(editProduct(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+export const removeProduct = product => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/products/${product}`)
+      dispatch(deleteProduct(product))
     } catch (err) {
       console.error(err)
     }
@@ -76,6 +111,7 @@ const initialState = {
 }
 //---------------------- REDUCER -----------------------
 const productReducer = (state = initialState, action) => {
+  let newData
   switch (action.type) {
     case GOT_PRODUCTS:
       return {...state, products: action.products, isFetching: false}
@@ -89,6 +125,13 @@ const productReducer = (state = initialState, action) => {
         products: [...state.products, action.product],
         isFetching: false
       }
+    case EDIT_PRODUCT:
+      return {...state, selectedEmoji: action.product, isFetching: false}
+    case DELETE_PRODUCT:
+      newData = state.products.filter(each => {
+        return each.productId !== action.productId
+      })
+      return {...state, products: newData, isFetching: false}
     default:
       return state
   }
