@@ -40,10 +40,10 @@ export const getEmoji = id => {
     }
   }
 }
-export const getCategory = category => {
+export const getCategory = categoryId => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/products/category/${category}`)
+      const {data} = await axios.get(`/api/products/category/${categoryId}`)
       dispatch(gotCategory(data))
     } catch (err) {
       console.log('not setting stuff')

@@ -6,12 +6,13 @@ import SingleEmoji from './SingleEmoji'
 
 class Category extends Component {
   componentDidMount() {
-    console.log('props in category component', this.props)
-    const cat = this.props.match.params.category
-    this.props.gotCategory(cat)
+    console.log('props in category component', this.props.product)
+    const categoryId = this.props.match.params.categoryId
+    this.props.gotCategory(categoryId)
   }
   render() {
     const products = this.props.product.category
+    console.log('products in return', products.category)
     if (!products) {
       return (
         <div>
@@ -27,8 +28,8 @@ class Category extends Component {
             {products.map(prod => {
               return (
                 <li key={prod.id}>
-                  <h2>{prod.name}</h2>
-                  <image src={prod.imageUrl} />
+                  <h2>{prod.title}</h2>
+                  <img src={prod.imageUrl} />
                   <Link to={'products/{prod.id}'} id={prod.id}>
                     <h3> pick me!</h3>
                   </Link>
@@ -47,7 +48,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    getCategory: cat => dispatch(getCategory(cat))
+    gotCategory: categoryId => dispatch(getCategory(categoryId))
   }
 }
 
