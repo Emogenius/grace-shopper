@@ -7,12 +7,13 @@ const REMOVED_PRODUCT_FROM_CART = 'REMOVED_PRODUCT_FROM_CART'
 //const INCREASED_QUANTITY = 'INCREASE_QUANTITY'
 const REQUESTED_CART = 'REQUESTED_CART'
 const GOT_CART = 'GOT_CART'
+const UPDATED_QUANTITY = 'UPDATED_QUANTITY'
 
 //---------------------- ACTION CREATORS -----------------------
 //EXAMPLE
 // const getUser = user => ({type: GET_USER, user})
 const addedToCart = product => ({
-  type: ADD_ITEM_TO_CART,
+  type: ADDED_PRODUCT_TO_CART,
   product
 })
 
@@ -30,6 +31,11 @@ const requestedCart = () => ({
   type: REQUESTED_CART
 })
 
+const updatedQuantity = product => ({
+  type: UPDATED_QUANTITY,
+  product
+})
+
 //---------------------- THUNK CREATOR -----------------------
 //EXAMPLE
 // export const me = () => async dispatch => {
@@ -41,19 +47,42 @@ const requestedCart = () => ({
 //   }
 // }
 
-// export const getCart = () => async dispatch => {
-//   try {
-//     const res = await
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+export const getCart = () => async dispatch => {
+  try {
+    const res = await axios.get('/api/cart')
+    dispatch(gotCart(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const removeFromCart = productId => async dispatch => {
+  try {
+    await axios.delete(`/api/cart/${productId}`)
+    dispatch(removedFromCart(productId))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const addToCart = product => async dispatch => {
+  try {
+    const res = await axios.post(`/api/cart`, product)
+    dispatch(addedToCart(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 //---------------------- INITIAL STATE -----------------------
 const initialState = {
   list: [],
   isFetching: false
 }
+// Cart product in cart.list is defined when the product is added
+// from AllEmoji or SingleEmoji
+// When added, the quantity property is added, in addition to the
+// product info from the database
 
 //---------------------- REDUCER -----------------------
 export default function(state = initialState, action) {
@@ -72,6 +101,7 @@ export default function(state = initialState, action) {
       }
     }
     case ADDED_PRODUCT_TO_CART: {
+      action.product.quantity = 0
       return {
         ...state,
         list: [...state.list, action.product]
@@ -80,7 +110,7 @@ export default function(state = initialState, action) {
     case REMOVED_PRODUCT_FROM_CART: {
       return {
         ...state,
-        list: state.list.filter(item => item.id === action.product.id)
+        list: state.list.filter(item => item.id !== action.product.id)
       }
     }
     default:

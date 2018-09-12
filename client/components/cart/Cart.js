@@ -1,17 +1,27 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {removeFromCart, addToCart, getCart, requestCart} from '../../store'
+import {
+  removeFromCart,
+  addToCart,
+  getCart,
+  requestCart,
+  updateQuantity
+} from '../../store'
 import {CartItem} from '../index'
 
 class Cart extends Component {
   constructor() {
     super()
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleDelete(productId) {
     removeFromCart(productId)
+  }
+  handleChange(productId) {
+    updateQuantity(productId)
   }
 
   render() {
@@ -25,6 +35,7 @@ class Cart extends Component {
           {list.map(listItem => (
             <CartItem
               handleDelete={this.handleDelete}
+              handleChange={this.handleChange}
               product={listItem}
               key={listItem.productId}
             />
