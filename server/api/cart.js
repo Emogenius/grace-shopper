@@ -3,7 +3,24 @@ module.exports = router
 
 router.get('/', (req, res, next) => {
   try {
-    res.json(req.session.cart)
+    console.log('REQ SESSION CART BEFORE SEND', req.session.cart)
+    req.session.cart.list = [
+      {
+        title: 'Fire',
+        price: 10,
+        imageUrl:
+          'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/129/fire_1f525.png',
+        quantity: 2
+      },
+      {
+        title: '????',
+        price: 10,
+        imageUrl:
+          'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/129/fire_1f525.png',
+        quantity: 5000
+      }
+    ]
+    res.json(req.session.cart.list)
     console.log('REQ SESSION CART', req.session.cart)
   } catch (err) {
     next(err)

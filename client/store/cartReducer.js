@@ -91,7 +91,7 @@ export default function(state = initialState, action) {
     case GOT_CART: {
       return {
         ...state,
-        list: action.cart.list,
+        list: action.cart,
         isFetching: false
       }
     }
@@ -102,7 +102,7 @@ export default function(state = initialState, action) {
       }
     }
     case ADDED_PRODUCT_TO_CART: {
-      action.product.quantity = 0
+      action.product.quantity = 1
       return {
         ...state,
         list: [...state.list, action.product]

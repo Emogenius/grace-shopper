@@ -30,6 +30,7 @@ class Cart extends Component {
 
   render() {
     console.log('STORE', store)
+    console.log('CART PROPS', this.props)
     const {list, isFetching} = this.props
     return isFetching ? (
       <div>LOADING</div>
