@@ -19,6 +19,7 @@ import {
   LogInForm,
   SignUpForm
 } from './components'
+import HomePage from './HomePage'
 
 import {me} from './store'
 
@@ -36,6 +37,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/*--------------- Routes to all visitors------------ */}
+        <Route exact path="/" component={HomePage} />
         <Route exact path="/viewAll" component={AllEmoji} />
         <Route exact path="/category/:categoryId" component={Category} />
         <Route exact path="/products/:id" component={SingleEmoji} />
