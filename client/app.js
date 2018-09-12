@@ -1,10 +1,9 @@
 import React from 'react'
-
 import {Navbar} from './components'
 import {Sidebar} from './components'
 import Routes from './routes'
 
-const App = () => {
+function App() {
   return (
     <div>
       <Navbar />
