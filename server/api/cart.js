@@ -1,4 +1,5 @@
 const router = require('express').Router()
+
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -33,6 +34,18 @@ router.delete('/:productId', (req, res, next) => {
       product => product.id !== req.params.productId
     )
     res.json(req.session.cart)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// POST /api/cart
+router.post('/', (req, res, next) => {
+  try {
+    console.log('WHAT AM I', req.session.cart)
+    // console.log('HERE', req.body)
+    req.session.cart.list = [...req.session.cart.list, req.body]
+    res.status(200).json(req.session.cart.list)
   } catch (err) {
     next(err)
   }
