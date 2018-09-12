@@ -6,8 +6,8 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user/user-home'
 export {default as AllEmoji} from './products/AllEmoji'
-export {default as Category} from '.products/Category'
-export {default as SingleEmoji} from '.products/SingleEmoji'
+export {default as Category} from './products/Category'
+export {default as SingleEmoji} from './products/SingleEmoji'
 //
 //
 

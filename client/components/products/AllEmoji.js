@@ -10,7 +10,6 @@ class AllEmoji extends Component {
   }
   render() {
     const products = this.props.products
-    console.log(products)
     if (!products) {
       return (
         <div>
@@ -25,10 +24,9 @@ class AllEmoji extends Component {
             return (
               <li key={prod.id}>
                 <h2>"{prod.title}"</h2>
-                <h3>Description: {prod.description}</h3>
-                <h3>Price: {prod.price} $$</h3>
-                <image src={prod.imageUrl} />
-                <Link to={'products/{prod.id}'}>
+                {/* <h3>Price: {prod.price} $$</h3> */}
+                <img src={prod.imageUrl} />
+                <Link to={`/products/${prod.id}`}>
                   <h3> pick me!</h3>
                 </Link>
               </li>
