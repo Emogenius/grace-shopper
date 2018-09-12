@@ -95,6 +95,68 @@ const products = [
     inventoryQuantity: 4,
     imageUrl: '/images/tropical-drink.png',
     categoryId: 1
+  },
+  {
+    title: 'Woman Does Yoga',
+    description:
+      'An emoji woman in lotus position getting her zen on. Because coding can be stressful!',
+    price: 1,
+    inventoryQuantity: 4,
+    imageUrl: '/images/woman-in-lotus-position.png',
+    categoryId: 4
+  },
+  {
+    title: 'Woman Does Cartwheel',
+    description:
+      'An emoji woman celebrates victorious coding with a cartwheel.',
+    price: 1,
+    inventoryQuantity: 4,
+    imageUrl: '/images/woman-doing-cartwheel.png',
+    categoryId: 4
+  },
+  {
+    title: 'Woman Enjoys Steam Room ',
+    description:
+      'After a hard week of coding, emoji woman luxuriates in the steam room during a well-deserved spa day.',
+    price: 1,
+    inventoryQuantity: 4,
+    imageUrl: '/images/woman-spa.png',
+    categoryId: 4
+  },
+  {
+    title: 'Woman Juggles',
+    description: 'Emoji woman juggles many tasks when creating applications.',
+    price: 1,
+    inventoryQuantity: 4,
+    imageUrl: '/images/woman-juggling.png',
+    categoryId: 4
+  },
+  {
+    title: 'Woman Biking',
+    description:
+      'The subways are a mess so emoji woman has decided to take a citibike to Grace Hopper.',
+    price: 1,
+    inventoryQuantity: 4,
+    imageUrl: '/images/woman-biking.png',
+    categoryId: 4
+  },
+  {
+    title: 'Woman Surfing',
+    description:
+      'Emoji woman wishes she could be on a beach surfing rather than surfing the web for clue about that wierd error message she keeps getting.',
+    price: 1,
+    inventoryQuantity: 4,
+    imageUrl: '/images/woman-surfing.png',
+    categoryId: 4
+  },
+  {
+    title: 'Woman dancing',
+    description:
+      'Emoji woman is doing what Kristin wishes she was doing right NOW.',
+    price: 1,
+    inventoryQuantity: 4,
+    imageUrl: '/images/dancer.png',
+    categoryId: 4
   }
 ]
 
