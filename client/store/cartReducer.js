@@ -66,7 +66,7 @@ export const removeFromCart = productId => async dispatch => {
   }
 }
 
-export const addToCart = product => async dispatch => {
+export const addToCart = product => dispatch => {
   try {
     dispatch(addedToCart(product))
   } catch (err) {
