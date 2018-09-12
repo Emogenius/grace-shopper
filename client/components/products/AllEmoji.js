@@ -1,22 +1,13 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getProducts, gotProducts} from '../../store/productReducer'
 
 class AllEmoji extends Component {
-  componentDidMount() {
-    this.props.gotProducts()
-    // this.handleChange = this.handleChange.bind(this);
-  }
   render() {
     const products = this.props.products
-    if (!products) {
-      return (
-        <div>
-          {' '}
-          <h1> no emojis yet </h1>{' '}
-        </div>
-      )
+    const isFetching = this.props.isFetching
+    if (isFetching) {
+      return <h1> no emojis yet </h1>
     } else {
       return (
         <ul>
@@ -39,12 +30,10 @@ class AllEmoji extends Component {
 }
 
 const mapStateToProps = state => {
-  return {products: state.product.products}
-}
-const mapDispatchToProps = dispatch => {
   return {
-    gotProducts: () => dispatch(getProducts())
+    products: state.product.products,
+    isFetching: state.product.isFetching
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllEmoji)
+export default connect(mapStateToProps)(AllEmoji)

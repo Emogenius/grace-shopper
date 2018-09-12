@@ -1,30 +1,42 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getEmoji} from '../../store/productReducer'
+import {getEmoji, removeProduct} from '../../store/productReducer'
+import EditProduct from './EditProduct'
 
 class SingleEmoji extends Component {
+  constructor() {
+    super()
+    this.state = {
+      updateClick: false
+    }
+    this.updateForm = this.updateForm.bind(this)
+  }
+
+  updateForm() {
+    if (!this.state.updateClick) {
+      this.setState({updateClick: true})
+    } else {
+      this.setState({updateClick: false})
+    }
+  }
+
   componentDidMount() {
-    console.log(this.props)
     const id = this.props.match.params.id
     this.props.gotEmoji(id)
-    // this.handleChange = this.handleChange.bind(this);
   }
 
   render() {
-    console.log('this props in render single', this.props.product.selectedEmoji)
     const emoji = this.props.product.selectedEmoji
-    if (emoji === undefined) {
+    const isFetching = this.props.isFetching
+    if (isFetching) {
       return (
         <div>
-          {' '}
-          <h1> haven't found this emoji yet!</h1>{' '}
+          <h1> haven't found this emoji yet!</h1>
         </div>
       )
     } else {
-      return !emoji.id ? (
-        <h4> chillOut </h4>
-      ) : (
+      return (
         <div>
           <h1>{emoji.title}</h1>
           <h2>{emoji.category}</h2>
@@ -35,23 +47,53 @@ class SingleEmoji extends Component {
           <div>
             <h1> What people are saying about this emoji: </h1>
             <ul>
-              {emoji.reviews.map(rev => (
-                <li key={rev.id}>
-                  <h3> User Review: {rev.title}</h3>
-                  <h3> rating: {rev.stars} </h3>
-                  <h4> date posted: {rev.date}</h4>
-                  <h3>"{rev.review}"</h3>
-                  <h4> author: {rev.userId}</h4>
-                </li>
-              ))}
+              {emoji.review ? (
+                emoji.reviews.map(rev => (
+                  <li key={rev.id}>
+                    <h3> User Review: {rev.title}</h3>
+                    <h3> rating: {rev.stars} </h3>
+                    <h4> date posted: {rev.date}</h4>
+                    <h3>"{rev.review}"</h3>
+                    <h4> author: {rev.userId}</h4>
+                  </li>
+                ))
+              ) : (
+                <h1>see nothing say something </h1>
+              )}
             </ul>
           </div>
           {/* <Link to={'cart/{emoji.id}'} id={emoji.id}>
             <h2> buy me!</h2>
           </Link> */}
-          <button className="select" id={emoji.id}>
-            Buy ME!{' '}
+          <button type="button" className="btn btn-outline-dark">
+            Buy ME!
           </button>
+
+          {/*-------------- if admin will be able to see edit and delete button -------------- */}
+          <button
+            type="button"
+            className="btn btn-outline-dark"
+            onClick={() => {
+              this.updateForm()
+            }}
+          >
+            Edit
+          </button>
+
+          {this.state.updateClick ? (
+            <EditProduct product={emoji} updateForm={this.updateForm} />
+          ) : null}
+          <Link to="/products">
+            <button
+              type="button"
+              className="btn btn-outline-dark"
+              onClick={() => {
+                this.props.remove(emoji.id)
+              }}
+            >
+              Remove
+            </button>
+          </Link>
         </div>
       )
     }
@@ -59,11 +101,16 @@ class SingleEmoji extends Component {
 }
 
 const mapStateToProps = state => {
-  return {...state, selectedEmoji: state.product.selectedEmoji}
+  return {
+    ...state,
+    selectedEmoji: state.product.selectedEmoji,
+    isFetching: state.product.isFetching
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    gotEmoji: id => dispatch(getEmoji(id))
+    gotEmoji: id => dispatch(getEmoji(id)),
+    remove: id => dispatch(removeProduct(id))
   }
 }
 
