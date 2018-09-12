@@ -45,7 +45,7 @@ class SingleEmoji extends Component {
       )
     } else {
       return (
-        <div>
+        <div className="items">
           <h1>{emoji.title}</h1>
           <h2>{emoji.category}</h2>
           <img src={emoji.imageUrl} />

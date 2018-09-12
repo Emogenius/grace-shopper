@@ -3,7 +3,12 @@ body {
   background: linear-gradient(to bottom right, aquamarine, mediumslateblue);
   /* display: flex; */
   z-index: 1;
+  font-family: 'Indie Flower', cursive;
 }
+/* font-family: 'Inconsolata', monospace; */
+/* font-family: 'Architects Daughter', cursive;
+font-family: 'Mukta Malar', sans-serif;
+font-family: 'Indie Flower', cursive; */
 
 a {
   text-decoration: none;
