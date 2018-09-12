@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
+import {getProducts, getCategory, getEmoji} from './store/productReducer'
 import PropTypes from 'prop-types'
 import {
   Login,
@@ -29,6 +30,8 @@ import {me} from './store'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.products()
+    this.props.category()
   }
 
   render() {
@@ -38,16 +41,17 @@ class Routes extends Component {
       <Switch>
         {/*--------------- Routes to all visitors------------ */}
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/viewAll" component={AllEmoji} />
-        <Route exact path="/category/:categoryId" component={Category} />
+        <Route exact path="/products" component={AllEmoji} />
+        {/* <Route exact path="/category/:categoryId" component={Category} /> */}
         <Route exact path="/products/:id" component={SingleEmoji} />
         {/* <Route exact path="/:userId" component={UserDetail} /> */}
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/login" component={LogInForm} />
         <Route exact path="/signup" component={SignUpForm} />
 
-        {/* testing routes */}
+        {/* testing routes ---------------------------------- */}
         <Route exact path="/newProduct" component={AddProduct} />
+        <Route exact path="products/:id/edit" component={EditProduct} />
         {isLoggedIn && (
           <Switch>
             {/* --------------- Routes to user ONLY ------------  */}
@@ -57,7 +61,7 @@ class Routes extends Component {
             <Route exact path="/:userId/listReviews" component={ListReviews} />
 
             {/* --------------- Routes to ADMIN ONLY ------------  */}
-            <Route exact path="/:id/edit" component={EditProduct} />
+            <Route exact path="products/:id/edit" component={EditProduct} />
             <Route exact path="/newProduct" component={AddProduct} />
             <Route exact path="/allUsers" component={AllUser} />
             <Route exact path="/allOrders" component={AllOrders} />
@@ -85,7 +89,9 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-    }
+    },
+    products: () => dispatch(getProducts()),
+    category: () => dispatch(getCategory())
   }
 }
 

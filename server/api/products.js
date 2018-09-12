@@ -44,33 +44,33 @@ router.get('/category/:categoryId', async (req, res, next) => {
   }
 })
 
-//need to also eager load the review
-// router.get('/:id', async (req, res, next) => {
-//   try {
-//     console.log('id in here is:', req.params.id)
-//     const product = await Product.findById(req.params.id, {
-//       include: [{model: Reviews}]
-//     })
-//     res.json(product)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// router.get('/', async (req, res, next) => {
-//   try {
-//     const product = await Product.findAll()
-//     res.json(product)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
 router.post('/newProduct', async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
-    console.log(product, '-----------')
     res.json(product)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.id)
+    const data = await product.update(req.body)
+    res.json(data)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await Product.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }
