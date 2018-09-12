@@ -11,7 +11,7 @@ class SingleEmoji extends Component {
   }
 
   render() {
-    const emoji = this.props.selectedEmoji
+    const emoji = this.props.protducts.selectedEmoji
     if (emoji === undefined) {
       return (
         <div>
