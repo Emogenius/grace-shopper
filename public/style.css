@@ -47,6 +47,10 @@ form {
 
   text-align: center;
 }
+.leftMost {
+  display: flex;
+  justify-content: flex-end;
+}
 
 .sidebar {
   height: 100%;
