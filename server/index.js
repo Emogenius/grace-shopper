@@ -63,6 +63,13 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  // cart cookie
+  app.use((req, res, next) => {
+    if (!req.session.cart) {
+      req.session.cart = {}
+    }
+  })
+
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
