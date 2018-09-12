@@ -16,12 +16,15 @@ class Cart extends Component {
     this.handleDelete = this.handleDelete.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
+  componentDidMount() {
+    this.props.getCart()
+  }
 
   handleDelete(productId) {
-    removeFromCart(productId)
+    this.props.removeFromCart(productId)
   }
   handleChange(productId) {
-    updateQuantity(productId)
+    this.props.updateQuantity(productId)
   }
 
   render() {
@@ -37,7 +40,7 @@ class Cart extends Component {
               handleDelete={this.handleDelete}
               handleChange={this.handleChange}
               product={listItem}
-              key={listItem.productId}
+              key={listItem.id}
             />
           ))}
         </ul>

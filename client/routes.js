@@ -8,7 +8,8 @@ import {
   UserHome,
   AllEmoji,
   Category,
-  SingleEmoji
+  SingleEmoji,
+  Cart
 } from './components'
 
 //import {UserDetail} from './components/user'
@@ -33,7 +34,7 @@ class Routes extends Component {
         <Route exact path="/category/:categoryId" component={Category} />
         <Route exact path="/products/:id" component={SingleEmoji} />
         {/* <Route exact path="/:userId" component={UserDetail} /> */}
-        {/* <Route exact path="/cart" component={Cart} /> */}
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         {isLoggedIn && (

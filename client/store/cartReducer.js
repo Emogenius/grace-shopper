@@ -22,9 +22,9 @@ const removedFromCart = product => ({
   product
 })
 
-const gotCart = () => ({
+const gotCart = cart => ({
   type: GOT_CART,
-  cartList
+  cart
 })
 
 const requestedCart = () => ({
@@ -49,6 +49,7 @@ const updatedQuantity = product => ({
 
 export const getCart = () => async dispatch => {
   try {
+    dispatch(requestedCart())
     const res = await axios.get('/api/cart')
     dispatch(gotCart(res.data))
   } catch (err) {
@@ -90,7 +91,7 @@ export default function(state = initialState, action) {
     case GOT_CART: {
       return {
         ...state,
-        list: action.cartList,
+        list: action.cart.list,
         isFetching: false
       }
     }
