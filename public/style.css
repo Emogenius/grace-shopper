@@ -20,7 +20,13 @@ nav a {
   margin: 1em;
 }
 
-form div {
-  margin: 1em;
-  display: flex;
+#list {
+  width: 650px;
+  height: 400px;
+  object-fit: cover;
+}
+
+form {
+  width: 500px;
+  margin: 25px;
 }

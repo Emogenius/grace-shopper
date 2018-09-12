@@ -14,7 +14,6 @@ router.get('/', async (req, res, next) => {
 //need to also eager load the review
 router.get('/:id', async (req, res, next) => {
   try {
-    console.log('id in here is:', req.params.id)
     const product = await Product.findById(req.params.id, {
       include: [{model: Review}]
     })
@@ -55,3 +54,13 @@ router.get('/category/:categoryId', async (req, res, next) => {
 //     next(err)
 //   }
 // })
+
+router.post('/newProduct', async (req, res, next) => {
+  try {
+    const product = await Product.create(req.body)
+    console.log(product, '-----------')
+    res.json(product)
+  } catch (err) {
+    next(err)
+  }
+})

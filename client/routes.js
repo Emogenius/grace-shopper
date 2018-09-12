@@ -43,6 +43,8 @@ class Routes extends Component {
         <Route exact path="/login" component={LogInForm} />
         <Route exact path="/signup" component={SignUpForm} />
 
+        {/* testing routes */}
+        <Route exact path="/newProduct" component={AddProduct} />
         {isLoggedIn && (
           <Switch>
             {/* --------------- Routes to user ONLY ------------  */}
