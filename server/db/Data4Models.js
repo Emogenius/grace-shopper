@@ -165,15 +165,15 @@ const products = [
 const reviews = [
   {
     title: 'love this review',
-    review: 'heheheheeeee',
-    stars: 2,
+    description: 'heheheheeeee',
+    rating: 2,
     userId: 1,
     productId: 2
   },
   {
     title: 'love this review twice',
-    review: 'heheheheeeee',
-    stars: 2,
+    description: 'heheheheeeee',
+    rating: 2,
     userId: 3,
     productId: 2
   }
