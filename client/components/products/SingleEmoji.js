@@ -37,7 +37,7 @@ class SingleEmoji extends Component {
       return !emoji.id ? (
         <h4> chillOut </h4>
       ) : (
-        <div>
+        <div className='items'>
           <h1>{emoji.title}</h1>
           <h2>{emoji.category}</h2>
           <img src={emoji.imageUrl} />
