@@ -1,11 +1,10 @@
 import React from 'react'
-import {Navbar} from './components'
-import {Sidebar} from './components'
+import {Navbar, Sidebar, Footer} from './components'
 import Routes from './routes'
 
 function App() {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row">
         <div className="col">
           <Navbar />
@@ -13,7 +12,7 @@ function App() {
       </div>
 
       <div className="row">
-        <div className="col">
+        <div className="col-xs-12 col-md-3">
           <Sidebar />
         </div>
 

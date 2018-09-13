@@ -5,34 +5,39 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <nav className="d-flex flex-row-reverse bd-highlight">
-      <Link to="/cart" className="p-2 bd-highlight">
+  <nav className="navbar">
+    <Link className="navbar-brand" to="/">
+      Emogenius
+    </Link>
+    <div id="mini-cart">
+      <Link className="" to="/cart">
         <img src="/images/shopping.png" />
       </Link>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up!</Link>
-        </div>
-      )}
-      {/* <Link to="/viewAll">View All Products</Link>
+    </div>
+    {isLoggedIn ? (
+      <div className="btn-group-sm">
+        {/* The navbar will show these links after you log in */}
+        <Link to="/home" className="btn btn-outline-primary">
+          Home
+        </Link>
+        <a href="#" onClick={handleClick} className="btn btn-outline-primary">
+          Logout
+        </a>
+      </div>
+    ) : (
+      <div className="btn-group-sm">
+        {/* The navbar will show these links before you log in */}
+        <Link to="/login" className="btn btn-outline-primary">
+          Login
+        </Link>
+        <Link to="/signup" className="btn btn-primary">
+          Sign Up!
+        </Link>
+      </div>
+    )}
+    {/* <Link to="/viewAll">View All Products</Link>
       <Link to="/:categoryId">{list of Category}</Link> */}
-      <Link to="/cart" id="rightMost">
-        <img src="/images/shopping.png" />
-      </Link>
-    </nav>
-    <hr />
-  </div>
+  </nav>
 )
 
 /**

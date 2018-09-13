@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import store, {
+import {
   removeFromCart,
   addToCart,
   getCart,
@@ -17,7 +16,6 @@ class Cart extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount() {
-    console.log('PROPS', this.props)
     this.props.getCart()
   }
 
@@ -29,13 +27,11 @@ class Cart extends Component {
   }
 
   render() {
-    console.log('STORE', store)
-    console.log('CART PROPS', this.props)
     const {list, isFetching} = this.props
     return isFetching ? (
       <div>LOADING</div>
     ) : (
-      <div className="items">
+      <main className="col">
         <h1>Your Shopping Cart</h1>
         {list && (
           <ul>
@@ -49,7 +45,7 @@ class Cart extends Component {
             ))}
           </ul>
         )}
-      </div>
+      </main>
     )
   }
 }
