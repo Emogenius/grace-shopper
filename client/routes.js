@@ -7,6 +7,7 @@ import {
   getEmoji,
   getCategoryList
 } from './store/productReducer'
+import {fetchAllUsers} from './store/userReducer'
 import PropTypes from 'prop-types'
 import {
   Login,
@@ -34,6 +35,7 @@ class Routes extends Component {
     this.props.loadInitialData()
     this.props.products()
     this.props.categoryList()
+    this.props.allUsers()
   }
 
   render() {
@@ -97,7 +99,8 @@ const mapDispatch = dispatch => {
       dispatch(me())
     },
     products: () => dispatch(getProducts()),
-    categoryList: () => dispatch(getCategoryList())
+    categoryList: () => dispatch(getCategoryList()),
+    allUsers: () => dispatch(fetchAllUsers())
     // category: id => dispatch(getCategory(id))
   }
 }
