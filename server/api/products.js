@@ -41,7 +41,17 @@ router.get('/category/:categoryId', async (req, res, next) => {
   }
 })
 
-router.post('/newProduct', async (req, res, next) => {
+// ------------------------- admin ONLY -----------------------
+const adminsOnly = (req, res, next) => {
+  if (!req.user.isAdmin) {
+    const err = new Error('not allowed')
+    err.status = 401
+    return next(err)
+  }
+  next()
+}
+
+router.post('/newProduct', adminsOnly, async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
     res.json(product)
@@ -50,7 +60,7 @@ router.post('/newProduct', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', adminsOnly, async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id)
     const data = await product.update(req.body)
@@ -60,7 +70,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', adminsOnly, async (req, res, next) => {
   try {
     await Product.destroy({
       where: {

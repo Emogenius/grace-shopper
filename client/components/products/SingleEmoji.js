@@ -36,7 +36,7 @@ class SingleEmoji extends Component {
   render() {
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
-    console.log('this props.product in render singleEm', this.props.product)
+    const allUser = this.props.allUser
 
     if (isFetching) {
       return (
@@ -82,30 +82,33 @@ class SingleEmoji extends Component {
             Buy ME!
           </button>
 
-          {/*------ if admin will be able to see edit and delete button -------------- */}
-          <button
-            type="button"
-            className="btn btn-outline-dark"
-            onClick={() => {
-              this.updateForm()
-            }}
-          >
-            Edit
-          </button>
-          {this.state.updateClick ? (
-            <EditProduct product={emoji} updateForm={this.updateForm} />
+          {allUser.isAdmin ? (
+            <div>
+              <button
+                type="button"
+                className="btn btn-outline-dark"
+                onClick={() => {
+                  this.updateForm()
+                }}
+              >
+                Edit
+              </button>
+              {this.state.updateClick ? (
+                <EditProduct product={emoji} updateForm={this.updateForm} />
+              ) : null}
+              <Link to="/products">
+                <button
+                  type="button"
+                  className="btn btn-outline-dark"
+                  onClick={() => {
+                    this.props.remove(emoji.id)
+                  }}
+                >
+                  Remove
+                </button>
+              </Link>
+            </div>
           ) : null}
-          <Link to="/products">
-            <button
-              type="button"
-              className="btn btn-outline-dark"
-              onClick={() => {
-                this.props.remove(emoji.id)
-              }}
-            >
-              Remove
-            </button>
-          </Link>
         </div>
       )
     }
@@ -115,6 +118,7 @@ class SingleEmoji extends Component {
 const mapStateToProps = state => {
   return {
     ...state,
+    allUser: state.user,
     selectedEmoji: state.product.selectedEmoji,
     isFetching: state.product.isFetching
   }
