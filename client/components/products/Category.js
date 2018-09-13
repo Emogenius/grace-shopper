@@ -29,7 +29,7 @@ class Category extends Component {
                 <li key={prod.id}>
                   <h2>{prod.title}</h2>
                   <img src={prod.imageUrl} />
-                  <Link to={`products/${prod.id}`}>
+                  <Link to={`/products/${prod.id}`}>
                     <h3> pick me!</h3>
                   </Link>
                 </li>
