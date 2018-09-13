@@ -7,9 +7,9 @@ import {logout} from '../store'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <nav className="d-flex flex-row-reverse bd-highlight">
-      <a href="/cart" className="p-2 bd-highlight">
+      <Link to="/cart" className="p-2 bd-highlight">
         <img src="/images/shopping.png" />
-      </a>
+      </Link>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
