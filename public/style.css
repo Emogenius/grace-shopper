@@ -1,16 +1,16 @@
-body {
+/* body {
   font-family: sans-serif;
   background: linear-gradient(to bottom right, aquamarine, mediumslateblue);
-  /* display: flex; */
   z-index: 1;
   font-family: 'Indie Flower', cursive;
-}
+} */
+/* display: flex; */
 /* font-family: 'Inconsolata', monospace; */
 /* font-family: 'Architects Daughter', cursive;
 font-family: 'Mukta Malar', sans-serif;
 font-family: 'Indie Flower', cursive; */
 
-a {
+/* a {
   text-decoration: none;
 }
 
@@ -24,16 +24,14 @@ nav {
   height: 10em;
   top: 0;
   display: flex;
-  /* justify-content: space-around; */
-  /* flex-direction: row; */
-}
-.items {
-  /* display: flex; */
+/* flex-direction: row; */
+/* display: flex; */
+/* .items {
   padding-top: 15em;
   flex-flow: column wrap;
   padding-left: 20em;
-}
-
+} */
+/*
 nav a {
   display: flex;
   margin: 1em;
@@ -67,6 +65,27 @@ form {
   left: 0;
   padding-top: 10em;
   background: linear-gradient(to bottom right, GREEN, YELLOW);
-  /* overflow-x: hidden; */
-  /*places the left and right headers above the bottom content*/
+} */
+
+/* overflow-x: hidden; */
+/*places the left and right headers above the bottom content*/
+body {
+  background-image: url('https://i.imgur.com/LUzHpTN.jpg');
+  background-color: #cccccc;
+  background-attachment: fixed;
+}
+
+#list {
+  width: 650px;
+  height: 400px;
+  object-fit: cover;
+}
+
+nav {
+  background-color: bisque;
+}
+
+form {
+  width: 500px;
+  margin: 25px;
 }
