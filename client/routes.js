@@ -70,7 +70,7 @@ class Routes extends Component {
             <Route exact path="/:userId/listReviews" component={ListReviews} />
 
             {/* --------------- Routes to ADMIN ONLY ------------  */}
-            <Route exact path="products/:id/edit" component={EditProduct} />
+            <Route exact path="/products/:id/edit" component={EditProduct} />
             <Route exact path="/newProduct" component={AddProduct} />
             <Route exact path="/allUsers" component={AllUser} />
             <Route exact path="/allOrders" component={AllOrders} />
