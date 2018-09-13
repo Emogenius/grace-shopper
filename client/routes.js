@@ -21,12 +21,9 @@ import {
   ListReviews,
   AllUser,
   AllOrders,
-  Cart,
-  LogInForm,
-  SignUpForm
+  Cart
 } from './components'
 import HomePage from './HomePage'
-
 import {me} from './store'
 
 /**
@@ -55,12 +52,12 @@ class Routes extends Component {
         <Route exact path="/products/:id" component={SingleEmoji} />
         {/* <Route exact path="/:userId" component={UserDetail} /> */}
         <Route exact path="/cart" component={Cart} />
-        <Route exact path="/login" component={LogInForm} />
-        <Route exact path="/signup" component={SignUpForm} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
 
         {/* testing routes ---------------------------------- */}
         <Route exact path="/newProduct" component={AddProduct} />
-        <Route exact path="products/:id/edit" component={EditProduct} />
+        <Route exact path="/products/:id/edit" component={EditProduct} />
         {isLoggedIn && (
           <Switch>
             {/* --------------- Routes to user ONLY ------------  */}
