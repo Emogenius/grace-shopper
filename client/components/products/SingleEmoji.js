@@ -36,6 +36,7 @@ class SingleEmoji extends Component {
   render() {
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
+    console.log('this props.product in render singleEm', this.props.product)
 
     if (isFetching) {
       return (

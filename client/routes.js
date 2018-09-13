@@ -1,7 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
-import {getProducts, getCategory, getEmoji} from './store/productReducer'
+import {
+  getProducts,
+  getCategory,
+  getEmoji,
+  getCategoryList
+} from './store/productReducer'
 import PropTypes from 'prop-types'
 import {
   Login,
@@ -31,7 +36,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.products()
-    this.props.category()
+    this.props.categoryList()
   }
 
   render() {
@@ -42,7 +47,11 @@ class Routes extends Component {
         {/*--------------- Routes to all visitors------------ */}
         <Route exact path="/" component={HomePage} />
         <Route exact path="/products" component={AllEmoji} />
-        {/* <Route exact path="/category/:categoryId" component={Category} /> */}
+        <Route
+          exact
+          path="/products/category/:categoryId"
+          component={Category}
+        />
         <Route exact path="/products/:id" component={SingleEmoji} />
         {/* <Route exact path="/:userId" component={UserDetail} /> */}
         <Route exact path="/cart" component={Cart} />
@@ -91,7 +100,8 @@ const mapDispatch = dispatch => {
       dispatch(me())
     },
     products: () => dispatch(getProducts()),
-    category: () => dispatch(getCategory())
+    categoryList: () => dispatch(getCategoryList())
+    // category: id => dispatch(getCategory(id))
   }
 }
 
