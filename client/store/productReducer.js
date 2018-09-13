@@ -76,11 +76,12 @@ export const getCategoryList = () => {
     }
   }
 }
-export const getCategory = categoryId => {
+export const getCategory = (categoryId, history) => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/products/category/${categoryId}`)
       dispatch(gotCategory(data))
+      history.push(`/products/category/${categoryId}`)
     } catch (err) {
       console.error(err)
     }

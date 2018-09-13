@@ -35,6 +35,7 @@ class Routes extends Component {
     this.props.loadInitialData()
     this.props.products()
     this.props.categoryList()
+    this.props.getCategory()
     this.props.allUsers()
   }
 
@@ -69,7 +70,7 @@ class Routes extends Component {
             <Route exact path="/:userId/listReviews" component={ListReviews} />
 
             {/* --------------- Routes to ADMIN ONLY ------------  */}
-            <Route exact path="products/:id/edit" component={EditProduct} />
+            <Route exact path="/products/:id/edit" component={EditProduct} />
             <Route exact path="/newProduct" component={AddProduct} />
             <Route exact path="/allUsers" component={AllUser} />
             <Route exact path="/allOrders" component={AllOrders} />
@@ -89,7 +90,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    category: state.product.category
   }
 }
 
@@ -100,8 +102,8 @@ const mapDispatch = dispatch => {
     },
     products: () => dispatch(getProducts()),
     categoryList: () => dispatch(getCategoryList()),
-    allUsers: () => dispatch(fetchAllUsers())
-    // category: id => dispatch(getCategory(id))
+    allUsers: () => dispatch(fetchAllUsers()),
+    getCategory: id => dispatch(getCategory(id))
   }
 }
 
