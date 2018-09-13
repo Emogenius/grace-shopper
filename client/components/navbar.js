@@ -6,7 +6,10 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <nav>
+    <nav className="d-flex flex-row-reverse bd-highlight">
+      <a href="/cart" className="p-2 bd-highlight">
+        <img src="/images/shopping.png" />
+      </a>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -19,14 +22,11 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/signup">Sign Up!</Link>
         </div>
       )}
       {/* <Link to="/viewAll">View All Products</Link>
       <Link to="/:categoryId">{list of Category}</Link> */}
-      <a href="/cart" id="rightMost">
-        <img src="/images/shopping.png" />
-      </a>
     </nav>
     <hr />
   </div>

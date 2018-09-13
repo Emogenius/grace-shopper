@@ -24,6 +24,7 @@ nav {
   height: 10em;
   top: 0;
   display: flex;
+  /* justify-content: space-around; */
   /* flex-direction: row; */
 }
 .items {
@@ -36,6 +37,7 @@ nav {
 nav a {
   display: flex;
   margin: 1em;
+  font-size: 2em;
 }
 
 #list {
@@ -52,9 +54,10 @@ form {
   font-size: 10em;
   text-align: center;
 }
-#rightMost {
-  align-items: right;
-}
+/* #rightMost {
+  display: flex;
+  right: 0;
+} */
 
 .sidebar {
   height: 100%;

@@ -8,6 +8,7 @@ const GOT_CATEGORY = 'GOT_CATEGORY'
 const NEW_PRODUCT = 'NEW_PRODUCT'
 const EDIT_PRODUCT = 'EDIT_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const GOT_CATEGORY_LIST = 'GOT_CATEGORY_LIST'
 
 //---------------------- ACTION CREATORS -----------------------
 export const gotProducts = products => ({
@@ -21,6 +22,11 @@ export const gotEmoji = emoji => ({
 export const gotCategory = category => ({
   type: GOT_CATEGORY,
   category
+})
+
+export const gotCategoryList = categoryList => ({
+  type: GOT_CATEGORY_LIST,
+  categoryList
 })
 
 export const newProduct = product => ({
@@ -49,11 +55,22 @@ export const getProducts = () => {
     }
   }
 }
+
 export const getEmoji = id => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/products/${id}`)
       dispatch(gotEmoji(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+export const getCategoryList = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/products/category/categoryList`)
+      dispatch(gotCategoryList(data))
     } catch (err) {
       console.error(err)
     }
@@ -69,6 +86,7 @@ export const getCategory = categoryId => {
     }
   }
 }
+
 export const createProduct = (product, history) => {
   return async dispatch => {
     try {
@@ -106,6 +124,7 @@ export const removeProduct = product => {
 const initialState = {
   products: [],
   category: [],
+  categoryList: [],
   selectedEmoji: {},
   isFetching: true
 }
@@ -132,6 +151,8 @@ const productReducer = (state = initialState, action) => {
         return each.productId !== action.productId
       })
       return {...state, products: newData, isFetching: false}
+    case GOT_CATEGORY_LIST:
+      return {...state, categoryList: action.categoryList, isFetching: false}
     default:
       return state
   }
