@@ -10,23 +10,20 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-
-//need to also eager load the review
+router.get('/category/categoryList', async (req, res, next) => {
+  try {
+    const categories = await Category.all()
+    res.json(categories)
+  } catch (err) {
+    next(err)
+  }
+})
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id, {
       include: [{model: Review}]
     })
     res.json(product)
-  } catch (err) {
-    next(err)
-  }
-})
-
-router.get('/category', async (req, res, next) => {
-  try {
-    const products = await Category.findAll()
-    res.json(products)
   } catch (err) {
     next(err)
   }

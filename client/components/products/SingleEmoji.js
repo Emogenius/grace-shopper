@@ -36,6 +36,7 @@ class SingleEmoji extends Component {
   render() {
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
+    console.log('this props.product in render singleEm', this.props.product)
 
     if (isFetching) {
       return (
@@ -45,7 +46,7 @@ class SingleEmoji extends Component {
       )
     } else {
       return (
-        <div>
+        <div className="items">
           <h1>{emoji.title}</h1>
           <h2>{emoji.category}</h2>
           <img src={emoji.imageUrl} />

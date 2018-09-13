@@ -5,10 +5,22 @@ import Routes from './routes'
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Sidebar />
-      <Routes />
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <Navbar />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <Sidebar />
+        </div>
+
+        <div className="col">
+          <Routes />
+        </div>
+      </div>
     </div>
   )
 }

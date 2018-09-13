@@ -6,23 +6,22 @@ import SingleEmoji from './SingleEmoji'
 
 class Category extends Component {
   componentDidMount() {
-    console.log('props in category component', this.props.product)
     const categoryId = this.props.match.params.categoryId
     this.props.gotCategory(categoryId)
+    //console.log('props in category component', categoryId)
   }
   render() {
-    const products = this.props.product.category
-    console.log('products in return', products.category)
-    if (!products) {
+    const products = this.props.category
+    if (products === undefined) {
       return (
-        <div>
+        <div className="items">
           {' '}
           <h1> no emojis in this category yet!</h1>{' '}
         </div>
       )
     } else {
       return (
-        <div>
+        <div className="items">
           <h1>{products.name}</h1>
           <ul>
             {products.map(prod => {
@@ -30,7 +29,7 @@ class Category extends Component {
                 <li key={prod.id}>
                   <h2>{prod.title}</h2>
                   <img src={prod.imageUrl} />
-                  <Link to={'products/{prod.id}'} id={prod.id}>
+                  <Link to={`products/${prod.id}`}>
                     <h3> pick me!</h3>
                   </Link>
                 </li>
@@ -44,7 +43,7 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {
-  return {...state, category: state.product.category}
+  return {category: state.product.category}
 }
 const mapDispatchToProps = dispatch => {
   return {

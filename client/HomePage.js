@@ -5,10 +5,10 @@ import {Link} from 'react-router-dom'
 export default class HomePage extends Component {
   render() {
     return (
-      <div>
+      <div className="items">
         <main>
           <h1 className="mainPage">Emogenius</h1>
-          <h1 className="mainPage">Welcome!</h1>
+          <h2 className="mainPage">Welcome!</h2>
           <h3>emojis are great! </h3>
         </main>
       </div>
