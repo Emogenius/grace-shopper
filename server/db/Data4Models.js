@@ -150,7 +150,7 @@ const products = [
     categoryId: 4
   },
   {
-    title: 'Woman dancing',
+    title: 'Woman Dancing',
     description:
       'Emoji woman is doing what Kristin wishes she was doing right NOW.',
     price: 1,
