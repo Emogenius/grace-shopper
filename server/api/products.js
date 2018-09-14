@@ -10,6 +10,25 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// Not sure if I need these yet.
+// router.get('/name', async (req, res, next) => {
+//   try {
+//     const categories = await Category.findByName(req.body)
+//     res.json(categories)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+// router.get('/description', async (req, res, next) => {
+//   try {
+//     const categories = await Category.all()
+//     res.json(categories)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
 router.get('/category/categoryList', async (req, res, next) => {
   try {
     const categories = await Category.all()

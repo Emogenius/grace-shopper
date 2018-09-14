@@ -1,9 +1,11 @@
 import axios from 'axios'
-//import history from '../history'
+import history from '../history'
 
 //---------------------- ACTION TYPES -----------------------
 const GOT_PRODUCTS = 'GOT_PRODUCTS'
 const GOT_EMOJI = 'GOT_EMOJI'
+const REQUEST_FILTERED_PRODUCTS = 'REQUEST_FILTERED_PRODUCTS'
+const GOT_FILTERED_PRODUCTS = 'GOT_FILTERED_PRODUCTS'
 const GOT_CATEGORY = 'GOT_CATEGORY'
 const NEW_PRODUCT = 'NEW_PRODUCT'
 const EDIT_PRODUCT = 'EDIT_PRODUCT'
@@ -11,6 +13,11 @@ const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const GOT_CATEGORY_LIST = 'GOT_CATEGORY_LIST'
 
 //---------------------- ACTION CREATORS -----------------------
+export const gotFilteredProducts = products => ({
+  type: GOT_FILTERED_PRODUCTS,
+  products
+})
+
 export const gotProducts = products => ({
   type: GOT_PRODUCTS,
   products
@@ -76,7 +83,23 @@ export const getCategoryList = () => {
     }
   }
 }
-export const getCategory = (categoryId, history) => {
+
+// Not sure if we need this yet.
+// export const getFilteredProducts = productFilter => {
+//   return async dispatch => {
+//     try {
+//       const {data} = await axios.get(`/api/products/`).data.filter()
+
+//       dispatch(gotCategory(data))
+//       history.push(`/products/category/${categoryId}`)
+//     } catch (err) {
+//       console.error(err)
+//     }
+//   }
+// }
+
+export const getCategory = categoryId => {
+  //import history and remove it from params
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/products/category/${categoryId}`)
@@ -88,7 +111,7 @@ export const getCategory = (categoryId, history) => {
   }
 }
 
-export const createProduct = (product, history) => {
+export const createProduct = product => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/products/newProduct`, product)
@@ -129,6 +152,7 @@ const initialState = {
   selectedEmoji: {},
   isFetching: true
 }
+
 //---------------------- REDUCER -----------------------
 const productReducer = (state = initialState, action) => {
   let newData

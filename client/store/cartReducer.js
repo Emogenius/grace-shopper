@@ -11,7 +11,7 @@ const UPDATED_QUANTITY = 'UPDATED_QUANTITY'
 
 //---------------------- ACTION CREATORS -----------------------
 //EXAMPLE
-// const getUser = user => ({type: GET_USER, user})
+// const gotUser = user => ({type: GOT_USER, user})
 const addedToCart = product => ({
   type: ADDED_PRODUCT_TO_CART,
   product
