@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GOT_USER = 'GOT_USER'
 const GOT_ALL_USERS = 'GOT_ALL_USERS'
-const REMOVE_USER = 'REMOVE_USER'
+const REMOVED_USER_FROM_LOGIN = 'REMOVED_USER_FROM_LOGIN'
 // adduser? updateuser?
 
 /**
@@ -20,9 +20,9 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GOT_USER, user})
-const getAllUsers = users => ({type: GOT_ALL_USERS, users})
-const removeUser = () => ({type: REMOVE_USER})
+const gotUser = user => ({type: GOT_USER, user})
+const gotAllUsers = users => ({type: GOT_ALL_USERS, users})
+const removedUserFromLogin = () => ({type: REMOVED_USER_FROM_LOGIN})
 
 /**
  * THUNK CREATORS
@@ -30,7 +30,7 @@ const removeUser = () => ({type: REMOVE_USER})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || initialState))
+    dispatch(gotUser(res.data || initialState))
   } catch (err) {
     console.error(err)
   }
@@ -41,11 +41,11 @@ export const auth = (email, password, method) => async dispatch => {
   try {
     res = await axios.post(`/auth/${method}`, {email, password})
   } catch (authError) {
-    return dispatch(getUser({error: authError}))
+    return dispatch(gotUser({error: authError}))
   }
 
   try {
-    dispatch(getUser(res.data))
+    dispatch(gotUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -55,7 +55,7 @@ export const auth = (email, password, method) => async dispatch => {
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
-    dispatch(removeUser())
+    dispatch(removedUserFromLogin())
     history.push('/login')
   } catch (err) {
     console.error(err)
@@ -66,7 +66,7 @@ export const fetchAllUsers = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/users')
-      dispatch(getAllUsers(data))
+      dispatch(gotAllUsers(data))
     } catch (err) {
       console.error(err)
     }
@@ -88,7 +88,7 @@ export default function(state = initialState, action) {
         ...state,
         all: action.users
       }
-    case REMOVE_USER:
+    case REMOVED_USER_FROM_LOGIN:
       return {
         ...state,
         current: {}
