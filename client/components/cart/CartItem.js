@@ -1,13 +1,33 @@
 import React, {Component} from 'react'
+//import {connect} from 'react-redux'
 import {removeFromCart, addToCart, getCart, requestCart} from '../../store'
 
-const CartItem = props => {
-  const {product, handleDelete, handleChange} = props
+export const CartItem = function(props) {
+  //const {product, handleDelete, handleChange} = props
+  //console.log('props in cart item', props)
   return (
     <div>
-      {product.title} {product.quantity}
+      <h1>{props.product.title}</h1>
+      <h2> {props.product.quantity}</h2>
     </div>
   )
 }
 
-export default CartItem
+// class CartItem extends Component {
+
+//   render() {
+//     console.log('cartItems props', this.props)
+//     return (
+//       <div>
+//         <h1>{props.product.title}</h1>
+//         <h2> {props.product.quantity}</h2>
+//       </div>
+//     )
+//   }
+// }
+// const mapStateToProps = state => {
+//   return {
+//     ...state
+//   }
+// }
+// export default connect(mapStateToProps, null)(CartItem)

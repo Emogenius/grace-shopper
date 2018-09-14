@@ -13,6 +13,7 @@ class SingleEmoji extends Component {
     }
     this.updateForm = this.updateForm.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   updateForm() {
@@ -32,12 +33,15 @@ class SingleEmoji extends Component {
   handleAdd(product) {
     this.props.addToCart(product)
   }
-
+  handleClick() {
+    const emoji = this.props.product.selectedEmoji
+    this.props.addedToCart(emoji)
+  }
   render() {
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
     const allUser = this.props.allUser
-
+    console.log('this props in all emjoi', this.props.cart)
     if (isFetching) {
       return (
         <div>
@@ -77,7 +81,8 @@ class SingleEmoji extends Component {
             className="btn btn-outline-dark"
             // className="select"
             id={emoji.id}
-            onClick={() => this.props.addToCart(emoji)}
+            onClick={this.handleClick}
+            //onClick={() => this.props.addedToCart(emoji)}
           >
             Buy ME!
           </button>
@@ -127,7 +132,7 @@ const mapDispatchToProps = dispatch => {
   return {
     gotEmoji: id => dispatch(getEmoji(id)),
     remove: id => dispatch(removeProduct(id)),
-    addToCart: product => dispatch(addToCart(product)),
+    addedToCart: product => dispatch(addToCart(product)),
     getCart: () => dispatch(getCart())
   }
 }
