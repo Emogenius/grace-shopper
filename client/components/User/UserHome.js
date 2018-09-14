@@ -1,36 +1,37 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {getUser} from '../../store/userReducer'
+// import EditProduct from './EditProduct'
+// import {addToCart, getCart} from '../../store/cartReducer'
 
-/**
- * COMPONENT
- */
-export const UserHome = props => {
-  const {email} = props
-
-  return (
-    <div>
+class UserHome extends Component {
+  render() {
+    console.log(this.props)
+    return (
       <div>
-        <h3>Welcome, {email}</h3>
+        <h1>Welcome, {this.props.name}!</h1>
+        <h2> email: {this.props.email}</h2>
+        <h3>phone: {this.props.phoneNumber}</h3>
+        <h2> stuff you've reviewed </h2>
       </div>
-    </div>
-  )
-}
-
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    email: state.user.email
+    )
   }
 }
 
-export default connect(mapState)(UserHome)
-
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
+const mapStateToProps = state => {
+  return {
+    ...state,
+    name: state.user.fullName,
+    email: state.user.email,
+    phoneNumber: state.user.phoneNumber
+  }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    gotUser: id => dispatch(getUser(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome)
