@@ -13,9 +13,7 @@ class SearchBar extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleClick(query) {
-    getProducts()
-  }
+  handleClick(query) {}
 
   handleChange() {}
 
@@ -31,7 +29,7 @@ class SearchBar extends Component {
             value={this.state.value}
           />
           <button
-            onClick={this.handleClick()}
+            onClick={this.handleClick(this.state.value)}
             className="btn btn-outline-success"
             type="submit"
           >
@@ -43,10 +41,16 @@ class SearchBar extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    products: state.product.products,
+    filteredProducts: state.filteredProducts
+  }
+}
 const mapDispatchToProps = dispatch => {
   return {
     getProducts: () => dispatch(getProducts())
   }
 }
 
-export default connect(null, mapDispatchToProps)(SearchBar)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

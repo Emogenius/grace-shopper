@@ -150,6 +150,7 @@ const initialState = {
   category: [],
   categoryList: [],
   selectedEmoji: {},
+  filteredProducts: [],
   isFetching: true
 }
 
