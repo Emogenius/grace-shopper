@@ -4,8 +4,8 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER'
-const GET_ALL_USERS = 'GET_ALL_USERS' //added
+const GOT_USER = 'GOT_USER'
+const GOT_ALL_USERS = 'GOT_ALL_USERS'
 const REMOVE_USER = 'REMOVE_USER'
 // adduser? updateuser?
 
@@ -13,13 +13,12 @@ const REMOVE_USER = 'REMOVE_USER'
  * INITIAL STATE
  */
 const defaultUser = {}
-// const defaultUser = {data: [], isFetching: true} // should I add them here?
 
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const getAllUsers = users => ({type: GET_ALL_USERS, users}) //added
+const getUser = user => ({type: GOT_USER, user})
+const getAllUsers = users => ({type: GOT_ALL_USERS, users})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -77,9 +76,9 @@ export const fetchAllUsers = () => {
  */
 export default function(state = defaultUser, action) {
   switch (action.type) {
-    case GET_USER:
+    case GOT_USER:
       return action.user
-    case GET_ALL_USERS: //added
+    case GOT_ALL_USERS:
       return action.users
     case REMOVE_USER:
       return defaultUser
@@ -87,19 +86,3 @@ export default function(state = defaultUser, action) {
       return state
   }
 }
-
-//with isFetching
-/*
-export default function(state = defaultUser, action) {
-  switch (action.type) {
-    case GET_USER:
-      return {data: action.user, isFetching: false}
-    case GET_ALL_USERS:
-      return {data: action.users, isFetching: false}
-    case REMOVE_USER:
-      return {data: defaultUser.data, isFetching: false} //???
-    default:
-      return state
-  }
-}
-*/
