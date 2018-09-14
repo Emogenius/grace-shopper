@@ -1,21 +1,26 @@
 import axios from 'axios'
-//import history from '../history'
+import history from '../history'
 
 //---------------------- ACTION TYPES -----------------------
-const GOT_PRODUCTS = 'GOT_PRODUCTS'
+const REQUEST_RESULTS = 'REQUEST_RESULTS'
+const GOT_RESULTS = 'GOT_RESULTS'
 
 //---------------------- ACTION CREATORS -----------------------
-export const gotProducts = products => ({
-  type: GOT_PRODUCTS,
-  products
+export const requestedResults = () => ({
+  type: REQUEST_RESULTS
+})
+
+export const gotResults = results => ({
+  type: GOT_RESULTS,
+  results
 })
 
 //---------------------- THUNK CREATOR -----------------------
 
-export const getProducts = () => {
+export const getResults = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/api/products')
+      const {data} = await axios.get('/api/search')
       dispatch(gotProducts(data))
     } catch (err) {
       console.error(err)
