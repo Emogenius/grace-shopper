@@ -5,6 +5,7 @@
  */
 export {default as Navbar} from './navbar'
 export {default as Sidebar} from './sidebar'
+export {default as SearchBar} from './SearchBar'
 export {default as UserHome} from './User/User-home'
 export {default as AllUser} from './user/AllUser'
 export {default as ListOrders} from './user/ListOrders'
