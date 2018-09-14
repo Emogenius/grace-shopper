@@ -8,16 +8,17 @@ import store, {
   requestCart,
   updateQuantity
 } from '../../store'
-import {CartItem} from '../index'
+import {CartItem} from './CartItem'
 
 class Cart extends Component {
   constructor() {
     super()
     this.handleDelete = this.handleDelete.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.counter = 0
   }
   componentDidMount() {
-    console.log('PROPS', this.props)
+    console.log('PROPS in cart component did mount', this.props)
     this.props.getCart()
   }
 
@@ -29,9 +30,13 @@ class Cart extends Component {
   }
 
   render() {
-    console.log('STORE', store)
-    console.log('CART PROPS', this.props)
-    const {list, isFetching} = this.props
+    // console.log('STORE', store)
+    console.log('CART PROPS', this.props.cart)
+    const cart = this.props
+    const isFetching = this.props.cart.isFetching
+    const {list} = cart
+    console.log('this list cart', list)
+    //const list = this.props.cart.list
     return isFetching ? (
       <div>LOADING</div>
     ) : (
@@ -40,12 +45,22 @@ class Cart extends Component {
         {list && (
           <ul>
             {list.map(listItem => (
-              <CartItem
-                handleDelete={this.handleDelete}
-                handleChange={this.handleChange}
-                product={listItem}
-                key={listItem.id}
-              />
+              <li key={this.counter++}>
+                {/* <h3>{listItem.title}</h3>
+                <h2>{listItem.quantity}</h2> */}
+                <CartItem
+                  handleDelete={this.handleDelete}
+                  handleChange={this.handleChange}
+                  product={listItem}
+                  key={this.counter}
+                />
+              </li>
+              //  <CartItem
+              //     handleDelete={this.handleDelete}
+              //     handleChange={this.handleChange}
+              //     product={listItem}
+              //     key={listItem.id}
+              //    />
             ))}
           </ul>
         )}
@@ -56,6 +71,7 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
+    ...state,
     list: state.cart.list,
     isFetching: state.cart.isFetching
   }
@@ -63,7 +79,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   removeFromCart: productId => dispatch(removeFromCart(productId)),
-  addToCart: productId => dispatch(addToCart(productId)),
+  addToCart: product => dispatch(addToCart(product)),
   getCart: () => dispatch(getCart()),
   requestCart: () => dispatch(requestCart())
 })
