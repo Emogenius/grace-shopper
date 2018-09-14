@@ -40,7 +40,7 @@ const products = [
     price: 1,
     inventoryQuantity: 4,
     imageUrl: '/images/smiling-face-with-sunglasses.png',
-    categoryId: 2
+    categoryId: 3
   },
   {
     title: 'Smiling Face With Smiling Eyes',
@@ -49,7 +49,7 @@ const products = [
     price: 3,
     inventoryQuantity: 4,
     imageUrl: '/images/face-smiling-eyes.png',
-    categoryId: 2
+    categoryId: 3
   },
   {
     title: 'Pouting Face',
@@ -58,7 +58,7 @@ const products = [
     price: 3,
     inventoryQuantity: 4,
     imageUrl: '/images/pouting-face.png',
-    categoryId: 2
+    categoryId: 3
   },
   {
     title: 'Avocado',

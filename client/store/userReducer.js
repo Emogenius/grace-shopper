@@ -1,34 +1,28 @@
 import axios from 'axios'
 import history from '../history'
 
-/**
- * ACTION TYPES
- */
-const GET_USER = 'GET_USER'
-const GET_ALL_USERS = 'GET_ALL_USERS' //added
-const REMOVE_USER = 'REMOVE_USER'
+//---------------------- ACTION TYPES -----------------------
+const GOT_USER = 'GOT_USER'
+const GOT_ALL_USERS = 'GOT_ALL_USERS'
+const REMOVED_USER_FROM_LOGIN = 'REMOVED_USER_FROM_LOGIN'
 // adduser? updateuser?
 
-/**
- * INITIAL STATE
- */
-const defaultUser = {}
-// const defaultUser = {data: [], isFetching: true} // should I add them here?
+//---------------------- INITIAL STATE -----------------------
+const initialState = {
+  current: {},
+  all: []
+}
 
-/**
- * ACTION CREATORS
- */
-const getUser = user => ({type: GET_USER, user})
-const getAllUsers = users => ({type: GET_ALL_USERS, users}) //added
-const removeUser = () => ({type: REMOVE_USER})
+//---------------------- ACTION CREATORS -----------------------
+const gotUser = user => ({type: GOT_USER, user})
+const gotAllUsers = users => ({type: GOT_ALL_USERS, users})
+const removedUserFromLogin = () => ({type: REMOVED_USER_FROM_LOGIN})
 
-/**
- * THUNK CREATORS
- */
+//---------------------- THUNK CREATOR -----------------------
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || defaultUser))
+    dispatch(gotUser(res.data || initialState))
   } catch (err) {
     console.error(err)
   }
@@ -39,11 +33,11 @@ export const auth = (email, password, method) => async dispatch => {
   try {
     res = await axios.post(`/auth/${method}`, {email, password})
   } catch (authError) {
-    return dispatch(getUser({error: authError}))
+    return dispatch(gotUser({error: authError}))
   }
 
   try {
-    dispatch(getUser(res.data))
+    dispatch(gotUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -53,53 +47,43 @@ export const auth = (email, password, method) => async dispatch => {
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
-    dispatch(removeUser())
+    dispatch(removedUserFromLogin())
     history.push('/login')
   } catch (err) {
     console.error(err)
   }
 }
 
-//added
 export const fetchAllUsers = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/users')
-      dispatch(getAllUsers(data))
+      dispatch(gotAllUsers(data))
     } catch (err) {
       console.error(err)
     }
   }
 }
 
-/**
- * REDUCER
- */
-export default function(state = defaultUser, action) {
+//---------------------- REDUCER -----------------------
+export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_USER:
-      return action.user
-    case GET_ALL_USERS: //added
-      return action.users
-    case REMOVE_USER:
-      return defaultUser
+    case GOT_USER:
+      return {
+        ...state,
+        current: action.user
+      }
+    case GOT_ALL_USERS:
+      return {
+        ...state,
+        all: action.users
+      }
+    case REMOVED_USER_FROM_LOGIN:
+      return {
+        ...state,
+        current: {}
+      }
     default:
       return state
   }
 }
-
-//with isFetching
-/*
-export default function(state = defaultUser, action) {
-  switch (action.type) {
-    case GET_USER:
-      return {data: action.user, isFetching: false}
-    case GET_ALL_USERS:
-      return {data: action.users, isFetching: false}
-    case REMOVE_USER:
-      return {data: defaultUser.data, isFetching: false} //???
-    default:
-      return state
-  }
-}
-*/
