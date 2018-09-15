@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import {removeFromCart, addToCart, getCart, requestCart} from '../../store'
 
 const CartItem = props => {
-  const {product, handleDelete, handleChange} = props
+  const {product} = props
+  //need to try to make imageUrl work to show in the cart
   return (
     <div>
-      {product.title} {product.quantity}
+      {product.imageUrl} {product.title} {product.quantity}
     </div>
   )
 }
