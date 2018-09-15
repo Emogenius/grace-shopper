@@ -1,6 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {getUserReviews} from '../../store/reviewReducer'
 
 /**
  * COMPONENT
@@ -17,17 +18,18 @@ export const UserHome = props => {
         <h2>email: {props.user.email}</h2>
         <h2>mailing address: {props.user.address}</h2>
         <h2>phone: {props.user.phoneNumber}</h2>
+        <h3> reviews:{props.userReviews}</h3>
       </div>
     </div>
   )
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
-    user: state.user.current
+    ...state,
+    user: state.user.current,
+    id: state.user.id,
+    userReviews: state.reviews.userReviews
     // email: state.user.current.email,
     // name: state.user.current.fullName,
     // phoneNumer: state.user.current.phoneNumber
@@ -36,16 +38,13 @@ const mapState = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    gotReviews: id => dispatch(getReviews(id)),
-    gotOrders: id => dispatch(getOrders(id))
+    gotUserReviews: id => dispatch(getUserReviews(id))
+    // gotOrders: id => dispatch(getOrders(id))
   }
 }
 
 export default connect(mapState, mapDispatchToProps)(UserHome)
 
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
+/* UserHome.propTypes = {
   email: PropTypes.string
-}
+} */
