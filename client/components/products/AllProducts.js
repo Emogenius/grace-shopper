@@ -7,23 +7,29 @@ class AllProducts extends Component {
     const products = this.props.products
     const isFetching = this.props.isFetching
     if (isFetching) {
-      return <h1> no emojis yet </h1>
+      return <div className="loader" />
     } else {
       return (
-        <ul className="items">
-          {products.map(prod => {
-            return (
-              <li key={prod.id}>
-                <h2>"{prod.title}"</h2>
-                {/* <h3>Price: {prod.price} $$</h3> */}
-                <img src={prod.imageUrl} />
-                <Link to={`/products/${prod.id}`}>
-                  <h3> pick me!</h3>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        <div>
+          <ul className="items">
+            {products.map(prod => {
+              return (
+                <li key={prod.id}>
+                  <h2>"{prod.title}"</h2>
+                  <h3>Price: 💰{prod.price}</h3>
+                  <img src={prod.imageUrl} />
+                  <div>
+                    <button type="button" className="btn btn-outline-dark">
+                      <Link to={`/products/${prod.id}`}>
+                        <h3>Pick Me!</h3>
+                      </Link>
+                    </button>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       )
     }
   }

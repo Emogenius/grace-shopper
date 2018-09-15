@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getCategory} from '../../store/productReducer'
-import SingleProduct from './SingleProduct'
 
 class Category extends Component {
   componentDidMount() {
@@ -16,7 +15,7 @@ class Category extends Component {
       return (
         <div className="items">
           {' '}
-          <h1> no emojis in this category yet!</h1>{' '}
+          <h1>no emojis in this category yet!</h1>{' '}
         </div>
       )
     } else {
@@ -28,10 +27,15 @@ class Category extends Component {
               return (
                 <li key={prod.id}>
                   <h2>{prod.title}</h2>
+                  <h3>Price: 💰{prod.price}</h3>
                   <img src={prod.imageUrl} />
-                  <Link to={`/products/${prod.id}`}>
-                    <h3> pick me!</h3>
-                  </Link>
+                  <div>
+                    <button type="button" className="btn btn-outline-dark">
+                      <Link to={`/products/${prod.id}`}>
+                        <h3>Pick Me!</h3>
+                      </Link>
+                    </button>
+                  </div>
                 </li>
               )
             })}
