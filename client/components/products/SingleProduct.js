@@ -55,28 +55,11 @@ class SingleProduct extends Component {
           <h1>{emoji.title}</h1>
           <h2>{emoji.category}</h2>
           <img src={emoji.imageUrl} />
-          <h2> About me: </h2>
-          <h2> {emoji.description}</h2>
-          <h2>The cost of cuteness: ${emoji.price}</h2>
-          <div>
-            <h1> What people are saying about this emoji: </h1>
-            <ul>
-              {emoji.review ? (
-                emoji.reviews.map(rev => (
-                  <li key={rev.id}>
-                    <h3> User Review: {rev.title}</h3>
-                    <h3> rating: {rev.stars} </h3>
-                    <h4> date posted: {rev.date}</h4>
-                    <h3>"{rev.review}"</h3>
-                    <h4> author: {rev.userId}</h4>
-                  </li>
-                ))
-              ) : (
-                <h1>see nothing say something</h1>
-              )}
-            </ul>
-          </div>
-
+          <h4> ABOUT ME: </h4>
+          <h5>
+            <i>{emoji.description}</i>
+          </h5>
+          <h2>The cost of cuteness: 💰{emoji.price}</h2>
           <button
             type="button"
             className="btn btn-outline-dark"
@@ -90,7 +73,7 @@ class SingleProduct extends Component {
             <div>
               <button
                 type="button"
-                className="btn btn-outline-dark"
+                className="btn btn-outline-warning"
                 onClick={() => {
                   this.updateForm()
                 }}
@@ -103,7 +86,7 @@ class SingleProduct extends Component {
               <Link to="/products">
                 <button
                   type="button"
-                  className="btn btn-outline-dark"
+                  className="btn btn-outline-warning"
                   onClick={() => {
                     this.props.remove(emoji.id)
                   }}
@@ -113,6 +96,28 @@ class SingleProduct extends Component {
               </Link>
             </div>
           ) : null}
+
+          <div>
+            <br />
+            <h3> What people are saying about this emoji: </h3>
+            <ul>
+              {emoji.review ? (
+                emoji.reviews.map(rev => (
+                  <li key={rev.id}>
+                    <h4>User Review: {rev.title}</h4>
+                    <h4>Rating⭐: {rev.stars} </h4>
+                    <h6>Date posted: {rev.date}</h6>
+                    <h5>
+                      <i>"{rev.review}"</i>
+                    </h5>
+                    <h6>Author: {rev.userId}</h6>
+                  </li>
+                ))
+              ) : (
+                <h3>See nothing? Say something!🤗</h3>
+              )}
+            </ul>
+          </div>
         </div>
       )
     }
