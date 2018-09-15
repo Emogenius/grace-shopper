@@ -30,7 +30,16 @@ class SingleEmoji extends Component {
   }
 
   handleAdd(product) {
-    this.props.addToCart(product)
+    let jsonProduct = JSON.parse(product.id)
+    if (localStorage.getItem(jsonProduct)) {
+      product.quantity += 1
+      product.inventoryQuantity -= 1
+    } else {
+      product.quantity = 1
+      product.inventoryQuantity -= 1
+    }
+    let obj = JSON.stringify(product)
+    localStorage.setItem(product.id, obj)
   }
 
   render() {
@@ -77,7 +86,7 @@ class SingleEmoji extends Component {
             className="btn btn-outline-dark"
             // className="select"
             id={emoji.id}
-            onClick={() => this.props.addToCart(emoji)}
+            onClick={() => this.handleAdd(emoji)}
           >
             Buy ME!
           </button>
@@ -133,3 +142,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleEmoji)
+// export default SingleEmoji

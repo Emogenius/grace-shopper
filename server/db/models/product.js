@@ -13,7 +13,7 @@ const Product = db.define('product', {
     type: Sequelize.TEXT
   },
   price: {
-    type: Sequelize.DECIMAL, // INTEGER
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   inventoryQuantity: {
@@ -24,6 +24,10 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     defaultValue:
       'http://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_grande.png?v=1480481056'
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 
