@@ -61,6 +61,41 @@ const products = [
     categoryId: 3
   },
   {
+    title: 'Screaming',
+    description: 'What?! That is due tomorrow?!.',
+    price: 3,
+    inventoryQuantity: 4,
+    imageUrl: '/images/face-screaming-in-fear.png',
+    categoryId: 3
+  },
+  {
+    title: 'Tears of Joy ',
+    description: 'This feature finally works! Thank god!',
+    price: 3,
+    inventoryQuantity: 4,
+    imageUrl: '/images/face-tears-joy.png',
+    categoryId: 3
+  },
+
+  {
+    title: 'Smiling Face With Heart Eyes',
+    description:
+      'A yellow face with heart eyes. Expresses intense approval or excitment. An emoji form of the ^^ emoticon.',
+    price: 3,
+    inventoryQuantity: 4,
+    imageUrl: '/images/heart-shaped-eyes.png',
+    categoryId: 3
+  },
+  {
+    title: 'Thinking face',
+    description: 'How am I supposed to solve this REACTO problem? ',
+    price: 3,
+    inventoryQuantity: 4,
+    imageUrl: '/images/thinking-face.png',
+    categoryId: 3
+  },
+
+  {
     title: 'Avocado',
     description:
       'A pear-shaped avocado, sliced in half to show its yellow-green flesh and large brown pit. Ready for toast, guacamole, or millennial jokes.',
@@ -157,6 +192,103 @@ const products = [
     inventoryQuantity: 4,
     imageUrl: '/images/dancer.png',
     categoryId: 4
+  },
+  {
+    title: 'Baby Shark',
+    description: 'Baby shark! do do do do do do. Baby shark!',
+    price: 1,
+    inventoryQuantity: 100000,
+    imageUrl: '/images/shark.png',
+    categoryId: 2
+  },
+  {
+    title: 'Unicorn',
+    description: 'Not unicorn Robert Pattinson, but will do for now ',
+    price: 1,
+    inventoryQuantity: 16,
+    imageUrl: '/images/unicorn-face.png',
+    categoryId: 2
+  },
+
+  {
+    title: 'tiger',
+    description: 'Tigers are pretty cool too ',
+    price: 1,
+    inventoryQuantity: 16,
+    imageUrl: '/images/tiger-face.png',
+    categoryId: 2
+  },
+  {
+    title: 'cat',
+    description: 'Kristin has two of these at home',
+    price: 1,
+    inventoryQuantity: 2,
+    imageUrl: '/images/cat-face.png',
+    categoryId: 2
+  },
+  {
+    title: 'Monkey',
+    description: 'Code monkey can not believe he broke all the code',
+    price: 1,
+    inventoryQuantity: 16,
+    imageUrl: '/images/see-no-evil-monkey.png',
+    categoryId: 2
+  },
+  {
+    title: 'puppy',
+    description: 'Kristin has two of these at home',
+    price: 1,
+    inventoryQuantity: 2,
+    imageUrl: '/images/dog-face.png',
+    categoryId: 2
+  },
+  {
+    title: 'Eeyore',
+    description: 'Belongs to Jess',
+    price: 1,
+    inventoryQuantity: 16,
+    imageUrl: '/images/rabbit.png',
+    categoryId: 2
+  },
+  {
+    title: 'Pig',
+    description: 'How I feel after all the code-induced stress eating',
+    price: 1,
+    inventoryQuantity: 16,
+    imageUrl: '/images/pig.png',
+    categoryId: 2
+  },
+  {
+    title: 'sushi',
+    description: 'Is pretty good ',
+    price: 1,
+    inventoryQuantity: 16,
+    imageUrl: '/images/sushi.png',
+    categoryId: 1
+  },
+  {
+    title: 'Coffee',
+    description: 'Have you sucessfully installed java today?',
+    price: 1,
+    inventoryQuantity: 46,
+    imageUrl: '/images/coffee.png',
+    categoryId: 1
+  },
+  {
+    title: 'Lollipop',
+    description: "Kids get these after going to the doctor. Why don't we?",
+    price: 1,
+    inventoryQuantity: 46,
+    imageUrl: '/images/lollipop.png',
+    categoryId: 1
+  },
+  {
+    title: 'Champagne',
+    description: 'Used to toast your coding victories',
+    price: 1,
+    inventoryQuantity: 46,
+    imageUrl: '/images/champ.png',
+    categoryId: 1
   }
 ]
 

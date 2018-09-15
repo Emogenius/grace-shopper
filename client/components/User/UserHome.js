@@ -6,13 +6,17 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
-  console.log('email userhome', email)
+  //const {email, name} = props
+  //console.log(this.state.user.current)
+  console.log(props)
 
   return (
     <div>
       <div>
-        <h3>Welcome, {email}!</h3>
+        <h1>Welcome, {props.user.fullName}!</h1>
+        <h2>email: {props.user.email}</h2>
+        <h2>mailing address: {props.user.address}</h2>
+        <h2>phone: {props.user.phoneNumber}</h2>
       </div>
     </div>
   )
@@ -23,11 +27,21 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.current.email
+    user: state.user.current
+    // email: state.user.current.email,
+    // name: state.user.current.fullName,
+    // phoneNumer: state.user.current.phoneNumber
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatchToProps = dispatch => {
+  return {
+    gotReviews: id => dispatch(getReviews(id)),
+    gotOrders: id => dispatch(getOrders(id))
+  }
+}
+
+export default connect(mapState, mapDispatchToProps)(UserHome)
 
 /**
  * PROP TYPES
