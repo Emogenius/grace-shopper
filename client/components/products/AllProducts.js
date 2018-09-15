@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-class AllEmoji extends Component {
+class AllProducts extends Component {
   render() {
     const products = this.props.products
     const isFetching = this.props.isFetching
@@ -36,4 +36,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(AllEmoji)
+export default connect(mapStateToProps)(AllProducts)

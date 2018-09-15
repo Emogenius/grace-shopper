@@ -65,7 +65,7 @@
 //   isFetching: false
 // }
 // // Cart product in cart.list is defined when the product is added
-// // from AllEmoji or SingleEmoji
+// // from AllProducts or SingleProduct
 // // When added, the quantity property is added, in addition to the
 // // product info from the database
 
