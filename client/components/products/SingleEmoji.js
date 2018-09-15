@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getEmoji, removeProduct} from '../../store/productReducer'
 import EditProduct from './EditProduct'
-import {addToCart, getCart} from '../../store/cartReducer'
+import {addToCart} from '../../store/cartReducer'
 
 class SingleEmoji extends Component {
   constructor() {
@@ -26,7 +26,6 @@ class SingleEmoji extends Component {
   componentDidMount() {
     const id = this.props.match.params.id
     this.props.gotEmoji(id)
-    this.props.getCart()
   }
 
   handleAdd(product) {
@@ -84,7 +83,6 @@ class SingleEmoji extends Component {
           <button
             type="button"
             className="btn btn-outline-dark"
-            // className="select"
             id={emoji.id}
             onClick={() => this.handleAdd(emoji)}
           >
@@ -136,8 +134,7 @@ const mapDispatchToProps = dispatch => {
   return {
     gotEmoji: id => dispatch(getEmoji(id)),
     remove: id => dispatch(removeProduct(id)),
-    addToCart: product => dispatch(addToCart(product)),
-    getCart: () => dispatch(getCart())
+    addToCart: product => dispatch(addToCart(product))
   }
 }
 

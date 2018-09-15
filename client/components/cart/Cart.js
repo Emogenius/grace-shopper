@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {CartItem} from '../index'
 import {stringify} from 'querystring'
 import {Link} from 'react-router-dom'
 
@@ -9,7 +7,7 @@ class Cart extends Component {
     super()
     this.state = {newlist: []}
     this.handleDelete = this.handleDelete.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    // this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -38,9 +36,9 @@ class Cart extends Component {
     this.setState({newlist: newlist})
   }
 
-  handleChange(productId) {
-    this.props.updateQuantity(productId)
-  }
+  // handleChange(productId) {
+  //   this.props.updateQuantity(productId)
+  // }
 
   render() {
     const myCart = this.state.newlist
@@ -53,19 +51,43 @@ class Cart extends Component {
           <ul>
             {myCart.map(listItem => (
               <div key={listItem.id}>
-                <CartItem
-                  handleDelete={this.handleDelete}
-                  handleChange={this.handleChange}
-                  product={listItem}
-                  key={listItem.id}
-                />
-                <button
-                  type="button"
-                  className="btn btn-outline-dark"
-                  onClick={() => this.handleDelete(listItem.id)}
-                >
-                  remove item
-                </button>
+                <div>
+                  {listItem.imageUrl} <h2>{listItem.title}</h2>
+                  <div className="dropdown">
+                    <button
+                      className="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {listItem.quantity}
+                    </button>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a className="dropdown-item" href="#">
+                        1
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        2
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        3
+                      </a>
+                    </div>
+                  </div>
+                  Emooo Price: {listItem.price}
+                  <button
+                    type="button"
+                    className="btn btn-outline-dark"
+                    onClick={() => this.handleDelete(listItem.id)}
+                  >
+                    remove item
+                  </button>
+                </div>
               </div>
             ))}
           </ul>
@@ -81,11 +103,11 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    list: state.cart.list,
-    isFetching: state.cart.isFetching
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     list: state.cart.list,
+//     isFetching: state.cart.isFetching
+//   }
+// }
 
-export default connect(mapStateToProps, null)(Cart)
+export default Cart
