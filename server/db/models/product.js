@@ -1,6 +1,6 @@
 const db = require('../db')
 const Sequelize = require('sequelize')
-const Category = require('./')
+//const Category = require('./')
 
 const Product = db.define('product', {
   title: {
@@ -28,8 +28,25 @@ const Product = db.define('product', {
   }
 })
 
+Product.findByKeyword = function(query) {
+  return Product.findAll({
+    where: {
+      [Sequelize.Op.or]: [
+        {
+          name: {
+            [Sequelize.Op.iLike]: `%${query}%`
+          },
+          description: {
+            [Sequelize.Op.iLike]: `%${query}%`
+          }
+        }
+      ]
+    }
+  })
+}
+
 // Not sure if we need these yet
-// Product.findByName = function(query) {
+// Product.findInName = function(query) {
 //   return Product.findAll({
 //     where: {
 //       name: {
@@ -39,7 +56,7 @@ const Product = db.define('product', {
 //   })
 // }
 
-// Product.findByDescription = function(query) {
+// Product.findInDescription = function(query) {
 //   return Product.findAll({
 //     where: {
 //       description: {
@@ -49,7 +66,7 @@ const Product = db.define('product', {
 //   })
 // }
 
-// Product.findByCategory = function(id) {
+// Product.findInCategory = function(id) {
 //   return Product.findAll({
 //     where: {
 //       categoryId: id

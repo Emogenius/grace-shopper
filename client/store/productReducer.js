@@ -84,19 +84,18 @@ export const getCategoryList = () => {
   }
 }
 
-// Not sure if we need this yet.
-// export const getFilteredProducts = productFilter => {
-//   return async dispatch => {
-//     try {
-//       const {data} = await axios.get(`/api/products/`).data.filter()
+export const getFilteredProducts = productFilter => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/products/`).data.filter()
 
-//       dispatch(gotCategory(data))
-//       history.push(`/products/category/${categoryId}`)
-//     } catch (err) {
-//       console.error(err)
-//     }
-//   }
-// }
+      dispatch(gotCategory(data))
+      history.push(`/products/category/${categoryId}`)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
 
 export const getCategory = categoryId => {
   //import history and remove it from params

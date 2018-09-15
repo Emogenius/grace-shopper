@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getProducts} from '../../store'
+import {getFilteredProducts} from '../../store'
 
 class SearchBar extends Component {
   constructor() {
@@ -47,10 +47,10 @@ const mapStateToProps = state => {
     filteredProducts: state.filteredProducts
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    getProducts: () => dispatch(getProducts())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getProducts: () => dispatch(getProducts())
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+export default connect(mapStateToProps)(SearchBar)

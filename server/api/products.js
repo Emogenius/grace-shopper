@@ -11,6 +11,15 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/name', async (req, res, next) => {
+  try {
+    const categories = await Category.findByName(req.body)
+    res.json(categories)
+  } catch (err) {
+    next(err)
+  }
+})
+
 // Not sure if I need these yet.
 // router.get('/name', async (req, res, next) => {
 //   try {
