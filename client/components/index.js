@@ -3,9 +3,15 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+<<<<<<< HEAD
+export {default as Navbar} from './navbar'
+export {default as Sidebar} from './sidebar'
+export {default as SearchBar} from './search/SearchBar'
+=======
 export {default as Navbar} from './Navbar'
 export {default as Sidebar} from './Sidebar'
 export {default as SearchBar} from './SearchBar'
+>>>>>>> 548c0f246f0e169d2e237914f358f760ade4e351
 export {default as UserHome} from './user/UserHome'
 export {default as AllUser} from './user/AllUser'
 export {default as ListOrders} from './user/ListOrders'
