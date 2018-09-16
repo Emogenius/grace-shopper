@@ -44,7 +44,7 @@ class SingleProduct extends Component {
   render() {
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
-    const allUser = this.props.allUser
+    const currentUser = this.props.user.current
 
     if (isFetching) {
       return (
@@ -89,7 +89,7 @@ class SingleProduct extends Component {
             Buy ME!
           </button>
 
-          {allUser.isAdmin ? (
+          {currentUser.isAdmin ? (
             <div>
               <button
                 type="button"
@@ -125,7 +125,7 @@ class SingleProduct extends Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    allUser: state.user,
+    user: state.user,
     selectedEmoji: state.product.selectedEmoji,
     isFetching: state.product.isFetching
   }
