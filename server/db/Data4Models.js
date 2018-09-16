@@ -308,6 +308,20 @@ const reviews = [
     rating: 2,
     userId: 3,
     productId: 2
+  },
+  {
+    title: 'too real',
+    description: 'exactly how I feel',
+    rating: 3,
+    userId: 1,
+    productId: 3
+  },
+  {
+    title: 'im hungry',
+    description: 'yum',
+    rating: 2,
+    userId: 2,
+    productId: 9
   }
 ]
 
