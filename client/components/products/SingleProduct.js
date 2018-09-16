@@ -42,16 +42,13 @@ class SingleProduct extends Component {
   }
 
   render() {
+    console.log(this.props)
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
     const currentUser = this.props.user.current
 
     if (isFetching) {
-      return (
-        <div>
-          <h1> haven't found this emoji yet!</h1>
-        </div>
-      )
+      return <div className="loader" />
     } else {
       return (
         <div className="items">
@@ -60,7 +57,7 @@ class SingleProduct extends Component {
           <img src={emoji.imageUrl} />
           <h2> About me: </h2>
           <h2> {emoji.description}</h2>
-          <h2> The cost of cuteness: ${emoji.price}</h2>
+          <h2>The cost of cuteness: ${emoji.price}</h2>
           <div>
             <h1> What people are saying about this emoji: </h1>
             <ul>
@@ -75,7 +72,7 @@ class SingleProduct extends Component {
                   </li>
                 ))
               ) : (
-                <h1>see nothing say something </h1>
+                <h1>see nothing say something</h1>
               )}
             </ul>
           </div>
@@ -139,4 +136,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
-// export default SingleProduct
