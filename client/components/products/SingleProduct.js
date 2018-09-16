@@ -5,7 +5,7 @@ import {getEmoji, removeProduct} from '../../store/productReducer'
 import EditProduct from './EditProduct'
 import {addToCart} from '../../store/cartReducer'
 
-class SingleEmoji extends Component {
+class SingleProduct extends Component {
   constructor() {
     super()
     this.state = {
@@ -138,5 +138,5 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleEmoji)
-// export default SingleEmoji
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
+// export default SingleProduct

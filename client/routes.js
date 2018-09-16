@@ -8,9 +8,9 @@ import {
   Login,
   Signup,
   UserHome,
-  AllEmoji,
+  AllProducts,
   Category,
-  SingleEmoji,
+  SingleProduct,
   AddProduct,
   EditProduct,
   ListOrders,
@@ -41,13 +41,13 @@ class Routes extends Component {
       <Switch>
         {/*--------------- Routes to all visitors------------ */}
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/products" component={AllEmoji} />
+        <Route exact path="/products" component={AllProducts} />
         <Route
           exact
           path="/products/category/:categoryId"
           component={Category}
         />
-        <Route exact path="/products/:id" component={SingleEmoji} />
+        <Route exact path="/products/:id" component={SingleProduct} />
         {/* <Route exact path="/:userId" component={UserDetail} /> */}
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={CheckOut} />
