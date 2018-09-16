@@ -5,7 +5,7 @@ import {getEmoji, removeProduct} from '../../store/productReducer'
 import EditProduct from './EditProduct'
 import {addToCart} from '../../store/cartReducer'
 
-class SingleEmoji extends Component {
+class SingleProduct extends Component {
   constructor() {
     super()
     this.state = {
@@ -42,17 +42,13 @@ class SingleEmoji extends Component {
   }
 
   render() {
+    console.log(this.props)
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
-    const allUser = this.props.allUser
-    //const reviews = this.props.reviews
+    const currentUser = this.props.user.current
 
     if (isFetching) {
-      return (
-        <div>
-          <h1> haven't found this emoji yet!</h1>
-        </div>
-      )
+      return <div className="loader" />
     } else {
       return (
         <div className="items">
@@ -61,7 +57,7 @@ class SingleEmoji extends Component {
           <img src={emoji.imageUrl} />
           <h2> About me: </h2>
           <h2> {emoji.description}</h2>
-          <h2> The cost of cuteness: ${emoji.price}</h2>
+          <h2>The cost of cuteness: ${emoji.price}</h2>
           <div>
             <h1> What people are saying about this emoji: </h1>
             <ul>
@@ -76,7 +72,7 @@ class SingleEmoji extends Component {
                   </li>
                 ))
               ) : (
-                <h1>see nothing say something </h1>
+                <h1>see nothing say something</h1>
               )}
             </ul>
           </div>
@@ -90,7 +86,7 @@ class SingleEmoji extends Component {
             Buy ME!
           </button>
 
-          {allUser.isAdmin ? (
+          {currentUser.isAdmin ? (
             <div>
               <button
                 type="button"
@@ -126,10 +122,9 @@ class SingleEmoji extends Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    allUser: state.user,
+    user: state.user,
     selectedEmoji: state.product.selectedEmoji,
     isFetching: state.product.isFetching
-    //reviews: state.reviews.reviews
   }
 }
 const mapDispatchToProps = dispatch => {
@@ -140,5 +135,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleEmoji)
-// export default SingleEmoji
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
