@@ -4,7 +4,9 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const rev = await Review.findAll()
+    const rev = await Review.findAll({
+      include: [{model: Product}, {model: User}]
+    })
     //{
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
@@ -20,6 +22,7 @@ router.get('/', async (req, res, next) => {
 // PUT /api/users/:id
 router.get('/user/:id', async (req, res, next) => {
   try {
+    console.log(req.params.id)
     const userReviews = await Review.findAll({where: {userId: req.params.id}})
     res.json(userReviews)
   } catch (err) {

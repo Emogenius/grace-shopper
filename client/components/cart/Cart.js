@@ -12,27 +12,27 @@ class Cart extends Component {
 
   componentDidMount() {
     let keys = Object.keys(localStorage)
-    JSON.stringify(keys)
+    //JSON.stringify(keys)
     let lists = keys.map(id => {
       return localStorage.getItem(id)
     })
-    let newlist = lists.map(items => {
-      return JSON.parse(items)
-    })
-    this.setState({newlist: newlist})
+    // let newlist = lists.map(items => {
+    //   return JSON.parse(items)
+    // })
+    this.setState({newlist: lists})
   }
 
   handleDelete(productId) {
-    let product = JSON.parse(productId)
-    localStorage.removeItem(product)
+    // let product = JSON.parse(productId)
+    //localStorage.removeItem(product)
     let keys = Object.keys(localStorage)
-    JSON.stringify(keys)
+    //JSON.stringify(keys)
     let lists = keys.map(id => {
       return localStorage.getItem(id)
     })
-    let newlist = lists.map(items => {
-      return JSON.parse(items)
-    })
+    // let newlist = lists.map(items => {
+    //   return JSON.parse(items)
+    // })
     this.setState({newlist: newlist})
   }
 

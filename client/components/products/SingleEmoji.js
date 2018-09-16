@@ -45,6 +45,7 @@ class SingleEmoji extends Component {
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
     const allUser = this.props.allUser
+    //const reviews = this.props.reviews
 
     if (isFetching) {
       return (
@@ -128,6 +129,7 @@ const mapStateToProps = state => {
     allUser: state.user,
     selectedEmoji: state.product.selectedEmoji,
     isFetching: state.product.isFetching
+    //reviews: state.reviews.reviews
   }
 }
 const mapDispatchToProps = dispatch => {
