@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
-import {getProducts, getEmoji, getCategoryList} from './store/productReducer'
+import {getProducts, getCategoryList} from './store/productReducer'
 import {fetchAllUsers} from './store/userReducer'
 import {getAllReviews} from './store/reviewReducer'
 import PropTypes from 'prop-types'

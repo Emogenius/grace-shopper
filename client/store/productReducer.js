@@ -77,6 +77,7 @@ export const getCategoryList = () => {
   }
 }
 export const getCategory = (categoryId, history) => {
+  console.log('history', history)
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/products/category/${categoryId}`)
@@ -88,13 +89,12 @@ export const getCategory = (categoryId, history) => {
   }
 }
 
-export const createProduct = (product, ownProps) => {
-  console.log('error???')
+export const createProduct = (product, history) => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/products`, product)
       dispatch(newProduct(data))
-      ownProps.history.push(`/products/${data.id}`)
+      history.push(`/products/${data.id}`)
     } catch (err) {
       console.error(err)
     }
@@ -112,11 +112,11 @@ export const updateProduct = product => {
   }
 }
 
-export const removeProduct = product => {
-  return async dispatch => {
+export const removeProduct = productId => {
+  return dispatch => {
     try {
-      await axios.delete(`/api/products/${product}`)
-      dispatch(deleteProduct(product))
+      axios.delete(`/api/products/${productId}`)
+      dispatch(deleteProduct(productId))
     } catch (err) {
       console.error(err)
     }
@@ -125,7 +125,7 @@ export const removeProduct = product => {
 //---------------------- INITIAL STATE -----------------------
 const initialState = {
   products: [],
-  category: [],
+  category: {},
   categoryList: [],
   selectedEmoji: {},
   isFetching: true
@@ -135,11 +135,29 @@ const productReducer = (state = initialState, action) => {
   let newData
   switch (action.type) {
     case GOT_PRODUCTS:
-      return {...state, products: action.products, isFetching: false}
+      return {
+        ...state,
+        products: action.products,
+        isFetching: false
+      }
     case GOT_EMOJI:
-      return {...state, selectedEmoji: action.emoji, isFetching: false}
+      return {
+        ...state,
+        selectedEmoji: action.emoji,
+        isFetching: false
+      }
     case GOT_CATEGORY:
-      return {...state, category: action.category, isFetching: false}
+      return {
+        ...state,
+        category: action.category,
+        isFetching: false
+      }
+    case GOT_CATEGORY_LIST:
+      return {
+        ...state,
+        categoryList: action.categoryList,
+        isFetching: false
+      }
     case NEW_PRODUCT:
       return {
         // ...state,
@@ -147,14 +165,25 @@ const productReducer = (state = initialState, action) => {
         isFetching: false
       }
     case EDIT_PRODUCT:
-      return {...state, selectedEmoji: action.product, isFetching: false}
+      return {
+        ...state,
+        selectedEmoji: action.product,
+        isFetching: false
+      }
     case DELETE_PRODUCT:
       newData = state.products.filter(each => {
         return each.productId !== action.productId
       })
       return {...state, products: newData, isFetching: false}
-    case GOT_CATEGORY_LIST:
-      return {...state, categoryList: action.categoryList, isFetching: false}
+    // case DELETE_PRODUCT: {
+    //   return {
+    //     ...state,
+    //     products: state.products.filter(each => {
+    //       return each.productId !== action.productId
+    //     }),
+    //     isFetching: false
+    //   }
+    // }
     default:
       return state
   }
