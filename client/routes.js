@@ -51,7 +51,6 @@ class Routes extends Component {
           component={Category}
         />
         <Route exact path="/products/:id" component={SingleProduct} />
-        {/* <Route exact path="/:userId" component={UserDetail} /> */}
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={CheckOut} />
         <Route exact path="/login" component={Login} />
@@ -64,7 +63,6 @@ class Routes extends Component {
           <Switch>
             {/* --------------- Routes to user ONLY ------------  */}
             <Route exact path="/home" component={UserHome} />
-            {/* <Route exact path="/:userId" component={UserDetail} /> */}
             <Route exact path="/:userId/listOrders" component={ListOrders} />
             <Route exact path="/:userId/listReviews" component={ListReviews} />
 
