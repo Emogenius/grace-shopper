@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 const Footer = () => {
+  console.log('HELLO')
   return (
     <div className="row">
       <div id="search-bar" className="d-none d-md-block">

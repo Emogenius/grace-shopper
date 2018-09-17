@@ -101,7 +101,8 @@ class Cart extends Component {
             {myCart.map(listItem => (
               <div key={listItem.id}>
                 <div>
-                  {listItem.imageUrl} <h2>{listItem.title}</h2>
+                  <img src={listItem.imageUrl} />
+                  <h2>{listItem.title}</h2>
                   <select
                     name={listItem.id}
                     id={listItem.id}
