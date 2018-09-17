@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {getEmoji, removeProduct} from '../../store/productReducer'
 import EditProduct from './EditProduct'
 import {addToCart} from '../../store/cartReducer'
+import StarRatingComponent from 'react-star-rating-component'
 
 class SingleProduct extends Component {
   constructor() {
@@ -46,7 +47,8 @@ class SingleProduct extends Component {
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
     const currentUser = this.props.user.current
-
+    console.log('emoji', emoji.id)
+    const revs = this.props.reviews.filter(rev => rev.productId === emoji.id)
     if (isFetching) {
       return <div className="loader" />
     } else {
@@ -68,6 +70,27 @@ class SingleProduct extends Component {
           >
             Buy ME!
           </button>
+          <h3> reviews:</h3>
+          <ul>
+            {revs.map(rev => (
+              <li key={rev.id}>
+                <h3>
+                  <em> {rev.product.title}</em>
+                </h3>
+                <h3> "{rev.title}"</h3>
+                <h4>{rev.description}</h4>
+                <h1>
+                  <StarRatingComponent
+                    name="rate1"
+                    starColor={'DeepPink'}
+                    starCount={5}
+                    value={rev.rating}
+                  />
+                </h1>
+                <h3> rating: {rev.rating}</h3>
+              </li>
+            ))}
+          </ul>
 
           {currentUser.isAdmin ? (
             <div>
@@ -129,7 +152,8 @@ const mapStateToProps = state => {
     ...state,
     user: state.user,
     selectedEmoji: state.product.selectedEmoji,
-    isFetching: state.product.isFetching
+    isFetching: state.product.isFetching,
+    reviews: state.reviews.reviews
   }
 }
 const mapDispatchToProps = dispatch => {
