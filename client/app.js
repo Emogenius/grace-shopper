@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, Sidebar, Footer} from './components'
+import {Navbar, Sidebar, SearchBar} from './components'
 import Routes from './routes'
 
 function App() {

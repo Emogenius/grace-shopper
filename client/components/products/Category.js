@@ -7,10 +7,11 @@ class Category extends Component {
   componentDidMount() {
     const categoryId = this.props.match.params.categoryId
     this.props.gotCategory(categoryId)
-    //console.log('props in category component', categoryId)
   }
+
   render() {
     const products = this.props.category
+    const currentUser = this.props.user.current
     if (products === undefined) {
       return (
         <div className="items">
@@ -21,6 +22,12 @@ class Category extends Component {
     } else {
       return (
         <div className="items">
+          {currentUser.isAdmin ? (
+            <button type="button" className="btn btn-outline-warning">
+              <Link to="/addProduct">ADD PRODUCT</Link>
+            </button>
+          ) : null}
+
           <h1>{products.name}</h1>
           <ul>
             {products.map(prod => {
@@ -47,7 +54,10 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {
-  return {category: state.product.category}
+  return {
+    user: state.user,
+    category: state.product.category
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {

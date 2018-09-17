@@ -4,12 +4,14 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const product = await Product.findAll()
-    res.json(product)
+    const allProducts = await Product.findAll()
+    res.json(allProducts)
   } catch (err) {
     next(err)
   }
 })
+
+// this is important! will list the categoryList on the sidebar
 router.get('/category/categoryList', async (req, res, next) => {
   try {
     const categories = await Category.all()
@@ -18,6 +20,7 @@ router.get('/category/categoryList', async (req, res, next) => {
     next(err)
   }
 })
+
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id, {
@@ -64,6 +67,7 @@ router.put('/:id', adminsOnly, async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id)
     const data = await product.update(req.body)
+    if (!product) return res.sendStatus(404)
     res.json(data)
   } catch (err) {
     next(err)

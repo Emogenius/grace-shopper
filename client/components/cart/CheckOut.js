@@ -12,7 +12,7 @@ class CheckOut extends Component {
     //this.handleSubmit=this.handleSubmit.bind(this)
   }
 
-
+  render() {
     return (
       // <form>
       //   <div class="form-group">
@@ -55,16 +55,17 @@ class CheckOut extends Component {
       //   <button>Submit Payment</button>
       // </form>
       <form action="your-server-side-code" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_bmkjpUhNBrtmnYPdTdrNSkLa"
-    data-amount="999"
-    data-name="Demo Site"
-    data-description="Widget"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto">
-  </script>
-</form>
+        <script
+          src="https://checkout.stripe.com/checkout.js"
+          class="stripe-button"
+          data-key="pk_test_bmkjpUhNBrtmnYPdTdrNSkLa"
+          data-amount="999"
+          data-name="Demo Site"
+          data-description="Widget"
+          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-locale="auto"
+        />
+      </form>
     )
   }
 }
