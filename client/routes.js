@@ -55,7 +55,7 @@ class Routes extends Component {
         <Route exact path="/signup" component={Signup} />
 
         {/* testing routes ---------------------------------- */}
-        <Route exact path="/newProduct" component={AddProduct} />
+        {/* <Route exact path="/addProduct" component={AddProduct} /> */}
         <Route exact path="/products/:id/edit" component={EditProduct} />
         {isLoggedIn && (
           <Switch>
@@ -67,7 +67,7 @@ class Routes extends Component {
 
             {/* --------------- Routes to ADMIN ONLY ------------  */}
             <Route exact path="/products/:id/edit" component={EditProduct} />
-            <Route exact path="/newProduct" component={AddProduct} />
+            <Route exact path="/addProduct" component={AddProduct} />
             <Route exact path="/allUsers" component={AllUser} />
             <Route exact path="/allOrders" component={AllOrders} />
           </Switch>

@@ -6,10 +6,6 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  //const {email, name} = props
-  //console.log(this.state.user.current)
-  console.log(props)
-
   return (
     <div>
       <div>

@@ -26,6 +26,7 @@ const Product = db.define('product', {
       'http://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_grande.png?v=1480481056'
   },
   quantity: {
+    //shouldn't this be category???
     type: Sequelize.INTEGER,
     defaultValue: 0
   }
