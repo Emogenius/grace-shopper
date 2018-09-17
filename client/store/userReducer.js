@@ -38,7 +38,7 @@ export const auth = (email, password, method, history) => async dispatch => {
   }
 }
 
-export const logout = () => async dispatch => {
+export const logout = history => async dispatch => {
   try {
     await axios.post('/auth/logout')
     dispatch(removedUserFromLogin())
