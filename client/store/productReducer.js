@@ -89,6 +89,7 @@ export const getCategory = (categoryId, history) => {
 }
 
 export const createProduct = (product, ownProps) => {
+  console.log('error???')
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/products`, product)
@@ -141,7 +142,7 @@ const productReducer = (state = initialState, action) => {
       return {...state, category: action.category, isFetching: false}
     case NEW_PRODUCT:
       return {
-        ...state,
+        // ...state,
         products: [...state.products, action.product],
         isFetching: false
       }

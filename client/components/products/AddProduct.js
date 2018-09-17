@@ -8,10 +8,10 @@ class AddProduct extends React.Component {
     this.state = {
       title: '',
       description: '',
-      price: '', //have to convert to num?
-      inventoryQuantity: '',
+      price: 0, //have to convert to num?
+      inventoryQuantity: 0, //have to convert to num?
       imageUrl: '',
-      quantity: '' //we have two quantities! have to convert to num?
+      quantity: 0
       //we need to add categoryId
     }
     this.handleChange = this.handleChange.bind(this)

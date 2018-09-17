@@ -6,6 +6,7 @@ import {SearchBar} from './'
 
 const Sidebar = props => {
   const catList = props.categoryList
+  console.log(props)
   return (
     <div id="sidebar" className="row border border-primary rounded">
       <h2 className="col-12">Categories:</h2>
