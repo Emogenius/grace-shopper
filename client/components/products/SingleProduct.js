@@ -43,12 +43,13 @@ class SingleProduct extends Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
     const currentUser = this.props.user.current
-    console.log('emoji', emoji.id)
+    // console.log('emoji', emoji.id)
     const revs = this.props.reviews.filter(rev => rev.productId === emoji.id)
+
     if (isFetching) {
       return <div className="loader" />
     } else {
