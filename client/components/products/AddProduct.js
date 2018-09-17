@@ -8,11 +8,11 @@ class AddProduct extends React.Component {
     this.state = {
       title: '',
       description: '',
-      price: 0, //have to convert to num?
-      inventoryQuantity: 0, //have to convert to num?
+      price: 0,
+      inventoryQuantity: 0,
       imageUrl: '',
-      quantity: 0
-      //we need to add categoryId
+      quantity: 0,
+      categoryId: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -29,7 +29,7 @@ class AddProduct extends React.Component {
     this.props.create({...this.state})
   }
 
-  //add category
+  //add categoryId
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -105,19 +105,28 @@ class AddProduct extends React.Component {
           />
         </div>
 
-        {/* <div>
-          <label htmlFor="imageUrl" className="col-sm-2 col-form-label">
+        <div>
+          <label htmlFor="category" className="col-sm-2 col-form-label">
             Category:
+            <h6>
+              1: food
+              <br />
+              2: animal
+              <br />
+              3: emotion
+              <br />
+              4: activity
+            </h6>
           </label>
           <input
             type="text"
-            name="---"
+            name="categoryId"
             className="form-control"
             placeholder="Enter Product Category"
             onChange={this.handleChange}
-            value={this.state.---}
+            value={this.state.categoryId}
           />
-        </div> */}
+        </div>
 
         <button type="submit" className="btn btn-outline-dark">
           Submit

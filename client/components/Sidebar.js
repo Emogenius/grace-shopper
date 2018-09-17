@@ -6,7 +6,7 @@ import {SearchBar} from './'
 
 const Sidebar = props => {
   const catList = props.categoryList
-  console.log(props)
+  console.log('CATLIST', catList)
   return (
     <div id="sidebar" className="row border border-primary rounded">
       <h2 className="col-12">Categories:</h2>
@@ -35,9 +35,9 @@ const Sidebar = props => {
 
 const mapStateToProps = state => {
   return {
-    ...state,
-    categoryList: state.product.categoryList,
-    category: state.product.category
+    // ...state,
+    categoryList: state.product.categoryList
+    // category: state.product.category
   }
 }
 const mapDispatchToProps = dispatch => {

@@ -156,11 +156,11 @@ const mapStateToProps = state => {
     reviews: state.reviews.reviews
   }
 }
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     gotEmoji: id => dispatch(getEmoji(id)),
     remove: id => dispatch(removeProduct(id)),
-    addToCart: product => dispatch(addToCart(product))
+    addToCart: product => dispatch(addToCart(product, ownProps.history))
   }
 }
 

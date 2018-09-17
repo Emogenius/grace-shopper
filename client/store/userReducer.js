@@ -1,17 +1,11 @@
 import axios from 'axios'
-import history from '../history'
+// import history from '../history'
 
 //---------------------- ACTION TYPES -----------------------
 const GOT_USER = 'GOT_USER'
 const GOT_ALL_USERS = 'GOT_ALL_USERS'
 const REMOVED_USER_FROM_LOGIN = 'REMOVED_USER_FROM_LOGIN'
 // adduser? updateuser?
-
-//---------------------- INITIAL STATE -----------------------
-const initialState = {
-  current: {},
-  all: []
-}
 
 //---------------------- ACTION CREATORS -----------------------
 const gotUser = user => ({type: GOT_USER, user})
@@ -28,7 +22,7 @@ export const me = () => async dispatch => {
   }
 }
 
-export const auth = (email, password, method) => async dispatch => {
+export const auth = (email, password, method, history) => async dispatch => {
   let res
   try {
     res = await axios.post(`/auth/${method}`, {email, password})
@@ -63,6 +57,12 @@ export const fetchAllUsers = () => {
       console.error(err)
     }
   }
+}
+
+//---------------------- INITIAL STATE -----------------------
+const initialState = {
+  current: {},
+  all: []
 }
 
 //---------------------- REDUCER -----------------------
