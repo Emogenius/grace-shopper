@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {stringify} from 'querystring'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class Cart extends Component {
   constructor() {
@@ -143,4 +144,4 @@ class Cart extends Component {
   }
 }
 
-export default Cart
+export default connect()(Cart)
