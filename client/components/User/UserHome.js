@@ -7,9 +7,8 @@ import StarRatingComponent from 'react-star-rating-component'
  * COMPONENT
  */
 export const UserHome = props => {
-  //console.log(props)
+
   const revs = props.reviews.filter(rev => rev.userId === props.id)
-  //console.log('revs', revs)
 
   return (
     <div>

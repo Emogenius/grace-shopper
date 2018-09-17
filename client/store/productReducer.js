@@ -88,12 +88,12 @@ export const getCategory = (categoryId, history) => {
   }
 }
 
-export const createProduct = (product, history) => {
+export const createProduct = (product, ownProps) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post(`/api/products/newProduct`, product)
+      const {data} = await axios.post(`/api/products`, product)
       dispatch(newProduct(data))
-      history.push(`/products/${data.id}`)
+      ownProps.history.push(`/products/${data.id}`)
     } catch (err) {
       console.error(err)
     }
