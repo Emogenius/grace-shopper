@@ -5,13 +5,14 @@ import {Link} from 'react-router-dom'
 class Cart extends Component {
   constructor() {
     super()
-    this.state = {newlist: []}
+    this.state = {newlist: [], total: 0}
     this.handleDelete = this.handleDelete.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
     let keys = Object.keys(localStorage)
+    let total = 0
     let lists = keys.map(id => {
       return localStorage.getItem(id)
     })
@@ -20,7 +21,13 @@ class Cart extends Component {
       if (items === 'undefined') return
       return JSON.parse(items)
     })
-    this.setState({newlist: newlist})
+    let totalArr = newlist.map(each => {
+      return each.quantity * each.price
+    })
+    for (let i = 0; i < totalArr.length; i++) {
+      total += totalArr[i]
+    }
+    this.setState({newlist: newlist, total: total})
   }
 
   handleDelete(productId) {
@@ -54,14 +61,34 @@ class Cart extends Component {
     id = JSON.stringify(id)
     obj = JSON.stringify(obj)
     localStorage.setItem(id, obj)
+
+    //----------------get total --------------
+    let keys = Object.keys(localStorage)
+    let total = 0
+    let lists = keys.map(id => {
+      return localStorage.getItem(id)
+    })
+
+    let newlist = lists.map(items => {
+      if (items === 'undefined') return
+      return JSON.parse(items)
+    })
+    let totalArr = newlist.map(each => {
+      return each.quantity * each.price
+    })
+    for (let i = 0; i < totalArr.length; i++) {
+      total += totalArr[i]
+    }
+    this.setState({newlist: newlist, total: total})
   }
 
   render() {
     let myCart = this.state.newlist
+    let total = this.state.total
     myCart = myCart.filter(each => {
       return each !== undefined
     })
-    let total = 0
+
     const choices = [{value: 1}, {value: 2}, {value: 3}, {value: 4}]
     let answer = this.state.newlist.quantity
     return myCart.length < 1 ? (
@@ -104,6 +131,7 @@ class Cart extends Component {
           </ul>
         )}
 
+        <p>ORDER Total:{total}</p>
         <Link to="/checkout">
           <button type="button" className="btn btn-outline-dark">
             Checkout
@@ -113,12 +141,5 @@ class Cart extends Component {
     )
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     list: state.cart.list,
-//     isFetching: state.cart.isFetching
-//   }
-// }
 
 export default Cart
