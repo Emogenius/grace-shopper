@@ -7,18 +7,22 @@ class Cart extends Component {
     super()
     this.state = {newlist: []}
     this.handleDelete = this.handleDelete.bind(this)
-    // this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
     let keys = Object.keys(localStorage)
-    JSON.stringify(keys)
+    // JSON.stringify(keys)
     let lists = keys.map(id => {
       return localStorage.getItem(id)
     })
+    console.log(lists, 'json object here ??????')
     let newlist = lists.map(items => {
+      if (items === 'undefined') return
+      console.log(items, 'json item ---------------------')
       return JSON.parse(items)
     })
+
     this.setState({newlist: newlist})
   }
 
@@ -36,12 +40,37 @@ class Cart extends Component {
     this.setState({newlist: newlist})
   }
 
-  // handleChange(productId) {
-  //   this.props.updateQuantity(productId)
-  // }
+  handleChange(evt) {
+    let arr = []
+    for (var i = 0; i < localStorage.length; i++) {
+      arr.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+    }
+    let obj = {}
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j].id === +evt.target.id) {
+        arr[j].quantity = +evt.target.value
+        //need to also chang the inventory Quantity
+        obj = {...arr[j]}
+      }
+    }
+    // set localStorage with teh new DATA
+    console.log(obj, '<<<<<<')
+    console.log(arr, '<<<<< my new arr-----let it work please !!!')
+    // console.log(evt.target, '--------------', evt.target.quantity)
+    // let key = JSON.stringify(event.target.quantity)
+    //let obj = localStorage.getItem(evt.target.quantity)
+
+    //localStorage.setItem(, evt.target.value))
+  }
 
   render() {
-    const myCart = this.state.newlist
+    let myCart = this.state.newlist
+    myCart = myCart.filter(each => {
+      return each !== undefined
+    })
+    console.log(myCart, 'mycart . individual id not fuound -----')
+    const choices = [{value: 1}, {value: 2}, {value: 3}, {value: 4}]
+    let answer = this.state.newlist.quantity
     return myCart.length < 1 ? (
       <div>LOADING</div>
     ) : (
@@ -53,7 +82,37 @@ class Cart extends Component {
               <div key={listItem.id}>
                 <div>
                   {listItem.imageUrl} <h2>{listItem.title}</h2>
-                  <div className="dropdown">
+                  <select
+                    name={listItem.id}
+                    id={listItem.id}
+                    onChange={this.handleChange}
+                    value={answer}
+                  >
+                    <option value={listItem.quantity}>
+                      {listItem.quantity}
+                    </option>
+                    {choices.map(choice => (
+                      <option key={choice.value} value={choice.value}>
+                        {choice.value}
+                      </option>
+                    ))}
+                  </select>
+                  {/* <select
+                    name="quantity"
+                    onChange={() => {
+                      this.handleChange(listItem)
+                    }}
+                    value={listItem.quantity}
+                  >
+                    <option value={listItem.quantity}>
+                      {listItem.quantity}
+                    </option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value="3">3</option>
+                    ))}
+                  </select> */}
+                  {/* <div className="dropdown">
                     <button
                       className="btn btn-secondary dropdown-toggle"
                       type="button"
@@ -61,6 +120,7 @@ class Cart extends Component {
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
+                      onChange = {() => this.handleChange(listItem.id)}
                     >
                       {listItem.quantity}
                     </button>
@@ -78,7 +138,7 @@ class Cart extends Component {
                         3
                       </a>
                     </div>
-                  </div>
+                  </div> */}
                   Emooo Price: {listItem.price}
                   <button
                     type="button"
