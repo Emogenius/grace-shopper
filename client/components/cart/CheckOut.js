@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 //import {stringify} from 'querystring'
 
 class CheckOut extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       userId: '',
       isFulfilled: false,
@@ -16,6 +16,8 @@ class CheckOut extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
+    console.log('this user', this.props.user)
+    this.setState({userId: this.props.user.current.id})
     let keys = Object.keys(localStorage)
     let total = 0
     let lists = keys.map(id => {
@@ -34,6 +36,7 @@ class CheckOut extends Component {
     }
     this.setState({items: items, total: total})
   }
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -42,13 +45,15 @@ class CheckOut extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
+    if (this.state.userId === undefined) {
+      //create
+    }
     this.props.create({...this.state})
-    // () => {
     //   this.props.history.push('/students');
-    // });
   }
   render() {
-    console.log('this.props on form', this.props)
+    console.log('this.state on form', this.state)
+
     return (
       <form>
         <h1> Shipping & Payment Information </h1>
@@ -84,5 +89,12 @@ class CheckOut extends Component {
     )
   }
 }
-
-export default connect()(CheckOut)
+const mapStateToProps = state => {
+  return {
+    ...state,
+    user: state.user
+    // products: state.product.products,
+    // isFetching: state.product.isFetching
+  }
+}
+export default connect(mapStateToProps)(CheckOut)
