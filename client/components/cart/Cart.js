@@ -5,25 +5,29 @@ import {Link} from 'react-router-dom'
 class Cart extends Component {
   constructor() {
     super()
-    this.state = {newlist: []}
+    this.state = {newlist: [], total: 0}
     this.handleDelete = this.handleDelete.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
     let keys = Object.keys(localStorage)
-    // JSON.stringify(keys)
+    let total = 0
     let lists = keys.map(id => {
       return localStorage.getItem(id)
     })
-    console.log(lists, 'json object here ??????')
+
     let newlist = lists.map(items => {
       if (items === 'undefined') return
-      console.log(items, 'json item ---------------------')
       return JSON.parse(items)
     })
-
-    this.setState({newlist: newlist})
+    let totalArr = newlist.map(each => {
+      return each.quantity * each.price
+    })
+    for (let i = 0; i < totalArr.length; i++) {
+      total += totalArr[i]
+    }
+    this.setState({newlist: newlist, total: total})
   }
 
   handleDelete(productId) {
@@ -48,27 +52,43 @@ class Cart extends Component {
     let obj = {}
     for (let j = 0; j < arr.length; j++) {
       if (arr[j].id === +evt.target.id) {
+        arr[j].inventoryQuantity += arr[j].quantity - evt.target.value
         arr[j].quantity = +evt.target.value
-        //need to also chang the inventory Quantity
         obj = {...arr[j]}
       }
     }
-    // set localStorage with teh new DATA
-    console.log(obj, '<<<<<<')
-    console.log(arr, '<<<<< my new arr-----let it work please !!!')
-    // console.log(evt.target, '--------------', evt.target.quantity)
-    // let key = JSON.stringify(event.target.quantity)
-    //let obj = localStorage.getItem(evt.target.quantity)
+    let id = +evt.target.id
+    id = JSON.stringify(id)
+    obj = JSON.stringify(obj)
+    localStorage.setItem(id, obj)
 
-    //localStorage.setItem(, evt.target.value))
+    //----------------get total --------------
+    let keys = Object.keys(localStorage)
+    let total = 0
+    let lists = keys.map(id => {
+      return localStorage.getItem(id)
+    })
+
+    let newlist = lists.map(items => {
+      if (items === 'undefined') return
+      return JSON.parse(items)
+    })
+    let totalArr = newlist.map(each => {
+      return each.quantity * each.price
+    })
+    for (let i = 0; i < totalArr.length; i++) {
+      total += totalArr[i]
+    }
+    this.setState({newlist: newlist, total: total})
   }
 
   render() {
     let myCart = this.state.newlist
+    let total = this.state.total
     myCart = myCart.filter(each => {
       return each !== undefined
     })
-    console.log(myCart, 'mycart . individual id not fuound -----')
+
     const choices = [{value: 1}, {value: 2}, {value: 3}, {value: 4}]
     let answer = this.state.newlist.quantity
     return myCart.length < 1 ? (
@@ -97,48 +117,6 @@ class Cart extends Component {
                       </option>
                     ))}
                   </select>
-                  {/* <select
-                    name="quantity"
-                    onChange={() => {
-                      this.handleChange(listItem)
-                    }}
-                    value={listItem.quantity}
-                  >
-                    <option value={listItem.quantity}>
-                      {listItem.quantity}
-                    </option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value="3">3</option>
-                    ))}
-                  </select> */}
-                  {/* <div className="dropdown">
-                    <button
-                      className="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      onChange = {() => this.handleChange(listItem.id)}
-                    >
-                      {listItem.quantity}
-                    </button>
-                    <div
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                    >
-                      <a className="dropdown-item" href="#">
-                        1
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        2
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        3
-                      </a>
-                    </div>
-                  </div> */}
                   Emooo Price: {listItem.price}
                   <button
                     type="button"
@@ -153,6 +131,7 @@ class Cart extends Component {
           </ul>
         )}
 
+        <p>ORDER Total:{total}</p>
         <Link to="/checkout">
           <button type="button" className="btn btn-outline-dark">
             Checkout
@@ -162,12 +141,5 @@ class Cart extends Component {
     )
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     list: state.cart.list,
-//     isFetching: state.cart.isFetching
-//   }
-// }
 
 export default Cart
