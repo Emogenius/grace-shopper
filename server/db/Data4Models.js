@@ -1,7 +1,7 @@
 // -------------------- USER DATA -----------------------
 const users = [
   {
-    fullName: 'Ester Park',
+    fullName: 'Esther Park',
     isAdmin: true,
     email: 'ester@email.com',
     password: '123'
@@ -28,6 +28,14 @@ const users = [
     isAdmin: true,
     email: 'jasmine@email.com',
     password: '123'
+  },
+  {
+    fullName: 'Cody',
+    address: 'Fullstack Academy of Code, 5 Hanover Square',
+    phoneNumber: '636-333-3333',
+    isAdmin: true,
+    email: 'cody@CodysCafe.com',
+    password: '1337'
   }
 ]
 
@@ -187,7 +195,7 @@ const products = [
   {
     title: 'Woman Dancing',
     description:
-      'Emoji woman is doing what Kristin wishes she was doing right NOW.',
+      'Emoji woman is doing what Kristin wishes she was doing RIGHT NOW.',
     price: 1,
     inventoryQuantity: 4,
     imageUrl: '/images/dancer.png',
@@ -212,7 +220,7 @@ const products = [
 
   {
     title: 'tiger',
-    description: 'Tigers are pretty cool too ',
+    description: 'Tigers are pretty cool too. Also, a previous Mac OSX',
     price: 1,
     inventoryQuantity: 16,
     imageUrl: '/images/tiger-face.png',
@@ -220,7 +228,8 @@ const products = [
   },
   {
     title: 'cat',
-    description: 'Kristin has two of these at home',
+    description:
+      'Kristin, Abby, Michelle and Tricia have one of these cute fuzzballs at home. ',
     price: 1,
     inventoryQuantity: 2,
     imageUrl: '/images/cat-face.png',
@@ -228,15 +237,16 @@ const products = [
   },
   {
     title: 'Monkey',
-    description: 'Code monkey can not believe he broke all the code',
+    description: 'Code monkey can NOT believe he broke all the code',
     price: 1,
     inventoryQuantity: 16,
     imageUrl: '/images/see-no-evil-monkey.png',
     categoryId: 2
   },
   {
-    title: 'puppy',
-    description: 'Kristin has two of these at home',
+    title: 'Cody',
+    description:
+      'This renaissance pup runs a cafe, maintains a wide-social circle of animal pals and occasionally administers quizes to fledgling coders',
     price: 1,
     inventoryQuantity: 2,
     imageUrl: '/images/dog-face.png',
@@ -252,7 +262,7 @@ const products = [
   },
   {
     title: 'Pig',
-    description: 'How I feel after all the code-induced stress eating',
+    description: 'How you feel after all the code-induced stress eating',
     price: 1,
     inventoryQuantity: 16,
     imageUrl: '/images/pig.png',
@@ -276,7 +286,7 @@ const products = [
   },
   {
     title: 'Lollipop',
-    description: "Kids get these after going to the doctor. Why don't we?",
+    description: "Kids get these after going to the doctor. Why don't adults?",
     price: 1,
     inventoryQuantity: 46,
     imageUrl: '/images/lollipop.png',
@@ -284,11 +294,19 @@ const products = [
   },
   {
     title: 'Champagne',
-    description: 'Used to toast your coding victories',
+    description: 'Use these champagne glasses to toast your coding victories',
     price: 1,
     inventoryQuantity: 46,
     imageUrl: '/images/champ.png',
     categoryId: 1
+  },
+  {
+    title: 'Grace Hopper',
+    description: 'Coding like a boss.',
+    price: 1,
+    inventoryQuantity: 400,
+    imageUrl: '/images/GH.jpg',
+    categoryId: 4
   }
 ]
 
@@ -298,16 +316,244 @@ const reviews = [
   {
     title: 'love this review',
     description: 'heheheheeeee',
-    rating: 2,
-    userId: 1,
+    rating: 5,
+    userId: 2,
     productId: 2
   },
   {
     title: 'love this review twice',
     description: 'heheheheeeee',
+    rating: 5,
+    userId: 2,
+    productId: 1
+  },
+  {
+    title: 'This emoji is great!',
+    description: "Why isn't there more chocolate?",
+    rating: 3,
+    userId: 1,
+    productId: 4
+  },
+  {
+    title: 'I love this emoji',
+    description: 'Oh thank god! cart finally works!',
+    rating: 5,
+    userId: 2,
+    productId: 5
+  },
+  {
+    title: 'I love this emoji',
+    description: " If 'sees cheesecake' was an emoji it would look like this",
+    rating: 5,
+    userId: 3,
+    productId: 6
+  },
+  {
+    title: 'Would you like gaucamole with that?',
+    description:
+      'When I become a developer, this will not longer be a difficult question to answer',
+    rating: 4,
+    userId: 4,
+    productId: 7
+  },
+  {
+    title: ' Yep! ',
+    description:
+      'This is how Kristin looks when trying to come up with clever things for dummy data',
+    rating: 4,
+    userId: 4,
+    productId: 8
+  },
+  {
+    title: 'im hungry',
+    description: 'yum',
+    rating: 5,
+    userId: 5,
+    productId: 9
+  },
+  {
+    title: 'this is cute',
+    description: 'spillproof container!',
+    rating: 2,
+    userId: 5,
+    productId: 10
+  },
+  {
+    title: 'that looks good!',
+    description: "I'd like to have a few of these!",
+    rating: 5,
+    userId: 1,
+    productId: 11
+  },
+  {
+    title: 'this reminds me...',
+    description: 'that I need to stretch more between coding sessions!',
+    rating: 3,
+    userId: 3,
+    productId: 12
+  },
+  {
+    title: 'fun!',
+    description: 'but watch out for the whiteboard!',
+    rating: 4,
+    userId: 4,
+    productId: 13
+  },
+  {
+    title: "i don't get it",
+    description: 'why do humans do wierd things like this?',
+    rating: 1,
+    userId: 5,
+    productId: 14
+  },
+  {
+    title: 'i like this emoji',
+    description: 'useful visual expression of common New York activity',
     rating: 2,
     userId: 3,
-    productId: 2
+    productId: 15
+  },
+  {
+    title: 'harder than it looks',
+    description: 'I tried this once. It was a disaster',
+    rating: 2,
+    userId: 4,
+    productId: 16
+  },
+  {
+    title: 'cute',
+    description:
+      'I hear that peopel really do this in far rockaway. It seems cold',
+    rating: 2,
+    userId: 1,
+    productId: 17
+  },
+  {
+    title: 'Love it!',
+    description:
+      'My favorite thing to do. My emoji vocab would be incompelte without it!',
+    rating: 5,
+    userId: 3,
+    productId: 18
+  },
+  {
+    title: 'i LOVE this emoji',
+    description: 'created specifically to torment Irene',
+    rating: 5,
+    userId: 3,
+    productId: 19
+  },
+  {
+    title: 'lol',
+    description: 'Sorry for being so uni-corny!',
+    rating: 5,
+    userId: 1,
+    productId: 20
+  },
+  {
+    title: "it's the...",
+    description: "Eye of the tiger. It's the thrill of the fight!",
+    rating: 2,
+    userId: 4,
+    productId: 21
+  },
+  {
+    title: 'LOVE',
+    description: 'No cat woman is complete without this emoji.',
+    rating: 5,
+    userId: 3,
+    productId: 22
+  },
+  {
+    title: 'cute',
+    description: 'funny',
+    rating: 2,
+    userId: 1,
+    productId: 23
+  },
+  {
+    title: 'HEY!',
+    description: "I'm WAY cuter than this emoji!!",
+    rating: 0,
+    userId: 5,
+    productId: 24
+  },
+  {
+    title: 'too cute!',
+    description: "Isn't he adorable?",
+    rating: 5,
+    userId: 1,
+    productId: 24
+  },
+  {
+    title: 'aww',
+    description: 'the cutest barista ever!',
+    rating: 5,
+    userId: 3,
+    productId: 24
+  },
+  {
+    title: 'cute',
+    description: 'But why is everything about Cody?',
+    rating: 5,
+    userId: 2,
+    productId: 24
+  },
+  {
+    title: 'I admit',
+    description: 'he is kinda cute',
+    rating: 5,
+    userId: 4,
+    productId: 24
+  },
+  {
+    title: 'nope',
+    description: 'mean',
+    rating: 1,
+    userId: 1,
+    productId: 25
+  },
+  {
+    title: 'aww',
+    description: 'a fuzzy!',
+    rating: 5,
+    userId: 1,
+    productId: 26
+  },
+  {
+    title: 'behold',
+    description: 'The real grace HOPPER',
+    rating: 5,
+    userId: 3,
+    productId: 26
+  },
+  {
+    title: 'Yum',
+    description: 'lunch break!',
+    rating: 4,
+    userId: 4,
+    productId: 27
+  },
+  {
+    title: 'gives me LIFE!',
+    description: "I can't human without this",
+    rating: 5,
+    userId: 3,
+    productId: 28
+  },
+  {
+    title: 'sugar rush!',
+    description: 'yum!',
+    rating: 4,
+    userId: 2,
+    productId: 29
+  },
+  {
+    title: 'cheers',
+    description: "When y'll finish this project, I'll let yall have some!",
+    rating: 4,
+    userId: 5,
+    productId: 30
   },
   {
     title: 'too real',
