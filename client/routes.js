@@ -23,6 +23,7 @@ import {
 } from './components'
 import HomePage from './HomePage'
 import {me} from './store'
+import {getOrders} from './store/orderReducer'
 
 /**
  * COMPONENT

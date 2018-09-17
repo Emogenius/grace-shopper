@@ -582,6 +582,48 @@ const categories = [
 
 // ------------------------------ ORDER -----------------------------
 
-const orders = []
+const orders = [
+  {
+    isFulfill: false,
+    userId: 2
+  },
+  {
+    isFulfill: false,
+    userId: 2,
+    productId: 1
+  },
+  {
+    isFulfill: true,
+    userId: 2,
+    productId: 1
+  }
+]
 
-module.exports = {users, products, reviews, categories, orders}
+const orderProduct = [
+  {
+    orderId: 1,
+    productId: 2
+  },
+  {
+    orderId: 1,
+    productId: 1
+  },
+  {
+    orderId: 2,
+    productId: 3
+  },
+  {
+    orderId: 3,
+    productId: 4
+  },
+  {
+    orderId: 2,
+    productId: 6
+  },
+  {
+    orderId: 3,
+    productId: 5
+  }
+]
+
+module.exports = {users, products, reviews, categories, orders, orderProduct}

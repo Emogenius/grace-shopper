@@ -88,7 +88,6 @@ class Cart extends Component {
     myCart = myCart.filter(each => {
       return each !== undefined
     })
-
     const choices = [{value: 1}, {value: 2}, {value: 3}, {value: 4}]
     let answer = this.state.newlist.quantity
     return myCart.length < 1 ? (
@@ -117,6 +116,11 @@ class Cart extends Component {
                         {choice.value}
                       </option>
                     ))}
+                    {/* {listItem.inventoryQuantity > 0 ? null : (
+                      <div className="alert alert-warning">
+                        <strong>Warning!</strong> Not enough quantity
+                      </div>
+                    )} */}
                   </select>
                   Emooo Price: {listItem.price}
                   <button
