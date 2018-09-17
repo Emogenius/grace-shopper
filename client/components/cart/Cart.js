@@ -12,17 +12,14 @@ class Cart extends Component {
 
   componentDidMount() {
     let keys = Object.keys(localStorage)
-    // JSON.stringify(keys)
     let lists = keys.map(id => {
       return localStorage.getItem(id)
     })
-    console.log(lists, 'json object here ??????')
+
     let newlist = lists.map(items => {
       if (items === 'undefined') return
-      console.log(items, 'json item ---------------------')
       return JSON.parse(items)
     })
-
     this.setState({newlist: newlist})
   }
 
@@ -48,28 +45,15 @@ class Cart extends Component {
     let obj = {}
     for (let j = 0; j < arr.length; j++) {
       if (arr[j].id === +evt.target.id) {
+        arr[j].inventoryQuantity += arr[j].quantity - evt.target.value
         arr[j].quantity = +evt.target.value
-        if (arr[j].quantity > +evt.target.value) {
-          console.log('-----', arr[j].inventoryQuantity)
-          arr[j].inventoryQuantity -= arr[j].quantity - evt.target.value
-          console.log(arr[j].inventoryQuantity)
-        } else {
-          console.log('++++')
-          arr[j].inventoryQuantity += arr[j].quantity - evt.target.value
-        }
-        //need to also chang the inventory Quantity
         obj = {...arr[j]}
       }
     }
-
-    // set localStorage with teh new DATA
-    console.log(obj, '<<<<<<')
-    console.log(arr, '<<<<< my new arr-----let it work please !!!')
-    // console.log(evt.target, '--------------', evt.target.quantity)
-    // let key = JSON.stringify(event.target.quantity)
-    //let obj = localStorage.getItem(evt.target.quantity)
-
-    //localStorage.setItem(, evt.target.value))
+    let id = +evt.target.id
+    id = JSON.stringify(id)
+    obj = JSON.stringify(obj)
+    localStorage.setItem(id, obj)
   }
 
   render() {
@@ -77,7 +61,7 @@ class Cart extends Component {
     myCart = myCart.filter(each => {
       return each !== undefined
     })
-    console.log(myCart, 'mycart . individual id not fuound -----')
+    let total = 0
     const choices = [{value: 1}, {value: 2}, {value: 3}, {value: 4}]
     let answer = this.state.newlist.quantity
     return myCart.length < 1 ? (
@@ -106,48 +90,6 @@ class Cart extends Component {
                       </option>
                     ))}
                   </select>
-                  {/* <select
-                    name="quantity"
-                    onChange={() => {
-                      this.handleChange(listItem)
-                    }}
-                    value={listItem.quantity}
-                  >
-                    <option value={listItem.quantity}>
-                      {listItem.quantity}
-                    </option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value="3">3</option>
-                    ))}
-                  </select> */}
-                  {/* <div className="dropdown">
-                    <button
-                      className="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      onChange = {() => this.handleChange(listItem.id)}
-                    >
-                      {listItem.quantity}
-                    </button>
-                    <div
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                    >
-                      <a className="dropdown-item" href="#">
-                        1
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        2
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        3
-                      </a>
-                    </div>
-                  </div> */}
                   Emooo Price: {listItem.price}
                   <button
                     type="button"
