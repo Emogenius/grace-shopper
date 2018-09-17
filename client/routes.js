@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import {getProducts, getEmoji, getCategoryList} from './store/productReducer'
 import {fetchAllUsers} from './store/userReducer'
+import {getAllReviews} from './store/reviewReducer'
 import PropTypes from 'prop-types'
 import {
   Login,
@@ -32,6 +33,7 @@ class Routes extends Component {
     this.props.products()
     this.props.categoryList()
     this.props.allUsers()
+    this.props.reviews()
   }
 
   render() {
@@ -55,7 +57,7 @@ class Routes extends Component {
         <Route exact path="/signup" component={Signup} />
 
         {/* testing routes ---------------------------------- */}
-        <Route exact path="/newProduct" component={AddProduct} />
+        {/* <Route exact path="/addProduct" component={AddProduct} /> */}
         <Route exact path="/products/:id/edit" component={EditProduct} />
         {isLoggedIn && (
           <Switch>
@@ -67,7 +69,7 @@ class Routes extends Component {
 
             {/* --------------- Routes to ADMIN ONLY ------------  */}
             <Route exact path="/products/:id/edit" component={EditProduct} />
-            <Route exact path="/newProduct" component={AddProduct} />
+            <Route exact path="/addProduct" component={AddProduct} />
             <Route exact path="/allUsers" component={AllUser} />
             <Route exact path="/allOrders" component={AllOrders} />
           </Switch>
@@ -98,7 +100,8 @@ const mapDispatch = dispatch => {
     },
     products: () => dispatch(getProducts()),
     categoryList: () => dispatch(getCategoryList()),
-    allUsers: () => dispatch(fetchAllUsers())
+    allUsers: () => dispatch(fetchAllUsers()),
+    reviews: () => dispatch(getAllReviews())
   }
 }
 

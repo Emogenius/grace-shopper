@@ -51,10 +51,10 @@ const adminsOnly = (req, res, next) => {
   next()
 }
 
-router.post('/newProduct', adminsOnly, async (req, res, next) => {
+router.post('/', adminsOnly, async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
-    res.json(product)
+    res.status(201).json(product)
   } catch (err) {
     next(err)
   }

@@ -8,9 +8,11 @@ class AddProduct extends React.Component {
     this.state = {
       title: '',
       description: '',
-      price: '',
+      price: '', //have to convert to num?
       inventoryQuantity: '',
-      imageUrl: ''
+      imageUrl: '',
+      quantity: '' //we have two quantities! have to convert to num?
+      //we need to add categoryId
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,71 +26,99 @@ class AddProduct extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.create(this.state)
+    this.props.create({...this.state})
   }
 
+  //add category
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group row">
           <label htmlFor="title" className="col-sm-2 col-form-label">
-            Title
+            Product Name:
           </label>
           <input
             type="text"
             name="title"
             className="form-control"
+            placeholder="Enter Product Name"
             onChange={this.handleChange}
             value={this.state.title}
           />
-
+        </div>
+        <div>
           <label htmlFor="description" className="col-sm-2 col-form-label">
-            description
+            Product Detail:
           </label>
           <input
             type="text"
             name="description"
             className="form-control"
+            placeholder="Enter Product Description"
             onChange={this.handleChange}
             value={this.state.description}
           />
+        </div>
 
+        <div>
           <label htmlFor="price" className="col-sm-2 col-form-label">
-            price
+            Price:
           </label>
           <input
             type="text"
             name="price"
             className="form-control"
+            placeholder="Enter Product Price"
             onChange={this.handleChange}
             value={this.state.price}
           />
+        </div>
 
+        <div>
           <label
             htmlFor="inventoryQuantity"
             className="col-sm-2 col-form-label"
           >
-            InventoryQuantity
+            Inventory Quantity:
           </label>
           <input
             type="text"
             name="inventoryQuantity"
             className="form-control"
+            placeholder="Enter Product Inventory Quantity"
             onChange={this.handleChange}
             value={this.state.inventoryQuantity}
           />
+        </div>
 
+        <div>
           <label htmlFor="imageUrl" className="col-sm-2 col-form-label">
-            imageUrl
+            imageUrl:
           </label>
           <input
             type="text"
             name="imageUrl"
             className="form-control"
+            placeholder="Enter Product imageUrl"
             onChange={this.handleChange}
             value={this.state.imageUrl}
           />
         </div>
+
+        {/* <div>
+          <label htmlFor="imageUrl" className="col-sm-2 col-form-label">
+            Category:
+          </label>
+          <input
+            type="text"
+            name="---"
+            className="form-control"
+            placeholder="Enter Product Category"
+            onChange={this.handleChange}
+            value={this.state.---}
+          />
+        </div> */}
+
         <button type="submit" className="btn btn-outline-dark">
           Submit
         </button>
