@@ -49,10 +49,19 @@ class Cart extends Component {
     for (let j = 0; j < arr.length; j++) {
       if (arr[j].id === +evt.target.id) {
         arr[j].quantity = +evt.target.value
+        if (arr[j].quantity > +evt.target.value) {
+          console.log('-----', arr[j].inventoryQuantity)
+          arr[j].inventoryQuantity -= arr[j].quantity - evt.target.value
+          console.log(arr[j].inventoryQuantity)
+        } else {
+          console.log('++++')
+          arr[j].inventoryQuantity += arr[j].quantity - evt.target.value
+        }
         //need to also chang the inventory Quantity
         obj = {...arr[j]}
       }
     }
+
     // set localStorage with teh new DATA
     console.log(obj, '<<<<<<')
     console.log(arr, '<<<<< my new arr-----let it work please !!!')
