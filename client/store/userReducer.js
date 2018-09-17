@@ -12,6 +12,12 @@ const gotUser = user => ({type: GOT_USER, user})
 const gotAllUsers = users => ({type: GOT_ALL_USERS, users})
 const removedUserFromLogin = () => ({type: REMOVED_USER_FROM_LOGIN})
 
+//---------------------- INITIAL STATE -----------------------
+const initialState = {
+  current: {},
+  all: []
+}
+
 //---------------------- THUNK CREATOR -----------------------
 export const me = () => async dispatch => {
   try {
@@ -57,12 +63,6 @@ export const fetchAllUsers = () => {
       console.error(err)
     }
   }
-}
-
-//---------------------- INITIAL STATE -----------------------
-const initialState = {
-  current: {},
-  all: []
 }
 
 //---------------------- REDUCER -----------------------

@@ -41,7 +41,7 @@ export const editProduct = product => ({
 
 export const deleteProduct = productId => ({
   type: DELETE_PRODUCT,
-  product: productId
+  productId
 })
 //---------------------- THUNK CREATOR -----------------------
 
@@ -122,6 +122,7 @@ export const removeProduct = productId => {
     }
   }
 }
+
 //---------------------- INITIAL STATE -----------------------
 const initialState = {
   products: [],
@@ -160,7 +161,7 @@ const productReducer = (state = initialState, action) => {
       }
     case NEW_PRODUCT:
       return {
-        // ...state,
+        ...state,
         products: [...state.products, action.product],
         isFetching: false
       }
@@ -171,8 +172,8 @@ const productReducer = (state = initialState, action) => {
         isFetching: false
       }
     case DELETE_PRODUCT:
-      newData = state.products.filter(each => {
-        return each.productId !== action.productId
+      newData = state.products.filter(product => {
+        return product.id !== action.productId
       })
       return {...state, products: newData, isFetching: false}
     // case DELETE_PRODUCT: {
