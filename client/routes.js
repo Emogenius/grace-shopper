@@ -18,6 +18,7 @@ import {
   ListReviews,
   AllUser,
   AllOrders,
+  EditOrder,
   Cart,
   CheckOut
 } from './components'
@@ -71,7 +72,8 @@ class Routes extends Component {
             <Route exact path="/products/:id/edit" component={EditProduct} />
             <Route exact path="/addProduct" component={AddProduct} />
             <Route exact path="/allUsers" component={AllUser} />
-            <Route exact path="/allOrders" component={AllOrders} />
+            <Route exact path="/orders" component={AllOrders} />
+            <Route exact path="/orders/:id" component={EditOrder} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
