@@ -7,10 +7,33 @@ const Order = db.define('order', {
     validate: {
       isIn: {
         args: [['Shipped', 'Pending']],
-        msg: 'Must be pending or shipped'
+        msg: 'Must be Pending or Shipped'
       }
     }
+  },
+  email: {
+    type: Sequelize.STRING,
+    validate: {
+      isEmail: true
+    }
+  },
+  shippingAddress: {
+    type: Sequelize.STRING
+  },
+  billingAddress: {
+    type: Sequelize.STRING
   }
 })
 
-module.exports = Order
+const OrderProduct = db.define('order_product', {
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1
+  },
+  price: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  }
+})
+
+module.exports = {Order, OrderProduct}

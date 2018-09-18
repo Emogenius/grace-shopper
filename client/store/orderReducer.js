@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 //---------------------- ACTION TYPES -----------------------
 const GOT_ORDERS = 'GOT_ORDERS'
 const NEW_ORDER = 'NEW_ORDER'
@@ -38,8 +37,18 @@ export const getOrders = () => {
 
 export const createOrder = order => {
   return async dispatch => {
+    console.log('ORDER--------', order)
     try {
-      const {data} = await axios.post(`/api/orders`, order)
+      let cartOrder = {
+        isFulfill: order.isFulfilled,
+        email: order.email,
+        userId: order.userId,
+        items: order.items,
+        billingAddress: order.billingAddress,
+        shippingAddress: order.shippingAddress
+      }
+      const {data} = await axios.post(`/api/orders/`, {cartOrder})
+      console.log('REDUCER DATA-------------', data)
       dispatch(newOrder(data))
     } catch (err) {
       console.error(err)
@@ -84,7 +93,6 @@ const orderReducer = (state = initialState, action) => {
         ...state,
         orderToEdit: action.order,
         isFetching: false
-
       }
     default:
       return state
