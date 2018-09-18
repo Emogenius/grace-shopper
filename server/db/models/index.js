@@ -17,8 +17,8 @@ Review.belongsTo(User)
 Product.hasMany(Review)
 Review.belongsTo(Product)
 
-//Order.hasMany(Product, {through: 'order-product'})
-Product.belongsToMany(Order, {through: 'order-product'})
+Order.belongsToMany(Product, {through: 'order_product'})
+Product.belongsToMany(Order, {through: 'order_product'})
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -34,11 +34,14 @@ Product.belongsToMany(Order, {through: 'order-product'})
  * instead of: const User = require('../db/models/user')
  */
 
+const {order_product: OrderProduct} = db.models
+
 module.exports = {
   db,
   User,
   Order,
   Product,
+  OrderProduct,
   Review,
   Category
 }
