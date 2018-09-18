@@ -51,15 +51,11 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/:id', async (req, res, next) => {
-  const userToUpdate = await Review.findAll({where: {userId: req.params.id}})
-  const updatedUser = await userToUpdate.update({
-    // what should we update?
-    isAdmin: req.body.user.isAdmin,
-    email: req.body.user.email
-  })
+  const reviewToUpdate = await Review.findById(req.params.id)
+  const updatedReview = await reviewToUpdate.update(req.body)
   try {
-    if (!userToUpdate) return res.sendStatus(404)
-    res.json(updatedUser)
+    if (!reviewToUpdate) return res.sendStatus(404)
+    res.json(updatedReview)
   } catch (err) {
     next(err)
   }

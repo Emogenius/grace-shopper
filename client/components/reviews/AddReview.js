@@ -12,9 +12,9 @@ class AddReview extends Component {
     const user = this.props.user
     this.state = {
       productId: product.id,
-      //   title: ,
-      //   description: '',
-      //   rating: 0,
+      title: '',
+      description: '',
+      rating: 0,
       userId: user.id
     }
     this.handleChange = this.handleChange.bind(this)
@@ -22,6 +22,7 @@ class AddReview extends Component {
   }
 
   handleChange = event => {
+    console.log(event.target)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -30,6 +31,7 @@ class AddReview extends Component {
     this.setState({rating: nextValue})
   }
   handleSubmit = event => {
+    console.log(this.state)
     event.preventDefault()
     this.props.addNewReview({...this.state})
   }
@@ -43,12 +45,24 @@ class AddReview extends Component {
         <h1> Review </h1>
         <div className="form-group">
           <label htmlFor="title"> Title </label>
-          <input type="text" name="title" className="form-control" />
+          <input
+            type="text"
+            name="title"
+            onChange={this.handleChange}
+            className="form-control"
+            value={this.state.title}
+          />
         </div>
 
         <div>
           <label htmlFor="description"> Watcha got to say? </label>
-          <input type="text" name="description" className="form-control" />
+          <input
+            type="text"
+            name="description"
+            onChange={this.handleChange}
+            className="form-control"
+            value={this.state.description}
+          />
         </div>
 
         <div>
@@ -82,7 +96,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const {history} = ownProps
   return {
     gotEmoji: id => dispatch(getEmoji(id)),
-    addNewReview: rev => dispatch(createReview(rev, history))
+    addNewReview: review => dispatch(createReview(review, history))
   }
 }
 
