@@ -103,7 +103,7 @@ class SingleProduct extends Component {
                 <h1>
                   <StarRatingComponent
                     name="rate1"
-                    starColor={'DeepPink'}
+                    starColor="DeepPink"
                     starCount={5}
                     value={rev.rating}
                   />
@@ -160,14 +160,6 @@ class SingleProduct extends Component {
               ) : (
                 <div>
                   <h3>See nothing? Say something!🤗 </h3>
-                  {/* <Link
-                    to={`/reviews/addReview/${this.props.selectedEmoji.id}`}
-                  />{' '} */}
-                  {/* <button type="button" className="btn btn-outline-warning">
-                  
-                    <Link to={`/reviews/addReview/${emoji.id}`}>
-                      Leave a Review for this Product
-                    </Link> */}
                 </div>
               )}
             </ul>
