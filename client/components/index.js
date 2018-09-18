@@ -19,5 +19,6 @@ export {default as AllOrders} from './cart/AllOrders'
 export {default as Cart} from './cart/Cart'
 export {default as CartItem} from './cart/CartItem'
 export {default as CheckOut} from './cart/CheckOut'
+export {default as EditOrder} from './cart/EditOrder'
 
 export {Login, Signup} from './AuthForm'

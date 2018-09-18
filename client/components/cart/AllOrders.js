@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 const AllOrders = props => {
+  console.log(props, '<<<<<<<<<<<all product page')
   const orders = props.orders
   return (
     <table className="table">
@@ -24,7 +25,7 @@ const AllOrders = props => {
               <td>{each.user.address}</td>
               <td>{each.isFulfill}</td>
               <td>
-                <Link to="/orders/:id">
+                <Link to={`/orders/${each.id}`}>
                   <button type="button" className="btn btn-outline-warning">
                     Edit
                   </button>
