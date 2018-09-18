@@ -27,6 +27,7 @@ export const getOrders = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/orders')
+      console.log(data, 'data from thunk cretot ------------')
       dispatch(gotOrders(data))
     } catch (err) {
       console.error(err)
@@ -63,7 +64,7 @@ const initialState = {
   isFetching: true
 }
 //---------------------- REDUCER -----------------------
-const productReducer = (state = initialState, action) => {
+const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_ORDERS:
       return {
@@ -88,4 +89,4 @@ const productReducer = (state = initialState, action) => {
   }
 }
 
-export default productReducer
+export default orderReducer

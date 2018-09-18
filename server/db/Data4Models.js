@@ -584,16 +584,16 @@ const categories = [
 
 const orders = [
   {
-    isFulfill: false,
+    isFulfill: 'Shipped',
     userId: 2
   },
   {
-    isFulfill: false,
+    isFulfill: 'Pending',
     userId: 2,
     productId: 1
   },
   {
-    isFulfill: true,
+    isFulfill: 'Shipped',
     userId: 2,
     productId: 1
   }
