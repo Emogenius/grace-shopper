@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 //---------------------- ACTION TYPES -----------------------
 const GOT_ORDERS = 'GOT_ORDERS'
 const NEW_ORDER = 'NEW_ORDER'
@@ -83,6 +84,7 @@ const orderReducer = (state = initialState, action) => {
         ...state,
         orderToEdit: action.order,
         isFetching: false
+
       }
     default:
       return state
