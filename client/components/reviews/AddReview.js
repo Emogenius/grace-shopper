@@ -1,31 +1,31 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getEmoji, removeProduct} from '../../store/productReducer'
-import EditProduct from './EditProduct'
-import {addToCart} from '../../store/cartReducer'
+//import {getEmoji} from '../../store/productReducer'
+// import {addReview} from '../../store/cartReducer'
 import StarRatingComponent from 'react-star-rating-component'
-import React from 'react'
-import {connect} from 'react-redux'
-import {updateProduct} from '../../store/productReducer'
 
-class AddReview extends React.Component {
+class AddReview extends Component {
   constructor(props) {
     super(props)
-    const product = this.props.product
-    this.state = {
-      id: product.id,
-      title: product.title
-    }
-    this.handleChange = this.handleChange.bind(this)
+    //     //const product = this.props.selectedEmoji
+    //     // this.state = {
+    //     //   id: product.id,
+    //     //   title: product.title
+    //     // }
+    //     // // this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+  componentDidMount() {
+    // const id = this.props.match.params.id
+    // this.props.gotEmoji(id)
   }
+
+  //   handleChange = event => {
+  //     this.setState({
+  //       [event.target.name]: event.target.value
+  //     })
+  //   }
 
   handleSubmit = event => {
     event.preventDefault()
@@ -34,39 +34,30 @@ class AddReview extends React.Component {
   }
 
   render() {
+    console.log(this.props.product)
+    //console.log(this.props.match.params.id)
+
     return (
       <form onSubmit={this.handleSubmit}>
         <h1> Review </h1>
         <div className="form-group">
           <label htmlFor="title"> Title </label>
-          <input
-            type="text"
-            name="title"
-            className="form-control"
-            onChange={this.handleChange}
-            value={this.state.title}
-          />
+          <input type="text" name="title" className="form-control" />
         </div>
 
         <div>
           <label htmlFor="description"> Watcha got to say? </label>
-          <input
-            type="text"
-            name="description"
-            className="form-control"
-            onChange={this.handleChange}
-            value={this.state.description}
-          />
+          <input type="text" name="description" className="form-control" />
         </div>
 
         <div>
-          <label htmlFor="price"> How would you rate this product? </label>
+          <label htmlFor="rating"> How would you rate this product? </label>
           <input
             type="text"
             name="price"
             className="form-control"
-            onChange={this.handleChange}
-            value={this.state.price}
+            // onChange={this.handleChange}
+            // value={this.state.price}
           />
         </div>
 
@@ -76,8 +67,8 @@ class AddReview extends React.Component {
             name="categoryId"
             className="form-control"
             placeholder="Enter Product Category"
-            onChange={this.handleChange}
-            value={this.state.categoryId}
+            // onChange={this.handleChange}
+            // value={this.state.categoryId}
           />
         </div>
         <button type="submit" className="btn btn-outline-dark">
@@ -88,12 +79,19 @@ class AddReview extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    //update: data => dispatch(updateProduct(data))
+    ...state,
+    selectedEmoji: state.product.selectedEmoji
   }
 }
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//const {history} = ownProps
+//   return {
+//     gotEmoji: id => dispatch(getEmoji(id))
+//   }
+// }
 
-export default connect(null, mapDispatchToProps)(AddReview)
+export default connect(mapStateToProps)(AddReview)
 
 ///products/addReview/${prod.id}`

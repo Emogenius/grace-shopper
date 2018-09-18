@@ -138,7 +138,17 @@ class SingleProduct extends Component {
                   </li>
                 ))
               ) : (
-                <button type:"button"<Link to="/reviews/addReview/${prod.id}"/>See nothing? Say something!🤗 </button>
+                <div>
+                  <h3>See nothing? Say something!🤗 </h3>
+                  {/* <Link
+                    to={`/reviews/addReview/${this.props.selectedEmoji.id}`}
+                  />{' '} */}
+                  <button type="button" className="btn btn-outline-warning">
+                    <Link to={`/reviews/addReview/${emoji.id}`}>
+                      Leave a Review for this Product
+                    </Link>
+                  </button>
+                </div>
               )}
             </ul>
           </div>
@@ -158,10 +168,11 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const {history} = ownProps
   return {
     gotEmoji: id => dispatch(getEmoji(id)),
     remove: id => dispatch(removeProduct(id)),
-    addToCart: product => dispatch(addToCart(product, ownProps.history))
+    addToCart: product => dispatch(addToCart(product, history))
   }
 }
 
