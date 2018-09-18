@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import StarRatingComponent from 'react-star-rating-component'
 import EditReview from '../reviews/EditReview'
 import {Link} from 'react-router-dom'
+import AllUser from './AllUser'
 /**
  * COMPONENT
  */
@@ -80,6 +81,12 @@ class UserHome extends Component {
             <Link to="/orders">
               <button type="button" className="btn btn-outline-warning">
                 List All User's Orders
+              </button>
+            </Link>
+
+            <Link to="/allUsers">
+              <button type="button" className="btn btn-outline-warning">
+                List All Users
               </button>
             </Link>
           </div>

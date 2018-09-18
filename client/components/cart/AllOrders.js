@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 const AllOrders = props => {
-  console.log(props, '<<<<<<<<<<<all product page')
   const orders = props.orders
   return (
     <table className="table">
