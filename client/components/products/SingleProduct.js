@@ -24,6 +24,13 @@ class SingleProduct extends Component {
       this.setState({updateClick: false})
     }
   }
+  newRev() {
+    if (!this.state.updateRev) {
+      this.setState({updateRev: true})
+    } else {
+      this.setState({updateRev: false})
+    }
+  }
 
   componentDidMount() {
     const id = this.props.match.params.id
@@ -44,11 +51,9 @@ class SingleProduct extends Component {
   }
 
   render() {
-    // console.log(this.props)
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
     const currentUser = this.props.user.current
-    // console.log('emoji', emoji.id)
     const revs = this.props.reviews.filter(rev => rev.productId === emoji.id)
 
     if (isFetching) {
@@ -74,21 +79,15 @@ class SingleProduct extends Component {
           </button>
 
           <h3> reviews:</h3>
-          {/* <button
-            type="button"
-            className="btn btn-outline-warning"
-            onClick={() => {
-              this.updateForm()
-          > */}
-          {this.state.updateClick ? (
-            <AddReview emoji={emoji.id} updateForm={this.updateForm} />
+          {this.state.updateRev ? (
+            <AddReview emoji={emoji.id} newRev={this.newRev} />
           ) : null}
           <Link to={`/reviews/addReview/${emoji.id}`} />
           <button
             type="button"
             className="btn btn-outline-warning"
             onClick={() => {
-              this.updateForm()
+              this.newRev()
             }}
           >
             add review
