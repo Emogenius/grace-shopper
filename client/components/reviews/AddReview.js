@@ -8,25 +8,29 @@ import StarRatingComponent from 'react-star-rating-component'
 class AddReview extends Component {
   constructor(props) {
     super(props)
-    //     //const product = this.props.selectedEmoji
-    //     // this.state = {
-    //     //   id: product.id,
-    //     //   title: product.title
-    //     // }
-    //     // // this.handleChange = this.handleChange.bind(this)
+    const product = this.props.selectedEmoji
+    this.state = {
+      id: product.id,
+      title: '',
+      description: '',
+      rating: 0
+    }
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  componentDidMount() {
-    // const id = this.props.match.params.id
-    // this.props.gotEmoji(id)
-  }
-
-  //   handleChange = event => {
-  //     this.setState({
-  //       [event.target.name]: event.target.value
-  //     })
+  //   componentDidMount() {
+  //     // const id = this.props.match.params.id
+  //     // this.props.gotEmoji(id)
   //   }
 
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+  onStarClick(nextValue, prevValue, name) {
+    this.setState({rating: nextValue})
+  }
   handleSubmit = event => {
     event.preventDefault()
     // this.props.update(this.state)
@@ -52,25 +56,16 @@ class AddReview extends Component {
 
         <div>
           <label htmlFor="rating"> How would you rate this product? </label>
-          <input
-            type="text"
-            name="price"
-            className="form-control"
-            // onChange={this.handleChange}
-            // value={this.state.price}
+          <StarRatingComponent
+            name="rate1"
+            starCount={5}
+            starColor={'DeepPink'}
+            value={this.state.rating}
+            onChange={this.handleChange}
+            onStarClick={this.onStarClick.bind(this)}
           />
         </div>
 
-        <div>
-          <input
-            type="text"
-            name="categoryId"
-            className="form-control"
-            placeholder="Enter Product Category"
-            // onChange={this.handleChange}
-            // value={this.state.categoryId}
-          />
-        </div>
         <button type="submit" className="btn btn-outline-dark">
           Submit
         </button>
