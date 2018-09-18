@@ -4,7 +4,7 @@ import axios from 'axios'
 const GOT_ALL_REVIEWS = 'GOT_ALL_REVIEWS'
 const GOT_PRODUCT_REVIEW = 'GOT_PRODUCT_REVIEW'
 const GOT_USER_REVIEW = 'GOT_USER_REVIEW'
-const NEW_REVIEW = 'NEW_REVIEW'
+const ADD_NEW_REVIEW = 'ADD_NEW_REVIEW'
 const EDIT_REVIEW = 'EDIT_PRODUCT'
 const DELETE_REVIEW = 'DELETE_REVIEW'
 //---------------------- ACTION CREATORS -----------------------
@@ -20,8 +20,8 @@ export const gotAllReviews = reviews => ({
   type: GOT_ALL_REVIEWS,
   reviews
 })
-export const newReview = review => ({
-  type: NEW_REVIEW,
+export const addNewReview = review => ({
+  type: ADD_NEW_REVIEW,
   review
 })
 export const editReview = review => ({
@@ -66,9 +66,9 @@ export const getProductReviews = id => {
 export const createReview = (review, history) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post(`/api/reviews/newReview`, review)
-      dispatch(newReview(data))
-      history.push(`/reviews/${data.id}`)
+      const {data} = await axios.post(`/api/reviews`, review)
+      dispatch(addNewReview(data))
+      history.push(`/reviews/${data.productId}`)
     } catch (err) {
       console.error(err)
     }
@@ -112,10 +112,10 @@ const ReviewReducer = (state = initialState, action) => {
       return {...state, selectedUser: action.reviews, isFetching: false}
     case GOT_PRODUCT_REVIEW:
       return {...state, selectedProduct: action.reviews, isFetching: false}
-    case NEW_REVIEW:
+    case ADD_NEW_REVIEW:
       return {
         ...state,
-        reviews: [...state.reviews, action.reviews],
+        reviews: [...state.reviews, action.review],
         isFetching: false
       }
     case EDIT_REVIEW:

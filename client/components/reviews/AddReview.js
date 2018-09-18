@@ -2,26 +2,24 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 //import {getEmoji} from '../../store/productReducer'
-// import {addReview} from '../../store/cartReducer'
+import {createReview} from '../../store/reviewReducer'
 import StarRatingComponent from 'react-star-rating-component'
 
 class AddReview extends Component {
   constructor(props) {
     super(props)
     const product = this.props.selectedEmoji
+    const user = this.props.user
     this.state = {
-      id: product.id,
-      title: '',
-      description: '',
-      rating: 0
+      productId: product.id,
+      //   title: ,
+      //   description: '',
+      //   rating: 0,
+      userId: user.id
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  //   componentDidMount() {
-  //     // const id = this.props.match.params.id
-  //     // this.props.gotEmoji(id)
-  //   }
 
   handleChange = event => {
     this.setState({
@@ -33,8 +31,7 @@ class AddReview extends Component {
   }
   handleSubmit = event => {
     event.preventDefault()
-    // this.props.update(this.state)
-    // this.props.updateForm()
+    this.props.addNewReview({...this.state})
   }
 
   render() {
@@ -57,7 +54,7 @@ class AddReview extends Component {
         <div>
           <label htmlFor="rating"> How would you rate this product? </label>
           <StarRatingComponent
-            name="rate1"
+            name="rating"
             starCount={5}
             starColor={'DeepPink'}
             value={this.state.rating}
@@ -77,16 +74,18 @@ class AddReview extends Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    selectedEmoji: state.product.selectedEmoji
+    selectedEmoji: state.product.selectedEmoji,
+    user: state.user.current
   }
 }
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//const {history} = ownProps
-//   return {
-//     gotEmoji: id => dispatch(getEmoji(id))
-//   }
-// }
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const {history} = ownProps
+  return {
+    gotEmoji: id => dispatch(getEmoji(id)),
+    addNewReview: rev => dispatch(createReview(rev, history))
+  }
+}
 
-export default connect(mapStateToProps)(AddReview)
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview)
 
 ///products/addReview/${prod.id}`
