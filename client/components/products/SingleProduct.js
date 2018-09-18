@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {getEmoji, removeProduct} from '../../store/productReducer'
 import EditProduct from './EditProduct'
 import {addToCart} from '../../store/cartReducer'
+import AddReview from '../reviews/AddReview'
 import StarRatingComponent from 'react-star-rating-component'
 
 class SingleProduct extends Component {
@@ -71,7 +72,27 @@ class SingleProduct extends Component {
           >
             Buy ME!
           </button>
+
           <h3> reviews:</h3>
+          {/* <button
+            type="button"
+            className="btn btn-outline-warning"
+            onClick={() => {
+              this.updateForm()
+          > */}
+          {this.state.updateClick ? (
+            <AddReview emoji={emoji.id} updateForm={this.updateForm} />
+          ) : null}
+          <Link to={`/reviews/addReview/${emoji.id}`} />
+          <button
+            type="button"
+            className="btn btn-outline-warning"
+            onClick={() => {
+              this.updateForm()
+            }}
+          >
+            add review
+          </button>
           <ul>
             {revs.map(rev => (
               <li key={rev.id}>
@@ -143,11 +164,11 @@ class SingleProduct extends Component {
                   {/* <Link
                     to={`/reviews/addReview/${this.props.selectedEmoji.id}`}
                   />{' '} */}
-                  <button type="button" className="btn btn-outline-warning">
+                  {/* <button type="button" className="btn btn-outline-warning">
+                  
                     <Link to={`/reviews/addReview/${emoji.id}`}>
                       Leave a Review for this Product
-                    </Link>
-                  </button>
+                    </Link> */}
                 </div>
               )}
             </ul>
