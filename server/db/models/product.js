@@ -32,4 +32,8 @@ const Product = db.define('product', {
   }
 })
 
+Product.findOrders = function() {
+  return this.getOrders()
+}
+
 module.exports = Product

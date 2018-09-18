@@ -34,11 +34,14 @@ Product.belongsToMany(Order, {through: 'order_product'})
  * instead of: const User = require('../db/models/user')
  */
 
+const {order_product: OrderProduct} = db.models
+
 module.exports = {
   db,
   User,
   Order,
   Product,
+  OrderProduct,
   Review,
   Category
 }

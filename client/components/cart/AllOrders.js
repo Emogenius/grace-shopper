@@ -2,7 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-function AllOrders() {
+const AllOrders = props => {
+  console.log(props, 'all orders props here ')
   return (
     <h1>
       {' '}
@@ -11,5 +12,10 @@ function AllOrders() {
     </h1>
   )
 }
+const mapStateToProps = state => {
+  return {
+    orders: state.orders
+  }
+}
 
-export default AllOrders
+export default connect(mapStateToProps)(AllOrders)
