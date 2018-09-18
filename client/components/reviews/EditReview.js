@@ -1,11 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {updateReview} from '../../store/reviewReducer'
+import {rewriteReview} from '../../store/reviewReducer'
 import StarRatingComponent from 'react-star-rating-component'
 
 class EditReview extends React.Component {
   constructor(props) {
     super(props)
+    console.log(props)
     const review = this.props.review
     this.state = {
       id: review.id,
@@ -24,8 +25,9 @@ class EditReview extends React.Component {
   }
 
   handleSubmit = event => {
+    console.log(this.state)
     event.preventDefault()
-    this.props.updatedReview(this.state)
+    this.props.updateReview({...this.state})
     //this.props.updateForm()
   }
   onStarClick(nextValue, prevValue, name) {
@@ -56,11 +58,10 @@ class EditReview extends React.Component {
             value={this.state.description}
           />
         </div>
-
         <div>
-          <label htmlFor="price"> rating: </label>
+          <label htmlFor="rating"> rating: </label>
           <StarRatingComponent
-            name="rate1"
+            name="rating"
             starCount={5}
             starColor={'DeepPink'}
             value={this.state.rating}
@@ -76,26 +77,15 @@ class EditReview extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    updatedReview: data => dispatch(updateReview(data))
+    ...state
+  }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateReview: data => dispatch(rewriteReview(data, ownProps))
   }
 }
 
-export default connect(null, mapDispatchToProps)(EditReview)
-
-// </button>
-// {this.state.updateClick ? (
-//   <EditProduct product={emoji} updateForm={this.updateForm} />
-// ) : null}
-// <Link to="/products">
-//   <button
-//     type="button"
-//     className="btn btn-outline-warning"
-//     onClick={() => {
-//       this.props.remove(emoji.id)
-//     }}
-//   >
-//     Remove
-//   </button>
-// </Link>
+export default connect(mapStateToProps, mapDispatchToProps)(EditReview)

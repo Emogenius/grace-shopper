@@ -118,9 +118,9 @@ class UserHome extends Component {
                     <EditReview review={rev} updateForm={this.updateForm} />
                   ) : null}
                   <button type="button" className="btn btn-outline-warning">
-                    {/* onClick={() => { */}
-                    {/* //   this.props.remove(emoji.id)
-                // }} */}
+                    {/* onClick={() => {
+                      this.props.remove(review.id)
+                    }} */}
                     Remove
                   </button>
                 </li>
