@@ -138,7 +138,7 @@ class SingleProduct extends Component {
                   </li>
                 ))
               ) : (
-                <h3>See nothing? Say something!🤗</h3>
+                <button type:"button"<Link to="/reviews/addReview/${prod.id}"/>See nothing? Say something!🤗 </button>
               )}
             </ul>
           </div>
