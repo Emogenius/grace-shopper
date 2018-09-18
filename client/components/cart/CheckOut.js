@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {CardElement, injectStripe} from 'react-stripe-elements'
 //import {stringify} from 'querystring'
 
 class CheckOut extends Component {
@@ -10,7 +11,8 @@ class CheckOut extends Component {
       userId: '',
       isFulfilled: false,
       items: [],
-      price: 0
+      price: 0,
+      complete: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -43,20 +45,35 @@ class CheckOut extends Component {
     })
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault()
-    if (this.state.userId === undefined) {
-      //create
+    let {token} = await this.props.stripe.createToken({name: 'Name'})
+    let response = await fetch('/charge', {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain'},
+      body: token.id
+    })
+    if (response.ok) {
+      this.setState({complete: true})
+      console.log('Purchase complete!')
     }
-    this.props.create({...this.state})
-    //   this.props.history.push('/students');
+    // if (this.state.userId === undefined) {
+    //   //create
+    // }
+    // this.props.create({...this.state})
+    // //   this.props.history.push('/students');
   }
+
   render() {
     console.log('this.state on form', this.state)
-
+    if (this.state.complete) return <h1>Purchase complete!</h1>
     return (
       <form>
-        <h1> Shipping & Payment Information </h1>
+        <div className="checkout">
+          <p>Ready to purchase?</p>
+          <CardElement />
+        </div>
+        {/* <h1> Shipping & Payment Information </h1>
         <div className="form-group">
           <label htmlFor="formGroupExampleInput">Ship to:</label>
           <input
@@ -83,8 +100,10 @@ class CheckOut extends Component {
             id="formGroupExampleInput"
             placeholder="Street address, apt#, city, state, zipcode"
           />
-        </div>
-        <button onClick={this.handleClick}>Confirm Order & Pay</button>
+        </div> */}
+        <button type="button" onClick={this.handleSubmit}>
+          Confirm Order &amp; Pay
+        </button>
       </form>
     )
   }
@@ -97,4 +116,4 @@ const mapStateToProps = state => {
     // isFetching: state.product.isFetching
   }
 }
-export default connect(mapStateToProps)(CheckOut)
+export default injectStripe(connect(mapStateToProps)(CheckOut))
