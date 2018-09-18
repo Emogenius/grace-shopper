@@ -24,6 +24,7 @@ import {
 } from './components'
 import HomePage from './HomePage'
 import {me} from './store'
+import {getOrders} from './store/orderReducer'
 
 /**
  * COMPONENT
@@ -35,6 +36,7 @@ class Routes extends Component {
     this.props.categoryList()
     this.props.allUsers()
     this.props.reviews()
+    this.props.orders()
   }
 
   render() {
@@ -105,7 +107,8 @@ const mapDispatch = dispatch => {
     products: () => dispatch(getProducts()),
     categoryList: () => dispatch(getCategoryList()),
     allUsers: () => dispatch(fetchAllUsers()),
-    reviews: () => dispatch(getAllReviews())
+    reviews: () => dispatch(getAllReviews()),
+    orders: () => dispatch(getOrders())
   }
 }
 

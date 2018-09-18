@@ -6,7 +6,16 @@ const {
   Review,
   Category
 } = require('./models/index.js')
-const {users, products, reviews, orders, categories} = require('./Data4Models')
+const {
+  users,
+  products,
+  reviews,
+  orders,
+  orderProduct,
+  categories
+} = require('./Data4Models')
+
+const {order_product: OrderProduct} = db.models
 
 const seed = () =>
   Promise.all(users.map(user => User.create(user)))
@@ -16,6 +25,9 @@ const seed = () =>
     .then(() => Promise.all(products.map(product => Product.create(product))))
     .then(() => Promise.all(reviews.map(review => Review.create(review))))
     .then(() => Promise.all(orders.map(order => Order.create(order))))
+    .then(() =>
+      Promise.all(orderProduct.map(order => OrderProduct.create(order)))
+    )
 
 const main = () => {
   console.log('syncing db....')
