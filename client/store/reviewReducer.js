@@ -74,16 +74,16 @@ export const createReview = (review, history) => {
     }
   }
 }
-// export const updateReview = review => {
-//   return async dispatch => {
-//     try {
-//       const {data} = await axios.put(`/api/reviews/${review.id}`, review)
-//       dispatch(editReview(data))
-//     } catch (err) {
-//       console.error(err)
-//     }
-//   }
-// }
+export const updateReview = review => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/reviews/${review.id}`, review)
+      dispatch(editReview(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
 export const removeReview = review => {
   return async dispatch => {
     try {
@@ -118,8 +118,8 @@ const ReviewReducer = (state = initialState, action) => {
         reviews: [...state.reviews, action.reviews],
         isFetching: false
       }
-    // case EDIT_REVIEW:
-    //   return {...state, selectedReview: action.review, isFetching: false}
+    case EDIT_REVIEW:
+      return {...state, selectedReview: action.review, isFetching: false}
     case DELETE_REVIEW:
       newData = state.reviews.filter(each => {
         return each.reviewId !== action.reviewId
