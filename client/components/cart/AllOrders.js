@@ -24,8 +24,8 @@ const AllOrders = props => {
               <td>{each.user.address}</td>
               <td>{each.isFulfill}</td>
               <td>
-                <Link to="/orders/:id">
-                  <button type="button" className="btn btn-outline-warning">
+                <Link to={`/orders/${each.id}`}>
+                  <button type="button" className="btn btn-outline-danger">
                     Edit
                   </button>
                 </Link>

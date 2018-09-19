@@ -93,50 +93,69 @@ class Cart extends Component {
     return myCart.length < 1 ? (
       <div>LOADING</div>
     ) : (
-      <main className="col">
+      <main>
         <h1>Your Shopping Cart</h1>
         {myCart && (
-          <ul>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col" />
+              </tr>
+            </thead>
             {myCart.map(listItem => (
-              <div key={listItem.id}>
-                <div>
-                  <img src={listItem.imageUrl} />
-                  <h2>{listItem.title}</h2>
-                  <select
-                    name={listItem.id}
-                    id={listItem.id}
-                    onChange={this.handleChange}
-                    value={answer}
-                  >
-                    <option value={listItem.quantity}>
-                      {listItem.quantity}
-                    </option>
-                    {choices.map(choice => (
-                      <option key={choice.value} value={choice.value}>
-                        {choice.value}
+              <tbody key={listItem.id}>
+                <tr>
+                  <th>
+                    {' '}
+                    <img src={listItem.imageUrl} />
+                  </th>
+                  <td>{listItem.title}</td>
+                  <td>
+                    {' '}
+                    <select
+                      name={listItem.id}
+                      id={listItem.id}
+                      onChange={this.handleChange}
+                      value={answer}
+                    >
+                      <option value={listItem.quantity}>
+                        {listItem.quantity}
                       </option>
-                    ))}
-                    {/* {listItem.inventoryQuantity > 0 ? null : (
+                      {choices.map(choice => (
+                        <option key={choice.value} value={choice.value}>
+                          {choice.value}
+                        </option>
+                      ))}
+
+                      {/* {listItem.inventoryQuantity > 0 ? null : (
                       <div className="alert alert-warning">
                         <strong>Warning!</strong> Not enough quantity
                       </div>
                     )} */}
-                  </select>
-                  Emooo Price: {listItem.price}
-                  <button
-                    type="button"
-                    className="btn btn-outline-dark"
-                    onClick={() => this.handleDelete(listItem.id)}
-                  >
-                    remove item
-                  </button>
-                </div>
-              </div>
+                    </select>
+                  </td>
+                  <td> Emooo Price: {listItem.price}</td>
+                  <td>
+                    {' '}
+                    <button
+                      type="button"
+                      className="btn btn-outline-dark"
+                      onClick={() => this.handleDelete(listItem.id)}
+                    >
+                      remove item
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
             ))}
-          </ul>
+          </table>
         )}
 
-        <p>ORDER Total:{total}</p>
+        <h1>ORDER Total:{total}</h1>
         <Link to="/checkout">
           <button type="button" className="btn btn-outline-dark">
             Checkout

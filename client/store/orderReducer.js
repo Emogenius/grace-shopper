@@ -27,7 +27,6 @@ export const getOrders = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/orders')
-      console.log(data, 'data from thunk cretot ------------')
       dispatch(gotOrders(data))
     } catch (err) {
       console.error(err)
@@ -59,6 +58,7 @@ export const updateOrder = order => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/orders/${order.id}`, order)
+      console.log('update shpiing status here ', data)
       dispatch(editOrder(data))
     } catch (err) {
       console.error(err)
@@ -90,7 +90,7 @@ const orderReducer = (state = initialState, action) => {
     case EDIT_ORDER:
       return {
         ...state,
-        orderToEdit: action.order,
+        orders: [...state.orders, action.order],
         isFetching: false
       }
     default:

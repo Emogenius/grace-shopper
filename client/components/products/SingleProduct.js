@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {getEmoji, removeProduct} from '../../store/productReducer'
 import EditProduct from './EditProduct'
 import {addToCart} from '../../store/cartReducer'
+import AddReview from '../reviews/AddReview'
 import StarRatingComponent from 'react-star-rating-component'
 
 class SingleProduct extends Component {
@@ -21,6 +22,13 @@ class SingleProduct extends Component {
       this.setState({updateClick: true})
     } else {
       this.setState({updateClick: false})
+    }
+  }
+  newRev() {
+    if (!this.state.updateRev) {
+      this.setState({updateRev: true})
+    } else {
+      this.setState({updateRev: false})
     }
   }
 
@@ -43,11 +51,9 @@ class SingleProduct extends Component {
   }
 
   render() {
-    // console.log(this.props)
     const emoji = this.props.product.selectedEmoji
     const isFetching = this.props.isFetching
     const currentUser = this.props.user.current
-    // console.log('emoji', emoji.id)
     const revs = this.props.reviews.filter(rev => rev.productId === emoji.id)
 
     if (isFetching) {
@@ -71,7 +77,21 @@ class SingleProduct extends Component {
           >
             Buy ME!
           </button>
+
           <h3> reviews:</h3>
+          {this.state.updateRev ? (
+            <AddReview emoji={emoji.id} newRev={this.newRev} />
+          ) : null}
+          <Link to={`/reviews/addReview/${emoji.id}`} />
+          <button
+            type="button"
+            className="btn btn-outline-danger"
+            onClick={() => {
+              this.newRev()
+            }}
+          >
+            add review
+          </button>
           <ul>
             {revs.map(rev => (
               <li key={rev.id}>
@@ -83,7 +103,7 @@ class SingleProduct extends Component {
                 <h1>
                   <StarRatingComponent
                     name="rate1"
-                    starColor={'DeepPink'}
+                    starColor="DeepPink"
                     starCount={5}
                     value={rev.rating}
                   />
@@ -97,7 +117,7 @@ class SingleProduct extends Component {
             <div>
               <button
                 type="button"
-                className="btn btn-outline-warning"
+                className="btn btn-outline-danger"
                 onClick={() => {
                   this.updateForm()
                 }}
@@ -110,7 +130,7 @@ class SingleProduct extends Component {
               <Link to="/products">
                 <button
                   type="button"
-                  className="btn btn-outline-warning"
+                  className="btn btn-outline-danger"
                   onClick={() => {
                     this.props.remove(emoji.id)
                   }}
@@ -138,7 +158,9 @@ class SingleProduct extends Component {
                   </li>
                 ))
               ) : (
-                <h3>See nothing? Say something!🤗</h3>
+                <div>
+                  <h3>See nothing? Say something!🤗 </h3>
+                </div>
               )}
             </ul>
           </div>
@@ -158,10 +180,11 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const {history} = ownProps
   return {
     gotEmoji: id => dispatch(getEmoji(id)),
     remove: id => dispatch(removeProduct(id)),
-    addToCart: product => dispatch(addToCart(product, ownProps.history))
+    addToCart: product => dispatch(addToCart(product, history))
   }
 }
 

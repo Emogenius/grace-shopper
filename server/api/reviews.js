@@ -40,17 +40,23 @@ router.get('/product/:id', async (req, res, next) => {
     next(err)
   }
 })
-// router.put('/:id', async (req, res, next) => {
-//     const userToUpdate = await Review.findAll({where:{userId:req.params.id}})
-//     const updatedUser = await userToUpdate.update({
-//       // what should we update?
-//       isAdmin: req.body.user.isAdmin,
-//       email: req.body.user.email
-//     })
-//     try {
-//       if (!userToUpdate) return res.sendStatus(404)
-//       res.json(updatedUser)
-//     } catch (err) {
-//       next(err)
-//     }
-//   })
+
+router.post('/', async (req, res, next) => {
+  try {
+    const rev = await Review.create(req.body)
+    res.status(201).json(rev)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:id', async (req, res, next) => {
+  const reviewToUpdate = await Review.findById(req.params.id)
+  const updatedReview = await reviewToUpdate.update(req.body)
+  try {
+    if (!reviewToUpdate) return res.sendStatus(404)
+    res.json(updatedReview)
+  } catch (err) {
+    next(err)
+  }
+})

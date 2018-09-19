@@ -12,27 +12,21 @@ class Category extends Component {
   render() {
     const products = this.props.category
     const currentUser = this.props.user.current
-    if (products === undefined) {
-      return (
-        <div className="items">
-          {' '}
-          <h1>no emojis in this category yet!</h1>{' '}
-        </div>
-      )
+    if (!products) {
+      return <h1>no emojis in this category yet!</h1>
     } else {
       return (
         <div className="items">
           {currentUser.isAdmin ? (
-            <button type="button" className="btn btn-outline-warning">
+            <button type="button" className="btn btn-outline-danger">
               <Link to="/addProduct">ADD PRODUCT</Link>
             </button>
           ) : null}
 
-          <h1>{products.name}</h1>
-          <ul>
+          <div className="row">
             {products.map(prod => {
               return (
-                <li key={prod.id}>
+                <div className="col-4" key={prod.id}>
                   <h2>{prod.title}</h2>
                   <h3>Price: 💰{prod.price}</h3>
                   <img src={prod.imageUrl} />
@@ -43,10 +37,11 @@ class Category extends Component {
                       </Link>
                     </button>
                   </div>
-                </li>
+                  <div className="w-100" />
+                </div>
               )
             })}
-          </ul>
+          </div>
         </div>
       )
     }

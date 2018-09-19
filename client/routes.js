@@ -19,8 +19,10 @@ import {
   ListReviews,
   AllUser,
   AllOrders,
+  EditOrder,
   Cart,
-  CheckOut
+  CheckOut,
+  AddReview
 } from './components'
 import HomePage from './HomePage'
 import {me} from './store'
@@ -67,6 +69,11 @@ class Routes extends Component {
         />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        <Route
+          exact
+          path="/reviews/addReview/:prod.id/"
+          component={AddReview}
+        />
 
         {/* testing routes ---------------------------------- */}
         {/* <Route exact path="/addProduct" component={AddProduct} /> */}
@@ -77,12 +84,18 @@ class Routes extends Component {
             <Route exact path="/home" component={UserHome} />
             <Route exact path="/:userId/listOrders" component={ListOrders} />
             <Route exact path="/:userId/listReviews" component={ListReviews} />
+            {/* <Route
+              exact
+              path="/reviews/addReview/:prod.id"
+              component={AddReview}
+            /> */}
 
             {/* --------------- Routes to ADMIN ONLY ------------  */}
             <Route exact path="/products/:id/edit" component={EditProduct} />
             <Route exact path="/addProduct" component={AddProduct} />
             <Route exact path="/allUsers" component={AllUser} />
-            <Route exact path="/allOrders" component={AllOrders} />
+            <Route exact path="/orders" component={AllOrders} />
+            <Route exact path="/orders/:id" component={EditOrder} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
