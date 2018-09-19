@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 const AllUser = props => {
+  console.log('hello---<>>>>')
   const users = props.users
   if (!users) return <p>loading</p>
   return (
