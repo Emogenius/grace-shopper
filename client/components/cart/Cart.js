@@ -91,7 +91,9 @@ class Cart extends Component {
     const choices = [{value: 1}, {value: 2}, {value: 3}, {value: 4}]
     let answer = this.state.newlist.quantity
     return myCart.length < 1 ? (
-      <div>LOADING</div>
+      <div className="empty-cart">
+        <img src="http://zavgar.ru/images/zavgar.ru/ufo.gif" />
+      </div>
     ) : (
       <main>
         <h1>Your Shopping Cart</h1>
