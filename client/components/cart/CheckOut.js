@@ -24,7 +24,7 @@ class CheckOut extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  // componentDidMount() {
+   componentDidMount() {
   //   console.log('this user', this.props.user)
     this.setState({userId: this.props.user.current.id})
     let keys = Object.keys(localStorage)

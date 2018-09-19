@@ -6,9 +6,7 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    let orders = await Order.findAll({
-      include: [{all: true}]
-    })
+    let orders = await Order.findAll()
     res.json(orders)
   } catch (err) {
     next(err)
@@ -16,7 +14,7 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/checkout', async (req, res, next) => {
-  // console.log('POST------------', req.body)
+  console.log('POST------------', req.body)
   try {
     let {status} = await stripe.charges.create({
       amount: req.body.total,
@@ -36,7 +34,7 @@ router.put('/:id', async (req, res, next) => {
   try {
     let order = await Order.findById(req.params.id)
     let data = await order.update(req.body)
-    // console.log(data, '-------update status here ???')
+    console.log(data, '-------update status here ???')
     res.json(data)
   } catch (err) {
     next(err)
@@ -75,10 +73,10 @@ router.post('/', async (req, res, next) => {
         price: item.price,
         productId: item.id
       }
-      // console.log('ORDER ITEM', createdOrderItem)
+      console.log('ORDER ITEM', createdOrderItem)
       createdOrder.addOrderItem(createdOrderItem)
     })
-    // console.log('---------CREATED ORDER', createdOrder)
+    console.log('---------CREATED ORDER', createdOrder)
 
     let resOrder = {
       isFulfill: createdOrder.getDataValue('isFulfill'),
