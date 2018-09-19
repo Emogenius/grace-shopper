@@ -27,6 +27,10 @@ router.post('/checkout', async (req, res, next) => {
 
     res.json({status})
     await Order.create(req.body)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.put('/:id', async (req, res, next) => {
   try {
@@ -88,7 +92,6 @@ router.post('/', async (req, res, next) => {
     // Order needs method to get total
     // Order needs to add orderQuantity and orderPrice to each product
     // Order needs to add email for guest or user
-
   } catch (err) {
     next(err)
   }
