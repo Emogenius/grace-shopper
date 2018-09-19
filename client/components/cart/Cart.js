@@ -93,6 +93,7 @@ class Cart extends Component {
     return myCart.length < 1 ? (
       <div className="empty-cart">
         <img src="http://zavgar.ru/images/zavgar.ru/ufo.gif" />
+        <h2>Your cart is empty! Let’s flip up something fun together!</h2>
       </div>
     ) : (
       <main>
