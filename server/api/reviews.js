@@ -22,7 +22,7 @@ router.get('/', async (req, res, next) => {
 // PUT /api/users/:id
 router.get('/user/:id', async (req, res, next) => {
   try {
-    console.log(req.params.id)
+    // console.log(req.params.id)
     const userReviews = await Review.findAll({where: {userId: req.params.id}})
     res.json(userReviews)
   } catch (err) {

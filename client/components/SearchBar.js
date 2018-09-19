@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 const SearchBar = props => {
-  console.log(props)
+  // console.log(props)
   return (
     <div id="search-bar" className="">
       <form className="form-inline">

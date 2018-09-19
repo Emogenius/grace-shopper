@@ -43,7 +43,7 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-    console.log('key', process.env.STRIPE_PUBLISHABLE_KEY)
+    // console.log('key', process.env.STRIPE_PUBLISHABLE_KEY)
     return (
       <Switch>
         {/*--------------- Routes to all visitors------------ */}

@@ -31,13 +31,13 @@ class AddReview extends Component {
     this.setState({rating: nextValue})
   }
   handleSubmit = event => {
-    console.log(this.state)
+    // console.log(this.state)
     event.preventDefault()
     this.props.addNewReview({...this.state})
   }
 
   render() {
-    console.log(this.props.product)
+    // console.log(this.props.product)
     //console.log(this.props.match.params.id)
 
     return (

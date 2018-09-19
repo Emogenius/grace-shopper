@@ -19,7 +19,7 @@ class Payment extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
-    console.log('this user', this.props.user)
+    // console.log('this user', this.props.user)
     this.setState({userId: this.props.user.current.id})
     let keys = Object.keys(localStorage)
     let total = 0
@@ -57,7 +57,7 @@ class Payment extends Component {
     }
   }
   render() {
-    console.log('this.state on form', this.state)
+    // console.log('this.state on form', this.state)
 
     return (
       <form>
