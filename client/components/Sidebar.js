@@ -26,7 +26,7 @@ const Sidebar = props => {
             view all emojis
           </Link>
         </li>
-        <SearchBar />
+        {/* <SearchBar /> */}
       </ul>
     </div>
   )
