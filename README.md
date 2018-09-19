@@ -1,4 +1,4 @@
-Deployed: TBD
+Deployed: https://emogenius.herokuapp.com/
 
 ---
 
