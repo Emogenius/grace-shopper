@@ -17,9 +17,16 @@
   height: auto;
 }
 
+#sidebar,
 body {
+  background-color: #f4bd2e;
+}
+
+#sidebar {
   background-image: url('https://static.arageek.com/wp-content/uploads/Emoji-Wallpaper-For-IPhone.jpg');
-  background-color: #cccccc;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: left -25% bottom;
   background-attachment: fixed;
 }
 
@@ -36,4 +43,29 @@ nav {
 form {
   width: 500px;
   margin: 25px;
+}
+
+/* Cart */
+
+.table img,
+.products img {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Products */
+.products img {
+  height: 100px;
+  width: 100px;
+}
+
+.product img {
+  max-height: 250px;
+  max-width: 250px;
+  min-height: 250px;
+  min-width: 250px;
+}
+
+.products.card-deck .card {
+  min-width: 220px;
+  max-width: 220px;
 }

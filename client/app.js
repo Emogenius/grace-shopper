@@ -12,7 +12,7 @@ function App() {
       </div>
 
       <div className="row">
-        <div className="col-xs-12 col-md-3">
+        <div id="sidebar" className="col-xs-12 col-md-3 sidebar">
           <Sidebar />
         </div>
 
