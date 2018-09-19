@@ -1,32 +1,30 @@
-/* global describe beforeEach it */
-
 const {expect} = require('chai')
 const db = require('../index')
-const User = require('../models')
+const User = db.model('user')
 
-describe('User model', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
+describe('User Model', () => {
+  let user1
+  before(() => {
+    user1 = User.build({
+      fullName: 'Cody Awesome',
+      address: '5 Hanover Square New York, NY 10004',
+      phoneNumber: '123-456-789',
+      email: 'cody_awesome@email.com',
+      password: 'ilovepugs'
+    })
   })
-
-  describe('instanceMethods', () => {
-    describe('correctPassword', () => {
-      let cody
-
-      beforeEach(async () => {
-        cody = await User.create({
-          email: 'cody@puppybook.com',
-          password: 'bones'
-        })
-      })
-
-      it('returns true if the password is correct', () => {
-        expect(cody.correctPassword('bones')).to.be.equal(true)
-      })
-
-      it('returns false if the password is incorrect', () => {
-        expect(cody.correctPassword('bonez')).to.be.equal(false)
-      })
-    }) // end describe('correctPassword')
-  }) // end describe('instanceMethods')
-}) // end describe('User model')
+  describe('fields in model', () => {
+    it('contains full name', () => {
+      expect(user1.fullName).to.equal('Cody Awesome')
+    })
+    it('contains address', () => {
+      expect(user1.address).to.equal('5 Hanover Square New York, NY 10004')
+    })
+    it('contains phone number', () => {
+      expect(user1.phoneNumber).to.equal('123-456-789')
+    })
+    it('contains email', () => {
+      expect(user1.email).to.equal('cody_awesome@email.com')
+    })
+  })
+})

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import StarRatingComponent from 'react-star-rating-component'
 import EditReview from '../reviews/EditReview'
 import {Link} from 'react-router-dom'
-import AllUser from './AllUser'
+
 /**
  * COMPONENT
  */
