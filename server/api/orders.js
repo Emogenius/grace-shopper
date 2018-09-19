@@ -36,32 +36,19 @@ router.post('/', async (req, res, next) => {
   let cartOrder = req.body.cartOrder
   let {email, shippingAddress, billingAddress, userId} = req.body.cartOrder
   let items = cartOrder.items
-  let orderItems = []
+  // let order = []
 
   let createdOrder = {}
-
-  items.forEach(item => {
-    let createdOrderItem = {
-      quantity: item.quantity,
-      price: item.price,
-      productId: item.id
-    }
-    console.log('ORDER ITEM', createdOrderItem)
-    orderItems.push(createdOrderItem)
-  })
-
   try {
     if (userId) {
       let user = await User.findById(userId)
 
-      user
-        .addOrder({
-          isFulfill: 'Pending',
-          email,
-          shippingAddress,
-          billingAddress
-        })
-        .then(order => {})
+      createdOrder = await user.addOrder({
+        isFulfill: 'Pending',
+        email,
+        shippingAddress,
+        billingAddress
+      })
     } else {
       createdOrder = await Order.create({
         isFulfill: 'Pending',
@@ -71,6 +58,15 @@ router.post('/', async (req, res, next) => {
       })
     }
 
+    await items.forEach(item => {
+      let createdOrderItem = {
+        quantity: item.quantity,
+        price: item.price,
+        productId: item.id
+      }
+      console.log('ORDER ITEM', createdOrderItem)
+      createdOrder.addOrderItem(createdOrderItem)
+    })
     console.log('---------CREATED ORDER', createdOrder)
 
     let resOrder = {
