@@ -13,29 +13,33 @@ class AllProducts extends Component {
       return <div className="loader" />
     } else {
       return (
-        <div>
+        <div className="">
           {currentUser.isAdmin ? (
             <button type="button" className="btn btn-outline-danger">
               <Link to="/addProduct">ADD PRODUCT</Link>
             </button>
           ) : null}
 
-          <div className="row">
+          <div className="products card-deck flex-wrap d-flex justify-content-around">
             {products.map(prod => {
               return (
-                <div className="col-4" key={prod.id}>
-                  <h2>"{prod.title}"</h2>
-                  <h4>Price: 💰{prod.price}</h4>
-                  <img src={prod.imageUrl} />
-                  <div>
-                    <button type="button" className="btn btn-outline-dark">
-                      <Link to={`/products/${prod.id}`}>
-                        <h3>Pick Me!</h3>
-                      </Link>
-                    </button>
+                <div className="m-1 card bg-transparent" key={prod.id}>
+                  <div className="align-content-between align-items-center card-body d-flex flex-column">
+                    <img className="mx-auto card-img-top" src={prod.imageUrl} />
+                    <h5 className="card-title">{prod.title}</h5>
                   </div>
-
-                  <div className="w-100" />
+                  <div className="card-footer text-center w-100">
+                    <h6 className="text-muted card-subtitle">
+                      Price: 💰{prod.price}
+                    </h6>
+                    <Link
+                      className="mt-auto btn btn-success"
+                      to={`/products/${prod.id}`}
+                    >
+                      Pick Me!
+                    </Link>
+                  </div>
+                  {/* // <div className="w-100" /> */}
                 </div>
               )
             })}

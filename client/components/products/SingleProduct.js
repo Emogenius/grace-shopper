@@ -60,109 +60,111 @@ class SingleProduct extends Component {
       return <div className="loader" />
     } else {
       return (
-        <div className="items">
-          <h1>{emoji.title}</h1>
-          <h2>{emoji.category}</h2>
-          <img src={emoji.imageUrl} />
-          <h4> ABOUT ME: </h4>
-          <h5>
-            <i>{emoji.description}</i>
-          </h5>
-          <h2>The cost of cuteness: 💰{emoji.price}</h2>
-          <button
-            type="button"
-            className="btn btn-outline-dark"
-            id={emoji.id}
-            onClick={() => this.handleAdd(emoji)}
-          >
-            Buy ME!
-          </button>
-
-          <h3> reviews:</h3>
-          {this.state.updateRev ? (
-            <AddReview emoji={emoji.id} newRev={this.newRev} />
-          ) : null}
-          <Link to={`/reviews/addReview/${emoji.id}`} />
-          <button
-            type="button"
-            className="btn btn-outline-danger"
-            onClick={() => {
-              this.newRev()
-            }}
-          >
-            add review
-          </button>
-          <ul>
-            {revs.map(rev => (
-              <li key={rev.id}>
-                <h3>
-                  <em> {rev.product.title}</em>
-                </h3>
-                <h3> "{rev.title}"</h3>
-                <h4>{rev.description}</h4>
-                <h1>
+        <div className="product card bg-transparent">
+          <div className="card-header d-flex flex-column justify-content-between flex-md-row">
+            <h1 className="">{emoji.title}</h1>
+            <h2 className="text-muted text-md-right">{emoji.category.name}</h2>
+          </div>
+          <div className="card-body flex-wrap d-flex flex-column justify-content-between">
+            <img className="m-1 rounded" src={emoji.imageUrl} />
+            <div className="m-1">
+              <h2> ABOUT ME: </h2>
+              <p>{emoji.description}</p>
+            </div>
+            <div className="m-1">
+              <h3>The cost of cuteness: 💰{emoji.price}</h3>
+              <button
+                type="button"
+                className="btn btn-success"
+                id={emoji.id}
+                onClick={() => this.handleAdd(emoji)}
+              >
+                Buy ME!
+              </button>
+            </div>
+          </div>
+          <div className="card-footer">
+            <h2> Reviews:</h2>
+            {this.state.updateRev ? (
+              <AddReview emoji={emoji.id} newRev={this.newRev} />
+            ) : null}
+            <Link to={`/reviews/addReview/${emoji.id}`} />
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                this.newRev()
+              }}
+            >
+              add review
+            </button>
+            <ul>
+              {revs.map(rev => (
+                <li key={rev.id}>
+                  <h3>{rev.title}</h3>
+                  <h5 className="text-muted">{rev.date}</h5>
+                  <p className="card-text">{rev.description}</p>
+                  <p>- {rev.user.fullName}</p>
                   <StarRatingComponent
                     name="rate1"
                     starColor="DeepPink"
-                    starCount={5}
+                    starCount={rev.rating}
                     value={rev.rating}
                   />
-                </h1>
-                <h3> rating: {rev.rating}</h3>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
 
-          {currentUser.isAdmin ? (
-            <div>
-              <button
-                type="button"
-                className="btn btn-outline-danger"
-                onClick={() => {
-                  this.updateForm()
-                }}
-              >
-                Edit
-              </button>
-              {this.state.updateClick ? (
-                <EditProduct product={emoji} updateForm={this.updateForm} />
-              ) : null}
-              <Link to="/products">
+            {currentUser.isAdmin ? (
+              <div>
                 <button
                   type="button"
                   className="btn btn-outline-danger"
                   onClick={() => {
-                    this.props.remove(emoji.id)
+                    this.updateForm()
                   }}
                 >
-                  Remove
+                  Edit
                 </button>
-              </Link>
-            </div>
-          ) : null}
+                {this.state.updateClick ? (
+                  <EditProduct product={emoji} updateForm={this.updateForm} />
+                ) : null}
+                <Link to="/products">
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger"
+                    onClick={() => {
+                      this.props.remove(emoji.id)
+                    }}
+                  >
+                    Remove
+                  </button>
+                </Link>
+              </div>
+            ) : null}
 
-          <div>
-            <br />
-            <h3> What people are saying about this emoji: </h3>
-            <ul>
-              {emoji.review ? (
-                emoji.reviews.map(rev => (
-                  <li key={rev.id}>
-                    <h4>User Review: {rev.title}</h4>
-                    <h4>Rating⭐: {rev.stars} </h4>
-                    <h6>Date posted: {rev.date}</h6>
-                    <h5>
-                      <i>"{rev.review}"</i>
-                    </h5>
-                    <h6>Author: {rev.userId}</h6>
-                  </li>
-                ))
-              ) : (
-                <div>
-                  <h3>See nothing? Say something!🤗 </h3>
-                </div>
-              )}
-            </ul>
+            {/* <div>
+              <p> What people are saying about this emoji: </p>
+              <ul>
+                {emoji.reviews ? (
+                  emoji.reviews.map(rev => (
+                    <li key={rev.id}>
+                      <h4>User Review: {rev.title}</h4>
+                      <h4>Rating⭐: {rev.rating} </h4>
+                      <h6>Date posted: {rev.date}</h6>
+                      <h5>
+                        <em>"{rev.description}"</em>
+                      </h5>
+                      <h6>Author: {rev.user.fullName}</h6>
+                    </li>
+                  ))
+                ) : (
+                  <div>
+                    <h3>See nothing? Say something!🤗 </h3>
+                  </div>
+                )}
+              </ul>
+            </div> */}
           </div>
         </div>
       )

@@ -44,3 +44,28 @@ form {
   width: 500px;
   margin: 25px;
 }
+
+/* Cart */
+
+.table img,
+.products img {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Products */
+.products img {
+  height: 100px;
+  width: 100px;
+}
+
+.product img {
+  max-height: 250px;
+  max-width: 250px;
+  min-height: 250px;
+  min-width: 250px;
+}
+
+.products.card-deck .card {
+  min-width: 220px;
+  max-width: 220px;
+}

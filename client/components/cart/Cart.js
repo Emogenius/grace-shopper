@@ -112,7 +112,7 @@ class Cart extends Component {
                   <tr>
                     <th>
                       {' '}
-                      <img src={listItem.imageUrl} />
+                      <img className="rounded" src={listItem.imageUrl} />
                     </th>
                     <td>{listItem.title}</td>
                     <td>
