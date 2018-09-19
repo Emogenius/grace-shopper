@@ -17,9 +17,16 @@
   height: auto;
 }
 
+#sidebar,
 body {
+  background-color: #f4bd2e;
+}
+
+#sidebar {
   background-image: url('https://static.arageek.com/wp-content/uploads/Emoji-Wallpaper-For-IPhone.jpg');
-  background-color: #cccccc;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: left -25% bottom;
   background-attachment: fixed;
 }
 

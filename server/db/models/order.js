@@ -41,13 +41,7 @@ Order.prototype.addOrderItem = async function(item) {
   let builtItem = OrderProduct.build({item, orderId: this.getDataValue('id')})
 
   try {
-    await this.addProduct(
-      builtItem
-      // await OrderProduct.create({
-      //   ...item,
-      //   orderId: this.getDataValue('id')
-      // })
-    )
+    await this.addProduct(builtItem)
   } catch (err) {
     console.log(err)
   }

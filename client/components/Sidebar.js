@@ -7,7 +7,7 @@ import {SearchBar} from './'
 const Sidebar = props => {
   const catList = props.categoryList
   return (
-    <div id="sidebar" className="row border border-primary rounded">
+    <div id="" className="row border border-primary rounded">
       <h2 className="col-12">Categories:</h2>
       <ul className="nav col-12 flex-lg-column justify-content-center">
         {catList.map(item => (
