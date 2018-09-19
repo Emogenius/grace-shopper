@@ -2,7 +2,7 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const Product = db.module('product')
+const Product = require('../db/models')
 
 describe('Product routes', () => {
   beforeEach(() => {

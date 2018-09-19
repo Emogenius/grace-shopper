@@ -36,4 +36,13 @@ const OrderProduct = db.define('order_product', {
   }
 })
 
+Order.prototype.addOrderItem = async item => {
+  console.log('THIS FROM ORDER INSTANCE', this)
+  try {
+    await this.addProducts(item)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {Order, OrderProduct}

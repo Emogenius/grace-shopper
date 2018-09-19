@@ -42,7 +42,6 @@ export const createOrder = order => {
       let cartOrder = {
         isFulfill: order.isFulfilled,
         email: order.email,
-        userId: order.userId,
         items: order.items,
         billingAddress: order.billingAddress,
         shippingAddress: order.shippingAddress

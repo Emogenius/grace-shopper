@@ -36,19 +36,32 @@ router.post('/', async (req, res, next) => {
   let cartOrder = req.body.cartOrder
   let {email, shippingAddress, billingAddress, userId} = req.body.cartOrder
   let items = cartOrder.items
-  // let order = []
+  let orderItems = []
 
   let createdOrder = {}
+
+  items.forEach(item => {
+    let createdOrderItem = {
+      quantity: item.quantity,
+      price: item.price,
+      productId: item.id
+    }
+    console.log('ORDER ITEM', createdOrderItem)
+    orderItems.push(createdOrderItem)
+  })
+
   try {
     if (userId) {
       let user = await User.findById(userId)
 
-      createdOrder = await user.addOrder({
-        isFulfill: 'Pending',
-        email,
-        shippingAddress,
-        billingAddress
-      })
+      user
+        .addOrder({
+          isFulfill: 'Pending',
+          email,
+          shippingAddress,
+          billingAddress
+        })
+        .then(order => {})
     } else {
       createdOrder = await Order.create({
         isFulfill: 'Pending',
@@ -58,10 +71,16 @@ router.post('/', async (req, res, next) => {
       })
     }
 
-    await items.forEach(item => {
-      createdOrder.addProduct(item)
-    })
-    res.json(createdOrder)
+    console.log('---------CREATED ORDER', createdOrder)
+
+    let resOrder = {
+      isFulfill: createdOrder.getDataValue('isFulfill'),
+      email: createdOrder.getDataValue('email'),
+      shippingAddress: createdOrder.getDataValue('shippingAddress'),
+      billingAddress: createdOrder.getDataValue('billingAddress')
+    }
+
+    res.json(resOrder)
 
     // Order needs method to get total
     // Order needs to add orderQuantity and orderPrice to each product
