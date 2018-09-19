@@ -96,75 +96,77 @@ class Cart extends Component {
         <h2>Your cart is empty! Let’s flip up something fun together!</h2>
       </div>
     ) : (
-      <main>
-        <h1>Your Shopping Cart</h1>
-        {myCart && (
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Item</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Unit Price</th>
-                <th scope="col" />
-              </tr>
-            </thead>
-            {myCart.map(listItem => (
-              <tbody key={listItem.id}>
+      <div className="row">
+        <main className="col">
+          <h1>Your Shopping Cart</h1>
+          {myCart && (
+            <table className="table">
+              <thead>
                 <tr>
-                  <th>
-                    {' '}
-                    <img src={listItem.imageUrl} />
-                  </th>
-                  <td>{listItem.title}</td>
-                  <td>
-                    {' '}
-                    <select
-                      name={listItem.id}
-                      id={listItem.id}
-                      onChange={this.handleChange}
-                      value={answer}
-                    >
-                      <option value={listItem.quantity}>
-                        {listItem.quantity}
-                      </option>
-                      {choices.map(choice => (
-                        <option key={choice.value} value={choice.value}>
-                          {choice.value}
+                  <th scope="col">Image</th>
+                  <th scope="col">Item</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Unit Price</th>
+                  <th scope="col" />
+                </tr>
+              </thead>
+              {myCart.map(listItem => (
+                <tbody key={listItem.id}>
+                  <tr>
+                    <th>
+                      {' '}
+                      <img className="rounded" src={listItem.imageUrl} />
+                    </th>
+                    <td>{listItem.title}</td>
+                    <td>
+                      {' '}
+                      <select
+                        name={listItem.id}
+                        id={listItem.id}
+                        onChange={this.handleChange}
+                        value={answer}
+                      >
+                        <option value={listItem.quantity}>
+                          {listItem.quantity}
                         </option>
-                      ))}
+                        {choices.map(choice => (
+                          <option key={choice.value} value={choice.value}>
+                            {choice.value}
+                          </option>
+                        ))}
 
-                      {/* {listItem.inventoryQuantity > 0 ? null : (
+                        {/* {listItem.inventoryQuantity > 0 ? null : (
                       <div className="alert alert-warning">
                         <strong>Warning!</strong> Not enough quantity
                       </div>
                     )} */}
-                    </select>
-                  </td>
-                  <td> Emooo Price: {listItem.price}</td>
-                  <td>
-                    {' '}
-                    <button
-                      type="button"
-                      className="btn btn-outline-dark"
-                      onClick={() => this.handleDelete(listItem.id)}
-                    >
-                      remove item
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-          </table>
-        )}
+                      </select>
+                    </td>
+                    <td> Emooo Price: {listItem.price}</td>
+                    <td>
+                      {' '}
+                      <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={() => this.handleDelete(listItem.id)}
+                      >
+                        remove item
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+            </table>
+          )}
 
-        <h1>ORDER Total:{total}</h1>
-        <Link to="/checkout">
-          <button type="button" className="btn btn-outline-dark">
-            Checkout
-          </button>
-        </Link>
-      </main>
+          <h1>ORDER Total:{total}</h1>
+          <Link to="/checkout">
+            <button type="button" className="btn btn-success">
+              Checkout
+            </button>
+          </Link>
+        </main>
+      </div>
     )
   }
 }

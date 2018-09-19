@@ -24,7 +24,7 @@ router.get('/category/categoryList', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id, {
-      include: [{model: Review}]
+      include: [{all: true, nested: true}] //[{model: Review}, {model: Category}]
     })
     res.json(product)
   } catch (err) {
