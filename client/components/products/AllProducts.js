@@ -9,37 +9,37 @@ class AllProducts extends Component {
     const isFetching = this.props.isFetching
     const currentUser = this.props.user.current
 
-    if (isFetching) {
+    if (isFetching || !products) {
       return <div className="loader" />
     } else {
       return (
         <div>
           {currentUser.isAdmin ? (
-            <button type="button" className="btn btn-outline-warning">
+            <button type="button" className="btn btn-outline-danger">
               <Link to="/addProduct">ADD PRODUCT</Link>
             </button>
           ) : null}
 
-          <ul className="items">
+          <div className="row">
             {products.map(prod => {
               return (
-                <div key={prod.id}>
-                  <li>
-                    <h2>"{prod.title}"</h2>
-                    <h3>Price: 💰{prod.price}</h3>
-                    <img src={prod.imageUrl} />
-                    <div>
-                      <button type="button" className="btn btn-outline-dark">
-                        <Link to={`/products/${prod.id}`}>
-                          <h3>Pick Me!</h3>
-                        </Link>
-                      </button>
-                    </div>
-                  </li>
+                <div className="col-4" key={prod.id}>
+                  <h2>"{prod.title}"</h2>
+                  <h4>Price: 💰{prod.price}</h4>
+                  <img src={prod.imageUrl} />
+                  <div>
+                    <button type="button" className="btn btn-outline-dark">
+                      <Link to={`/products/${prod.id}`}>
+                        <h3>Pick Me!</h3>
+                      </Link>
+                    </button>
+                  </div>
+
+                  <div className="w-100" />
                 </div>
               )
             })}
-          </ul>
+          </div>
         </div>
       )
     }

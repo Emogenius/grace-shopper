@@ -85,7 +85,7 @@ class SingleProduct extends Component {
           <Link to={`/reviews/addReview/${emoji.id}`} />
           <button
             type="button"
-            className="btn btn-outline-warning"
+            className="btn btn-outline-danger"
             onClick={() => {
               this.newRev()
             }}
@@ -117,7 +117,7 @@ class SingleProduct extends Component {
             <div>
               <button
                 type="button"
-                className="btn btn-outline-warning"
+                className="btn btn-outline-danger"
                 onClick={() => {
                   this.updateForm()
                 }}
@@ -130,7 +130,7 @@ class SingleProduct extends Component {
               <Link to="/products">
                 <button
                   type="button"
-                  className="btn btn-outline-warning"
+                  className="btn btn-outline-danger"
                   onClick={() => {
                     this.props.remove(emoji.id)
                   }}

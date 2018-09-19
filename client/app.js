@@ -12,11 +12,11 @@ function App() {
       </div>
 
       <div className="row">
-        <div className="col-xs-12 col-md-3">
+        <div className="col-2">
           <Sidebar />
         </div>
 
-        <div className="col">
+        <div className="col-10">
           <Routes />
         </div>
       </div>
