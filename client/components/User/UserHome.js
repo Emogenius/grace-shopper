@@ -45,6 +45,7 @@ class UserHome extends Component {
     }
   }
   render() {
+    console.log('hello------')
     const user = this.props.user
     const orders = this.props.orders
     const revs = this.props.reviews.filter(rev => rev.userId === this.props.id)
