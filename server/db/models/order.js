@@ -37,7 +37,7 @@ const OrderProduct = db.define('order_product', {
 })
 
 Order.prototype.addOrderItem = async function(item) {
-  console.log('THIS FROM ORDER INSTANCE', this)
+  // console.log('THIS FROM ORDER INSTANCE', this)
   let builtItem = OrderProduct.build({item, orderId: this.getDataValue('id')})
 
   try {

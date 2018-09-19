@@ -36,7 +36,7 @@ export const getOrders = () => {
 
 export const createOrder = order => {
   return async dispatch => {
-    console.log('ORDER--------', order)
+    // console.log('ORDER--------', order)
     try {
       let cartOrder = {
         isFulfill: order.isFulfilled,
@@ -46,7 +46,7 @@ export const createOrder = order => {
         shippingAddress: order.shippingAddress
       }
       const {data} = await axios.post(`/api/orders/`, {cartOrder})
-      console.log('REDUCER DATA-------------', data)
+      // console.log('REDUCER DATA-------------', data)
       dispatch(newOrder(data))
     } catch (err) {
       console.error(err)
@@ -58,7 +58,7 @@ export const updateOrder = order => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/orders/${order.id}`, order)
-      console.log('update shpiing status here ', data)
+      // console.log('update shpiing status here ', data)
       dispatch(editOrder(data))
     } catch (err) {
       console.error(err)

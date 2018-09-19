@@ -21,7 +21,7 @@ class EditOrder extends React.Component {
   }
 
   render() {
-    console.log(this.props, '<<<<<<')
+    // console.log(this.props, '<<<<<<')
     const order = this.props.order
     if (!order) return <p>loading</p>
     return (

@@ -6,7 +6,7 @@ import StarRatingComponent from 'react-star-rating-component'
 class EditReview extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props)
+    // console.log(props)
     const review = this.props.review
     this.state = {
       id: review.id,
@@ -25,7 +25,7 @@ class EditReview extends React.Component {
   }
 
   handleSubmit = event => {
-    console.log(this.state)
+    // console.log(this.state)
     event.preventDefault()
     this.props.updateReview({...this.state})
     //this.props.updateForm()

@@ -77,7 +77,7 @@ export const getCategoryList = () => {
   }
 }
 export const getCategory = (categoryId, history) => {
-  console.log('history', history)
+  // console.log('history', history)
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/products/category/${categoryId}`)
