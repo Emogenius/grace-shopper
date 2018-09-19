@@ -24,8 +24,8 @@ class CheckOut extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  componentDidMount() {
-    console.log('this user', this.props.user)
+  // componentDidMount() {
+  //   console.log('this user', this.props.user)
     this.setState({userId: this.props.user.current.id})
     let keys = Object.keys(localStorage)
     let total = 0
@@ -66,17 +66,17 @@ class CheckOut extends Component {
     })
     if (response.ok) {
       this.setState({complete: true})
-      console.log('Purchase complete!')
+      // console.log('Purchase complete!')
     }
 
     // Put in a thunk!
     let order = this.state
-    console.log('ORDER (STATE): ', order.items)
+    // console.log('ORDER (STATE): ', order.items)
     this.props.createOrder(order)
   }
 
   render() {
-    console.log('this.state on form', this.state)
+    // console.log('this.state on form', this.state)
     if (this.state.complete) return <h1>Purchase complete!</h1>
     return (
       <form>
@@ -152,7 +152,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createOrder: data => {
-      console.log('DATA------------', data)
+      // console.log('DATA------------', data)
       dispatch(createOrder(data))
     }
   }

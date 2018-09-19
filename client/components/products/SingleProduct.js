@@ -56,7 +56,7 @@ class SingleProduct extends Component {
     const currentUser = this.props.user.current
     const revs = this.props.reviews.filter(rev => rev.productId === emoji.id)
 
-    if (isFetching) {
+    if (isFetching || !emoji.category) {
       return <div className="loader" />
     } else {
       return (
