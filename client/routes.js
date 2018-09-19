@@ -5,6 +5,7 @@ import {getProducts, getCategoryList} from './store/productReducer'
 import {fetchAllUsers} from './store/userReducer'
 import {getAllReviews} from './store/reviewReducer'
 import PropTypes from 'prop-types'
+import {StripeProvider, Elements} from 'react-stripe-elements'
 import {
   Login,
   Signup,
@@ -42,7 +43,7 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-
+    console.log('key', process.env.STRIPE_PUBLISHABLE_KEY)
     return (
       <Switch>
         {/*--------------- Routes to all visitors------------ */}
@@ -55,7 +56,17 @@ class Routes extends Component {
         />
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
-        <Route exact path="/checkout" component={CheckOut} />
+        <Route
+          exact
+          path="/checkout"
+          render={() => (
+            <StripeProvider apiKey="pk_test_bmkjpUhNBrtmnYPdTdrNSkLa">
+              <Elements>
+                <CheckOut />
+              </Elements>
+            </StripeProvider>
+          )}
+        />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route

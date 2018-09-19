@@ -1,6 +1,8 @@
-// const router = require('express').Router()
+const router = require('express').Router()
+const Order = require('../db/models')
+const stripe = require('stripe')(process.env.STRIPE_CLIENT_SECRET)
 
-// module.exports = router
+module.exports = router
 
 // router.get('/', (req, res, next) => {
 //   try {

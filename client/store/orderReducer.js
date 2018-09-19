@@ -36,8 +36,17 @@ export const getOrders = () => {
 
 export const createOrder = order => {
   return async dispatch => {
+    console.log('ORDER--------', order)
     try {
-      const {data} = await axios.post(`/api/orders`, order)
+      let cartOrder = {
+        isFulfill: order.isFulfilled,
+        email: order.email,
+        items: order.items,
+        billingAddress: order.billingAddress,
+        shippingAddress: order.shippingAddress
+      }
+      const {data} = await axios.post(`/api/orders/`, {cartOrder})
+      console.log('REDUCER DATA-------------', data)
       dispatch(newOrder(data))
     } catch (err) {
       console.error(err)
