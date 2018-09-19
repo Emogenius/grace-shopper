@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 const AllUser = props => {
-  console.log('hello---<>>>>')
   const users = props.users
   if (!users) return <p>loading</p>
   return (
@@ -23,7 +22,7 @@ const AllUser = props => {
               <td>{each.email}</td>
               <td>{each.isAdmin}</td>
               <td>
-                <button type="button" className="btn btn-outline-warning">
+                <button type="button" className="btn btn-outline-danger">
                   DELETE
                 </button>
               </td>

@@ -80,13 +80,13 @@ class UserHome extends Component {
         {user.isAdmin ? (
           <div>
             <Link to="/orders">
-              <button type="button" className="btn btn-outline-warning">
+              <button type="button" className="btn btn-outline-danger">
                 List All User's Orders
               </button>
             </Link>
 
             <Link to="/allUsers">
-              <button type="button" className="btn btn-outline-warning">
+              <button type="button" className="btn btn-outline-danger">
                 List All Users
               </button>
             </Link>
@@ -115,7 +115,7 @@ class UserHome extends Component {
                   <h3> rating: {rev.rating}</h3>
                   <button
                     type="button"
-                    className="btn btn-outline-warning"
+                    className="btn btn-outline-danger"
                     onClick={() => {
                       this.updateForm()
                     }}
@@ -125,7 +125,7 @@ class UserHome extends Component {
                   {this.state.updateClick ? (
                     <EditReview review={rev} updateForm={this.updateForm} />
                   ) : null}
-                  <button type="button" className="btn btn-outline-warning">
+                  <button type="button" className="btn btn-outline-danger">
                     {/* onClick={() => {
                       this.props.remove(review.id)
                     }} */}
